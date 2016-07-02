@@ -20,6 +20,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 import com.zm.model.Letter;
+import com.zm.model.Msg;
 import com.zm.model.Temp;
 import com.zm.service.LetterService;
 import com.zm.service.TempService;
@@ -55,7 +56,7 @@ public class LetterController extends BaseController {
 		json(response,temp);
 	}
 	@RequestMapping(value = "save")
-	public void saveLetter(HttpServletRequest request,HttpServletResponse response) throws IOException{
+	public ModelAndView saveLetter(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		
 	    Map map = request.getParameterMap();
 		Letter letter = new Letter();
@@ -64,8 +65,20 @@ public class LetterController extends BaseController {
 		letter.setParams(JSON.toJSONString(map).replace("[", "").replace("]", ""));
 //		letter.setImgs(JSON.toJSONString(map));
 		letter.setCreateTime(now());
-		letterService.add(letter);
-        ajax(response, "y");
+		HttpSession session = request.getSession();
+		session.setAttribute("letter", letter);
+
+		return html("/letter/send", map, request);
+	}
+	@RequestMapping(value = "send")
+	public ModelAndView sendLetter(HttpServletRequest request){
+		String tel=request.getParameter("tel");
+		String sender=request.getParameter("sender");
+		HttpSession session = request.getSession();
+		Letter letter = (Letter) session.getAttribute("letter");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		return html("/msg/result", map, request);
 	}
 	@RequestMapping(value = "go/{id}")
 	public ModelAndView toLetter(@PathVariable("id") String id,HttpServletRequest request){
@@ -74,8 +87,8 @@ public class LetterController extends BaseController {
 		Temp temp=tempService.getById(letter.getTemp());
 		return html(temp.getUrl(), JSON.parseObject(letter.getParams()), request);
 	}
-	@RequestMapping(value = "check")
-	public ModelAndView checkReceiver(HttpServletRequest request){
+	@RequestMapping(value = "r")
+	public ModelAndView checkTel(HttpServletRequest request){
 		Map<String, Object> map = new HashMap<String, Object>();
 		String tel=request.getParameter("tel");
 		Temp temp=tempService.getById("");
