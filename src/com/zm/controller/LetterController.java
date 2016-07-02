@@ -66,6 +66,7 @@ public class LetterController extends BaseController {
 //		letter.setImgs(JSON.toJSONString(map));
 		letter.setCreateTime(now());
 		HttpSession session = request.getSession();
+		
 		session.setAttribute("letter", letter);
 
 		return html("/letter/send", map, request);
