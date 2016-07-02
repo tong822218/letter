@@ -22,10 +22,10 @@
 	<div class="container1">
 		<div style="">卖家说</div>
 		<div style="margin-left: 50px; margin-top: 10px">
-			<textarea rows="" cols="" id="say" style="width: 60%; height: 300px"></textarea>
+			<textarea rows="" cols="" id="say" style="width: 60%; height: 300px">${obj.user.seller_say!}</textarea>
 		</div>
 		<div style="position: absolute; left: 50%">
-			<input type="button" onclick="submit()" value="保存">
+			<button type="button"  onclick="submit()" class="btn btn-success">保存</button>
 		</div>
 	</div>
 </@layout>

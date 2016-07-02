@@ -27,24 +27,24 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public Pager<?> findPager(Pager<?> pager) {
 		// TODO Auto-generated method stub
-		return mysqlJdbcDao.findPager(pager, "select * from t_user");
+		return mysqlJdbcDao.findPager(pager, "select * from u_seller");
 	}
 	
 	@Override
 	public User getById(String id) {
 		ArrayList list = new ArrayList();
-		String sql = "select * from u_user where id = ?";
+		String sql = "select * from u_seller where id = ?";
 		list.add(id);
 		return (User)mysqlJdbcDao.queryForObject(sql, list.toArray(), User.class);
 	}
 	@Override
 	public void add(User letter) {
-		String sql = "insert into u_user(id,username,password,name,token,create_time,seller_say) values ('"+letter.getId()+"','"+letter.getUsername()+"','"+letter.getPassword()+"','"+letter.getName()+"','"+letter.getToken()+"','"+letter.getCreate_time()+"','"+letter.getSeller_say()+"') ";
+		String sql = "insert into u_seller(id,username,password,name,token,create_time,seller_say) values ('"+letter.getId()+"','"+letter.getUsername()+"','"+letter.getPassword()+"','"+letter.getName()+"','"+letter.getToken()+"','"+letter.getCreate_time()+"','"+letter.getSeller_say()+"') ";
 		mysqlJdbcDao.execSql(sql);
 	}
 	@Override
 	public void update(User letter) {
-		String sql = "update  u_user set id='"+letter.getId()+"',username='"+ letter.getUsername()+"',password='"+ letter.getPassword()+"',name='"+ letter.getName()+"',token='"+ letter.getToken()+"',create_time='"+ letter.getCreate_time()+"',seller_say='"+ letter.getSeller_say()+"' where id='"+letter.getId()+"'";
+		String sql = "update  u_seller set id='"+letter.getId()+"',username='"+ letter.getUsername()+"',password='"+ letter.getPassword()+"',name='"+ letter.getName()+"',token='"+ letter.getToken()+"',create_time='"+ letter.getCreate_time()+"',seller_say='"+ letter.getSeller_say()+"' where id='"+letter.getId()+"'";
 		mysqlJdbcDao.execSql(sql);
 	}
 }

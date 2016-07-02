@@ -19,8 +19,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alibaba.fastjson.JSON;
 import com.zm.model.Letter;
 import com.zm.model.Temp;
+import com.zm.model.User;
 import com.zm.service.LetterService;
 import com.zm.service.TempService;
+import com.zm.service.UserService;
+import com.zm.util.Common;
 
 @Controller
 @RequestMapping("/l")
@@ -28,11 +31,16 @@ public class LetterController extends BaseController {
 
 	private TempService tempService;
 	private LetterService letterService;
+	private UserService userService;
 	
 	
 	@RequestMapping(value = "home")
 	public ModelAndView toSlider(HttpServletRequest request){
-		return html("/slider/slider", null, request);
+		String id = request.getParameter("sellerId");
+		User user = userService.getById(id);
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("sellerSay", user.getSeller_say());
+		return html("/slider/slider", map, request);
         
 	}
 	@RequestMapping(value = "temp/{id}")
@@ -149,4 +157,12 @@ public class LetterController extends BaseController {
 	public void setLetterService(LetterService letterService) {
 		this.letterService = letterService;
 	}
+	public UserService getUserService() {
+		return userService;
+	}
+	@Autowired
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+	
 }
