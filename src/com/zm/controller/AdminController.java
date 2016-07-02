@@ -1,13 +1,10 @@
 package com.zm.controller;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javafx.scene.shape.Arc;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sun.javafx.image.impl.IntArgb;
 import com.zm.model.Letter;
 import com.zm.model.Temp;
 import com.zm.model.User;
