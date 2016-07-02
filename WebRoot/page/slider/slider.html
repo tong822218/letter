@@ -10,77 +10,104 @@
 <meta content="yes" name="apple-mobile-web-app-capable">
 <link rel="stylesheet" href="${rc.contextPath}/static/slider/slider.css" />
 <script src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
-<script src="${rc.contextPath}/static/slider/slider.js" type="text/javascript" charset="utf-8"></script>
-<script src="${rc.contextPath}/static/slider/sliderlittel.js" type="text/javascript" charset="utf-8"></script>
+<script src="${rc.contextPath}/static/slider/slider.js"
+	type="text/javascript" charset="utf-8"></script>
+<script src="${rc.contextPath}/static/slider/sliderlittel.js"
+	type="text/javascript" charset="utf-8"></script>
+<style type="text/css">
+.sellersay {
+	z-index:100;
+    display: flex;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	trnsform:trtranslate(-50% -50%);
+	height: 400px;
+	width: 80%;
+	
+	border: solid 1px red;
+	background-color: #eee;
+	font-size: 24px;
+	justify-content:center;
+	align-items:center;
+}
+</style>
 </head>
 
 <body>
 	<!-- 外层画布 -->
+	<div class="sellersay"><span>${obj.sellerSay!}</span></div>
 	<div id="canvas"></div>
 	<div class="button" id="button"></div>
 	<div id="bottom">
 		<div class="little" id="little"></div>
 	</div>
 	<script type="text/javascript">
-	var isShowLittleSlider = false;
-	var slider, sliderLittle;
-	// 所有的数据
-	var list = [];
+		$(function(){
+			setInterval(function(){
+				$(".sellersay").css({display:"none"});
+			}, 3000);
+		})
+		var isShowLittleSlider = false;
+		var slider, sliderLittle;
+		// 所有的数据
+		var list = [];
 
-	$.post("${rc.contextPath}/l/temp/getList.html", {}, function(result) {
-		list = result;
-		// 初始化Slider 实例
-		slider = new Slider({
-			dom : document.getElementById('canvas'),
-			list : list,
-			imgHeight : 1333,
-			imgWidth : 750
-		});
-		// 初始化底部小幻灯片SliderLitter 实例
-		sliderLittle = new SliderLittle({
-			dom : document.getElementById('little'),
-			list : list,
-			imgHeight : 1333,
-			imgWidth : 750,
-			height : 95
-		});
-	});
-
-	$(".button").click(function() {
-		var bu = document.getElementById("button");
-		$("#bottom").toggle();
-		bu.style.display = "none";
-		isShowLittleSlider = true;
-		slider.renderDOM(1);
-		slider.bindDOM();
-		slider.goIndex(slider.idx, 1);
-	})
-
-	function open(id) {
-		// if(slider.idx>id){
-		// slider.idx=id;
-		// slider.goIndex(-id);
-		// }else{
-		// slider.idx=id;
-		// slider.goIndex(id);
-		// }
-		slider.renderDOM(1);
-		slider.bindDOM();
-		slider.goIndex(id, 1);
-	}
-
-	function toEdite(id) {
-		if (isShowLittleSlider) {
-			$("#bottom").css({
-				"display" : "none"
+		$.post("${rc.contextPath}/l/temp/getList.html", {}, function(result) {
+			list = result;
+			// 初始化Slider 实例
+			slider = new Slider({
+				dom : document.getElementById('canvas'),
+				list : list,
+				imgHeight : 1333,
+				imgWidth : 750
 			});
-			$("#button").css({
-				"display" : "block"
+			// 初始化底部小幻灯片SliderLitter 实例
+			sliderLittle = new SliderLittle({
+				dom : document.getElementById('little'),
+				list : list,
+				imgHeight : 1333,
+				imgWidth : 750,
+				height : 95
 			});
-			isShowLittleSlider = false;
-		} else {
-			window.location.href = "${rc.contextPath}/l/temp/" + id + ".html";
+		});
+
+		$(".button").click(function() {
+			var bu = document.getElementById("button");
+			$("#bottom").toggle();
+			bu.style.display = "none";
+			isShowLittleSlider = true;
+			slider.renderDOM(1);
+			slider.bindDOM();
+			slider.goIndex(slider.idx, 1);
+		})
+
+		function open(id) {
+			// if(slider.idx>id){
+			// slider.idx=id;
+			// slider.goIndex(-id);
+			// }else{
+			// slider.idx=id;
+			// slider.goIndex(id);
+			// }
+			slider.renderDOM(1);
+			slider.bindDOM();
+			slider.goIndex(id, 1);
 		}
-	}
+
+		function toEdite(id) {
+			if (isShowLittleSlider) {
+				$("#bottom").css({
+					"display" : "none"
+				});
+				$("#button").css({
+					"display" : "block"
+				});
+				isShowLittleSlider = false;
+			} else {
+				window.location.href = "${rc.contextPath}/l/temp/" + id
+						+ ".html";
+			}
+		}
 	</script>
 </body>
