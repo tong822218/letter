@@ -43,5 +43,13 @@ public class LetterDaoImpl implements LetterDao {
 		this.mysqlJdbcDao = mysqlJdbcDao;
 	}
 
+	@Override
+	public List<Letter> getBySeller(String sellerName) {
+		ArrayList<String> list = new ArrayList<String>();
+		String sql = " select *,t.title  tempName from s_letter l left join s_temp t on l.temp=t.id  where seller = ? order by l.create_time desc ";
+		list.add(sellerName);
+		return (List<Letter>) mysqlJdbcDao.queryList(sql, list.toArray(), Letter.class);
+	}
+
 	
 }

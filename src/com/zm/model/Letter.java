@@ -5,6 +5,7 @@ public class Letter {
 	private String user;
 	private String userid;
 	private String temp;
+	private String tempName;
 	private String imgs;
 	private String params;
 	private String createTime;
@@ -13,6 +14,12 @@ public class Letter {
 	private String sender;
 	
 
+	public String getTempName() {
+		return tempName;
+	}
+	public void setTempName(String tempName) {
+		this.tempName = tempName;
+	}
 	public String getTel() {
 		return tel;
 	}

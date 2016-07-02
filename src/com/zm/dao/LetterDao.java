@@ -12,4 +12,6 @@ public interface LetterDao {
 
 	List<Letter> getByTel(String tel);
 
+	List<Letter> getBySeller(String sellerName);
+
 }

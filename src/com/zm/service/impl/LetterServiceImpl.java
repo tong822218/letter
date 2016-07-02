@@ -25,5 +25,9 @@ public class LetterServiceImpl implements LetterService {
 	public List<Letter> getByTel(String tel) {
 		return letterDao.getByTel(tel);
 	}
+	@Override
+	public List<Letter> getBySeller(String sellerName) {
+		return letterDao.getBySeller(sellerName);
+	}
 
 }

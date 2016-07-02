@@ -1,9 +1,13 @@
 package com.zm.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import javafx.scene.shape.Arc;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +17,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sun.javafx.image.impl.IntArgb;
+import com.zm.model.Letter;
+import com.zm.model.Temp;
 import com.zm.model.User;
+import com.zm.service.LetterService;
+import com.zm.service.TempService;
 import com.zm.service.UserService;
 import com.zm.taobao.API;
 import com.zm.taobao.Token;
@@ -24,10 +33,54 @@ import com.zm.util.Common;
 public class AdminController extends BaseController {
 
 	private UserService userService;
+	private LetterService letterService;
+	private TempService tempService;
 
 	@RequestMapping(value = "index")
 	public ModelAndView index(HttpServletRequest request) {
-		return html("/admin/index", null, request);
+		User user=Common.getUser(request);
+		List<Letter> let = letterService.getBySeller(user.getName());
+		List<Temp> tempList = tempService.getList();
+		String[] tem=new String[tempList.size()];
+		Integer[] count=new Integer[tempList.size()];
+		for (int i = 0; i < tempList.size(); i++) {
+			tem[i]=tempList.get(i).getTitle();
+			count[i]=0;
+		}
+		for(int i=0;i<let.size();i++){
+			for (int j = 0; j < tem.length; j++) {
+				if(let.get(i).getTempName().equals(tem[j])){
+					count[j]++;
+				}
+			}
+		}
+		
+		StringBuffer sb = new StringBuffer();
+		for(int i = 0; i < tem.length; i++){
+			if(i==tem.length-1){
+				 sb. append("'"+tem[i]+"'");
+			}else{
+				 sb. append("'"+tem[i]+"',");
+			}
+		
+		}
+		String tems = sb.toString();
+		
+		StringBuffer sb1 = new StringBuffer();
+		for(int i = 0; i < count.length; i++){
+			if(i==count.length-1){
+				 sb1. append("'"+count[i]+"'");
+			}else{
+				 sb1. append("'"+count[i]+"',");
+			}
+		}
+		String counts = sb1.toString();
+		
+		Map<String,Object> map=new HashMap<String, Object>();
+		map.put("tem", tems);
+		map.put("count", counts);
+		System.out.println(tems+"---"+counts);
+		return html("/admin/index", map, request);
 
 	}
 
@@ -93,4 +146,21 @@ public class AdminController extends BaseController {
 		this.userService = userService;
 	}
 
+	public LetterService getLetterService() {
+		return letterService;
+	}
+	@Autowired
+	public void setLetterService(LetterService letterService) {
+		this.letterService = letterService;
+	}
+
+	public TempService getTempService() {
+		return tempService;
+	}
+	@Autowired
+	public void setTempService(TempService tempService) {
+		this.tempService = tempService;
+	}
+
+	
 }
