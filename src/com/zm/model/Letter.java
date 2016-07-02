@@ -8,8 +8,29 @@ public class Letter {
 	private String imgs;
 	private String params;
 	private String createTime;
+	private String seller;
+	private String tel;
+	private String sender;
 	
 
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+	public String getSender() {
+		return sender;
+	}
+	public void setSender(String sender) {
+		this.sender = sender;
+	}
+	public String getSeller() {
+		return seller;
+	}
+	public void setSeller(String seller) {
+		this.seller = seller;
+	}
 	public String getUser() {
 		return user;
 	}

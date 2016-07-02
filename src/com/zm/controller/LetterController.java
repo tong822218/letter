@@ -2,6 +2,7 @@ package com.zm.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -16,11 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 import com.zm.model.Letter;
-import com.zm.model.Msg;
 import com.zm.model.Temp;
 import com.zm.service.LetterService;
 import com.zm.service.TempService;
@@ -56,7 +53,7 @@ public class LetterController extends BaseController {
 		json(response,temp);
 	}
 	@RequestMapping(value = "save")
-	public ModelAndView saveLetter(HttpServletRequest request,HttpServletResponse response) throws IOException{
+	public void saveLetter(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		
 	    Map map = request.getParameterMap();
 		Letter letter = new Letter();
@@ -68,19 +65,65 @@ public class LetterController extends BaseController {
 		HttpSession session = request.getSession();
 		
 		session.setAttribute("letter", letter);
-
-		return html("/letter/send", map, request);
+		json(response, 1);
+	}
+	@RequestMapping(value = "s")
+	public ModelAndView toSend(HttpServletRequest request){
+		
+		return html("/letter/send", null, request);
 	}
 	@RequestMapping(value = "send")
-	public ModelAndView sendLetter(HttpServletRequest request){
+	public ModelAndView send(HttpServletRequest request){
 		String tel=request.getParameter("tel");
 		String sender=request.getParameter("sender");
 		HttpSession session = request.getSession();
 		Letter letter = (Letter) session.getAttribute("letter");
-		
+		if(letter==null){
+			return html("/slider/slider", null, request);
+		}
+		String seller=(String) session.getAttribute("seller");
+		letter.setSeller(seller);
+		letter.setTel(tel);
+		letter.setSender(sender);
+		letterService.add(letter);
 		Map<String, Object> map = new HashMap<String, Object>();
-		return html("/msg/result", map, request);
+		map.put("id", letter.getId());
+		return html("/letter/result", map, request);
 	}
+	@RequestMapping(value = "read")
+	public ModelAndView read(HttpServletRequest request){
+		Map<String, Object> map = new HashMap<String, Object>();
+		String id=request.getParameter("id");
+		if(id==null||id.trim().equals(""))
+		{
+			map.put("sender", "卓梦网络科技");
+			map.put("content", "这是一封来自远方的情书，祝福你，亲爱的");
+			return html("/msg/read", map, request);
+		}
+			
+		List<Letter> letters = letterService.getByTel(id);
+		if(letters==null||letters.size()==0){
+			Letter letter = letterService.getById(id);
+			if(letter==null){
+				map.put("message", "<script type='text/javascript'>alert('暂时还没有您的留言哦，可能是送您礼物的人想亲口告诉您，赶快问问吧！也许还有惊喜呢……')</script>");
+				return html("/letter/check", map, request);
+			}
+			Temp temp=tempService.getById(letter.getTemp());
+			return html(temp.getUrl(), JSON.parseObject(letter.getParams()), request);
+		}else if(letters.size()==1){
+			Temp temp=tempService.getById(letters.get(0).getTemp());
+			return html(temp.getUrl(), JSON.parseObject(letters.get(0).getParams()), request);
+		}else{
+			map.put("letters", letters);
+			return html("/letter/list", map, request);
+		}
+		
+	}
+	@RequestMapping(value = "r")
+	public ModelAndView checkTel(HttpServletRequest request){
+		return html("/letter/check", null, request);
+	}
+
 	@RequestMapping(value = "go/{id}")
 	public ModelAndView toLetter(@PathVariable("id") String id,HttpServletRequest request){
 
@@ -88,34 +131,7 @@ public class LetterController extends BaseController {
 		Temp temp=tempService.getById(letter.getTemp());
 		return html(temp.getUrl(), JSON.parseObject(letter.getParams()), request);
 	}
-	@RequestMapping(value = "r")
-	public ModelAndView checkTel(HttpServletRequest request){
-		Map<String, Object> map = new HashMap<String, Object>();
-		String tel=request.getParameter("tel");
-		Temp temp=tempService.getById("");
-		return html(temp.getUrl(), map, request);
-	}
-	@RequestMapping(value = "s")
-	public ModelAndView toFillReceiver(HttpServletRequest request){
-		Map<String, Object> map = new HashMap<String, Object>();
-		String tempid=request.getParameter("id");
-		HttpSession session = request.getSession();
-		session.setAttribute("tempid", tempid);
-		return html("/send", map, request);
-	}
-	@RequestMapping(value = "send")
-	public ModelAndView fillReceiver(HttpServletRequest request){
-		Map<String, Object> map = new HashMap<String, Object>();
-		String tel=request.getParameter("tel");
-		String sender=request.getParameter("sender");
-		HttpSession session = request.getSession();
-		session.setAttribute("tel", tel);
-		session.setAttribute("sender", sender);
-		String tempid=session.getAttribute("tempid").toString();
-		Temp temp=tempService.getById(tempid);
-		return html(temp.getTemp_url(), map, request);
-	}
-	
+
 	
 	
 	

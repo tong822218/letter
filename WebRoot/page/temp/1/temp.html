@@ -16,13 +16,13 @@
 		var tempid=${obj.tempid!};
 		var content1=document.getElementById("content1").innerHTML;
 		var content2=document.getElementById("content2").innerHTML;
-		$.post("${rc.contextPath}/l/save.html", { tempid: tempid, content1: content1, content2: content2 },
-				   function(data){
-				     if(data!='y')
-				    	 alert("提交失败");
-				     else
-				    	 alert("提交成功");
-				   });	
+		 $.post("${rc.contextPath}/l/save.html", { tempid: tempid, content1: content1, content2: content2 },
+			   function(data){
+			     if(data=='1'||data==1)
+			    	 window.location.href="${rc.contextPath}/l/s.html";
+			     else
+			    	 alert("提交失败");
+			   });
 	}
 </script>
     <style>

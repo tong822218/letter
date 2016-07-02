@@ -1,6 +1,7 @@
 package com.zm.dao.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -15,7 +16,7 @@ public class LetterDaoImpl implements LetterDao {
 	private JdbcDao mysqlJdbcDao;
 	@Override
 	public void add(Letter letter) {
-		String sql = "insert into s_letter(id,user,userid,temp,imgs,params,create_time) values ('"+letter.getId()+"','"+letter.getUser()+"','"+letter.getUserid()+"','"+letter.getTemp()+"','"+letter.getImgs()+"','"+letter.getParams()+"','"+letter.getCreateTime()+"') ";
+		String sql = "insert into s_letter(id,user,userid,temp,imgs,params,create_time,seller,tel,sender) values ('"+letter.getId()+"','"+letter.getUser()+"','"+letter.getUserid()+"','"+letter.getTemp()+"','"+letter.getImgs()+"','"+letter.getParams()+"','"+letter.getCreateTime()+"','"+letter.getSeller()+"','"+letter.getTel()+"','"+letter.getSender()+"') ";
 		mysqlJdbcDao.execSql(sql);
 	}
 
@@ -26,6 +27,13 @@ public class LetterDaoImpl implements LetterDao {
 		list.add(id);
 		return (Letter)mysqlJdbcDao.queryForObject(sql, list.toArray(), Letter.class);
 	}
+	@Override
+	public List<Letter> getByTel(String tel) {
+		ArrayList<String> list = new ArrayList<String>();
+		String sql = " select * from s_letter where tel = ? order by create_time desc ";
+		list.add(tel);
+		return (List<Letter>) mysqlJdbcDao.queryList(sql, list.toArray(), Letter.class);
+	}
 
 	public JdbcDao getMysqlJdbcDao() {
 		return mysqlJdbcDao;
@@ -34,5 +42,6 @@ public class LetterDaoImpl implements LetterDao {
 	public void setMysqlJdbcDao(JdbcDao mysqlJdbcDao) {
 		this.mysqlJdbcDao = mysqlJdbcDao;
 	}
+
 	
 }

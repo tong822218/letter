@@ -8,8 +8,6 @@
 	<script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="${rc.contextPath}/static/audiojs/audio.min.js"></script>
-	<link rel="prefetch" href="${rc.contextPath}/m/read.html"/>
-	<link rel="prerender" href="${rc.contextPath}/m/read.html"/>
 	
 </head>
 <body>
@@ -17,7 +15,7 @@
 	${obj.message }
 </#if>
 <div class="container">
-<form class="form-horizontal" role="form" onsubmit="return check();" action="${rc.contextPath}/m/read.html">
+<form class="form-horizontal" role="form" onsubmit="return check();" action="${rc.contextPath}/l/read.html">
     
     <legend>您有一封留言</legend>
 
@@ -34,6 +32,5 @@
     </div>
 </form>
 </div>
-<iframe src="${rc.contextPath}/m/read.html" width="0" height="0"></iframe>
 </body>
 </html>

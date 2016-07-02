@@ -1,5 +1,7 @@
 package com.zm.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,10 @@ public class LetterServiceImpl implements LetterService {
 	@Override
 	public Letter getById(String id) {
 		return letterDao.getById(id);
+	}
+	@Override
+	public List<Letter> getByTel(String tel) {
+		return letterDao.getByTel(tel);
 	}
 
 }
