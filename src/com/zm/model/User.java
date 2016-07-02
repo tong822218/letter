@@ -1,12 +1,15 @@
 package com.zm.model;
 
+import java.util.Date;
+
+
 public class User {
 	private String id="";
 	private String username="";
 	private String password="";
 	private String name="";
 	private String token="";
-	private String create_time="";
+	private String create_time;
 	private String seller_say="";
 	public String getId() {
 		return id;
@@ -38,6 +41,7 @@ public class User {
 	public void setToken(String token) {
 		this.token = token;
 	}
+	
 	public String getCreate_time() {
 		return create_time;
 	}
