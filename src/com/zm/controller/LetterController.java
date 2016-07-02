@@ -36,10 +36,11 @@ public class LetterController extends BaseController {
 	
 	@RequestMapping(value = "home")
 	public ModelAndView toSlider(HttpServletRequest request){
-		String id = request.getParameter("sellerId");
-		User user = userService.getById(id);
+		String name = request.getParameter("seller");
+		User user = userService.getByName(name);
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("sellerSay", user.getSeller_say());
+		request.getSession().setAttribute("seller", name);
 		return html("/slider/slider", map, request);
         
 	}
