@@ -81,6 +81,7 @@ public class AdminController extends BaseController {
 		map.put("count", counts);
 		System.out.println(tems+"---"+counts);
 		return html("/admin/index", map, request);
+
 	}
 
 	@RequestMapping(value = "hesay")
@@ -145,4 +146,21 @@ public class AdminController extends BaseController {
 		this.userService = userService;
 	}
 
+	public LetterService getLetterService() {
+		return letterService;
+	}
+	@Autowired
+	public void setLetterService(LetterService letterService) {
+		this.letterService = letterService;
+	}
+
+	public TempService getTempService() {
+		return tempService;
+	}
+	@Autowired
+	public void setTempService(TempService tempService) {
+		this.tempService = tempService;
+	}
+
+	
 }

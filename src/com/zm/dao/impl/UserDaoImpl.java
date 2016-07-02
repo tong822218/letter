@@ -38,6 +38,13 @@ public class UserDaoImpl implements UserDao {
 		return (User)mysqlJdbcDao.queryForObject(sql, list.toArray(), User.class);
 	}
 	@Override
+	public User getByName(String name) {
+		ArrayList list = new ArrayList();
+		String sql = "select * from u_seller where name = ?";
+		list.add(name);
+		return (User)mysqlJdbcDao.queryForObject(sql, list.toArray(), User.class);
+	}
+	@Override
 	public void add(User letter) {
 		String sql = "insert into u_seller(id,username,password,name,token,create_time,seller_say) values ('"+letter.getId()+"','"+letter.getUsername()+"','"+letter.getPassword()+"','"+letter.getName()+"','"+letter.getToken()+"','"+letter.getCreate_time()+"','"+letter.getSeller_say()+"') ";
 		mysqlJdbcDao.execSql(sql);

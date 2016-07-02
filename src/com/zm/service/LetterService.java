@@ -11,5 +11,6 @@ public interface LetterService {
 	Letter getById(String id);
 
 	List<Letter> getByTel(String tel);
+	List<Letter> getBySeller(String sellerName);
 
 }
