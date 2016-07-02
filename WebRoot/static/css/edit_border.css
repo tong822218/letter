@@ -1,0 +1,31 @@
+@CHARSET "UTF-8";
+@-webkit-keyframes  shineRed {
+	from { -webkit-box-shadow: 0 0 5px #bbb; }
+	50% { -webkit-box-shadow: 0 0 10px red; }
+	to { -webkit-box-shadow: 0 0 5px #bbb; }
+}
+@-webkit-keyframes shineBlue {
+	from { -webkit-box-shadow: 0 0 9px #333; }
+	50% { -webkit-box-shadow: 0 0 18px blue; }
+	to { -webkit-box-shadow: 0 0 9px #333; }
+}
+@-webkit-keyframes shineWhite {
+	from { -webkit-box-shadow: 0 0 9px #333; }
+	50% { -webkit-box-shadow: 0 0 18px white; }
+	to { -webkit-box-shadow: 0 0 9px #333; }
+}
+.shine_red{
+	-webkit-animation-name: shineRed;
+	-webkit-animation-duration: 3s;
+	-webkit-animation-iteration-count: infinite;
+}
+.shine_blue{
+	-webkit-animation-name: shineBlue;
+	-webkit-animation-duration: 3s;
+	-webkit-animation-iteration-count: infinite;
+}
+.shine_white{
+	-webkit-animation-name: shineWhite;
+	-webkit-animation-duration: 3s;
+	-webkit-animation-iteration-count: infinite;
+}

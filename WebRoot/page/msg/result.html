@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>发送成功</title>
+    <link href="${rc.contextPath}/static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+	<script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div class="container">
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">发送成功，这是收信二维码</h3>
+        </div>
+        <div class="panel-body">
+            <div class="container">
+                <img src="${rc.contextPath}/static/image/readqr.png" class="img-responsive center-block">
+            </div>
+            <div class="row">
+		        <div class="col-sm-12">
+		            <div class="btn-group btn-group-justified">
+		                <a href="${rc.contextPath}/m/s.html" class="btn btn-default" role="button">返回</a>
+		                <a href="${rc.contextPath}/m/read.html?id=${(obj.id)!}" class="btn btn-success" role="button">预览</a>
+		            </div>
+		        </div>
+		    </div>
+            
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

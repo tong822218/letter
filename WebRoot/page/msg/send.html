@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>留言板</title>
+    <link href="${rc.contextPath}/static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+	<script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var limitNum = 80;
+            var pattern = '还可以输入' + limitNum + '字符';
+            $('#contentwordage').html(pattern);
+            $('#content').keyup(
+                    function(){
+                        var remain = $(this).val().length;
+                        if(remain > limitNum){
+                            pattern = "字数超过限制！";
+                        }else{
+                            var result = limitNum - remain;
+                            pattern = '还可以输入' + result + '字';
+                        }
+                        $('#contentwordage').html(pattern);
+                    }
+            );
+        });
+        function check() {
+            var sender=document.getElementById('sender').value;
+            if (sender==null||sender=="")
+           	{
+           		alert("发信人不可为空");
+           		return false;
+           	}
+            var tel=document.getElementById('tel').value;
+            if (tel==null||tel=="")
+           	{
+           		alert("收信人电话不可为空");
+           		return false;
+           	}
+            var content=document.getElementById('content').value;
+            if (content==null||content=="")
+           	{
+           		alert("内容不可为空");
+           		return false;
+           	}
+            if (content.length>80)
+           	{
+           		alert("内容不可超过80字");
+           		return false;
+           	}
+            return true;
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+<form class="form-horizontal" role="form" onsubmit="return check();" action="${rc.contextPath}/m/send.html" method="post">
+    <legend>留言板</legend>
+
+	<div class="form-group  has-success">
+        <label for="sender" class="col-lg-2 control-label">发信人署名</label>
+        <div class="col-lg-10">
+            <input type="text" class="form-control" id="sender" name="sender" placeholder="署名" required>
+        </div>
+    </div>
+    
+    <div class="form-group has-success">
+        <label for="tel" class="col-lg-2 control-label">收信人电话</label>
+        <div class="col-lg-10">
+            <input type="text" class="form-control" id="tel" name="tel" placeholder="收信时需验证" required>
+        </div>
+    </div>
+
+    <div class="form-group has-success">
+        <label for="content" class="col-lg-2 control-label">内容</label>
+        <div class="col-lg-10">
+            <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
+            <div id="contentwordage"></div>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-lg-10">
+            <button type="submit" class="btn btn-default">发送</button>
+        </div>
+    </div>
+    
+</form>
+</div>
+
+</body>
+</html>

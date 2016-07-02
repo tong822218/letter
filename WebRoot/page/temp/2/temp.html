@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<title>模板-2</title>
+<link href="${rc.contextPath}/static/css/edit_border.css" type="text/css" rel="stylesheet"/>
+<link href="${rc.contextPath}/static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	function submit()
+	{
+		var tempid=${obj.tempid!};
+		var content1=document.getElementById("content1").innerHTML;
+		var content2=document.getElementById("content2").innerHTML;
+		$.post("${rc.contextPath}/l/add.html", { tempid: tempid, content1: content1, content2: content2 },
+				   function(data){
+				     if(data!='y')
+				    	 alert("提交失败");
+				     else
+				    	 alert("提交成功");
+				   });	
+	}
+</script>
+    <style>
+        body{
+            background: url("${rc.contextPath}/page/temp/2/bg.jpg")no-repeat;
+            background-size: cover;
+        }
+        .front-bg{
+            position: absolute;
+            background: url("${rc.contextPath}/page/temp/2/frontbg.png") no-repeat top center;
+            background-size: cover;
+            width: 100%;
+            height: 76%;
+        }
+        .content{
+            position: absolute;
+            bottom: 0px;
+            width: 100%;
+            height: 24%;
+            padding-top: 12px;
+        }
+    </style>
+    <script>
+    </script>
+
+</head>
+<body>
+    <div class="front-bg"></div>
+    <div class="content">
+        <h4 class="text-center" style="color: #d43f3a"><strong><span id="content1" class="shine_red" contenteditable="true">我和你 心连心</span></strong></h4>
+        <p class="text-center"><span id="content2" class="shine_red" contenteditable="true">我们是一家人</span></p>
+    </div>
+</body>
+</html>

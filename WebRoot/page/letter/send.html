@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>情书</title>
+    <link href="${rc.contextPath}/static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+	<script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">请填写收信人电话</h3>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal" role="form" action="${rc.contextPath}/l/send.html">
+            <div class="form-group">
+                <label for="firstname" class="col-sm-2 control-label">收信人电话</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="tel" name="tel"
+                           placeholder="请输入收信人电话，收信时需以此为凭据">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lastname" class="col-sm-2 control-label">您的姓名</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="sender" name="sender"
+                           placeholder="请输入发信人姓名，收信人收到时会看到">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-10 col-sm-offset-2">
+                    <button type="submit" class="btn btn-success">下一步</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

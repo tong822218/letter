@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>您有一封留言</title>
+    <link href="${rc.contextPath}/static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+	<script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="${rc.contextPath}/static/audiojs/audio.min.js"></script>
+	<script type="text/javascript" src="${rc.contextPath}/static/typing/typing.min.js"></script>
+
+    <style>
+        .col-center-block {
+            float: none;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .box-top{
+            position: absolute;
+            background: url("${rc.contextPath}/static/image/msgbg1.jpg") no-repeat bottom center;
+            background-size: cover;
+            top: 0px;
+            width: 100%;
+        }
+        .box-bottom{
+            position: absolute;
+            background: url("${rc.contextPath}/static/image/msgbg2.jpg") no-repeat top center;
+            background-size: cover;
+            bottom: 0px;
+            width: 100%;
+        }
+        .box-center{
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            transform: translate(0,-50%);
+            white-spacing:nowrap;
+        }
+        
+        @font-face {
+            /* font-properties */
+            font-family: msgfont;
+            src: url('${rc.contextPath}/static/font/qqh.ttf');
+        }
+        body {
+            /* font-family: '微软雅黑';
+            font-size:28px; */
+        } 
+    </style>
+    <script>
+        $(function($) {
+        	 
+        	
+        	$("#top").height(($(window).height()-$("#source").height())/2);
+            $("#bottom").height(($(window).height()-$("#source").height())/2);
+            
+            var typing = new Typing({
+                source: document.getElementById('source'),
+                output: document.getElementById('center'),
+                delay: 100
+            });
+            typing.start();
+            /* 
+            var theater = new TheaterJS();
+
+            theater
+                    .describe("content", .9, "#content")
+                    .describe("sender", .9, "#sender");
+
+
+            theater
+                    .write("content:${obj.content!}",800)
+                    .write("sender:--${obj.sender!}",200)
+                    .write(function () { theater.play(false); });
+            */
+        });
+    </script>
+	<script>
+		/* audiojs.events.ready(function() {
+			audiojs.createAll();
+		});  */
+	</script>
+	
+</head>
+<body>
+
+	<div class="box-top" id="top"></div>
+	
+	<div class="box-center" id="center">
+
+		<!-- <blockquote><p><span id="content"></span></p></blockquote>
+        <blockquote><cite title="Source Title" class="text-right"><span id="sender"></span></cite></blockquote> -->
+
+	</div>
+	
+	<div class="box-bottom" id="bottom"></div>
+	
+	<div id="source" hidden>
+		<blockquote>${obj.content!}</blockquote>
+        <blockquote class="pull-right"><cite title="Source Title" class="text-right">--${obj.sender!}</cite></blockquote>
+	</div>
+	
+	<audio src="${rc.contextPath}/static/music/drenched.mp3" autoplay="autoplay" loop></audio>
+
+</body>
+</html>

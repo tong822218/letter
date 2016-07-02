@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport"
+	content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+<meta name="apple-touch-fullscreen" content="YES" />
+<meta name="apple-mobile-web-app-status-bar-style" content="white" />
+<meta content="yes" name="apple-mobile-web-app-capable">
+<link rel="stylesheet" href="${rc.contextPath}/static/slider/slider.css" />
+<script src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
+<script src="${rc.contextPath}/static/slider/slider.js" type="text/javascript" charset="utf-8"></script>
+<script src="${rc.contextPath}/static/slider/sliderlittel.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+	<!-- 外层画布 -->
+	<div id="canvas"></div>
+	<div class="button" id="button"></div>
+	<div id="bottom">
+		<div class="little" id="little"></div>
+	</div>
+	<script type="text/javascript">
+	var isShowLittleSlider = false;
+	var slider, sliderLittle;
+	// 所有的数据
+	var list = [];
+
+	$.post("${rc.contextPath}/l/temp/getList.html", {}, function(result) {
+		list = result;
+		// 初始化Slider 实例
+		slider = new Slider({
+			dom : document.getElementById('canvas'),
+			list : list,
+			imgHeight : 1333,
+			imgWidth : 750
+		});
+		// 初始化底部小幻灯片SliderLitter 实例
+		sliderLittle = new SliderLittle({
+			dom : document.getElementById('little'),
+			list : list,
+			imgHeight : 1333,
+			imgWidth : 750,
+			height : 95
+		});
+	});
+
+	$(".button").click(function() {
+		var bu = document.getElementById("button");
+		$("#bottom").toggle();
+		bu.style.display = "none";
+		isShowLittleSlider = true;
+		slider.renderDOM(1);
+		slider.bindDOM();
+		slider.goIndex(slider.idx, 1);
+	})
+
+	function open(id) {
+		// if(slider.idx>id){
+		// slider.idx=id;
+		// slider.goIndex(-id);
+		// }else{
+		// slider.idx=id;
+		// slider.goIndex(id);
+		// }
+		slider.renderDOM(1);
+		slider.bindDOM();
+		slider.goIndex(id, 1);
+	}
+
+	function toEdite(id) {
+		if (isShowLittleSlider) {
+			$("#bottom").css({
+				"display" : "none"
+			});
+			$("#button").css({
+				"display" : "block"
+			});
+			isShowLittleSlider = false;
+		} else {
+			window.location.href = "${rc.contextPath}/l/temp/" + id + ".html";
+		}
+	}
+	</script>
+</body>

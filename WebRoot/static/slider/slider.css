@@ -1,0 +1,81 @@
+body {
+	margin: 0;
+	padding: 0;
+	background: #333;
+	overflow: hidden;
+	background-color: #eee;
+}
+
+
+/* 隐藏画布外的内容 */
+
+#canvas {
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+
+#canvas li,
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	overflow: hidden;
+}
+
+
+/* 使得图片居中 webkit-box */
+
+#canvas li {
+	position: absolute;
+	display: flex;
+  	align-items: top;
+	justify-content: center;
+}
+
+li img {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	height: 100%;
+	width: 100%;
+}
+
+#bottom {
+	display: none;
+	position: fixed;
+	width: 100%;
+	border: solid 2px #eee;
+	bottom: 0px;
+	z-index: 2;
+}
+
+#bottom li,
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	overflow: hidden;
+}
+
+#bottom li {
+	padding: 2px;
+	float: left;
+	border: solid 2px red;
+}
+
+.button {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	text-align: center;
+	line-height: 30px;
+	position: absolute;
+	bottom: 50px;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	transform: translateX(-50%);
+	width:30px;
+	height: 30px;
+	z-index: 3;
+	background: url(/static/image/slider/list_icon.png) no-repeat;
+	background-size: contain;
+}

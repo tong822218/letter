@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<title>模板-1</title>
+<link href="${rc.contextPath}/static/css/edit_border.css" type="text/css" rel="stylesheet"/>
+<link href="${rc.contextPath}/static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	function submit()
+	{
+		var tempid=${obj.tempid!};
+		var content1=document.getElementById("content1").innerHTML;
+		var content2=document.getElementById("content2").innerHTML;
+		$.post("${rc.contextPath}/l/add.html", { tempid: tempid, content1: content1, content2: content2 },
+				   function(data){
+				     if(data!='y')
+				    	 alert("提交失败");
+				     else
+				    	 alert("提交成功");
+				   });	
+	}
+</script>
+    <style>
+        body{
+            background: url("${rc.contextPath}/page/temp/1/bg.jpg")no-repeat;
+            background-size: cover;
+        }
+        .content{
+            background-color: #ffffff;
+            position: absolute;
+            border-top: 2px #b94a48 solid;
+            border-bottom: 2px #b94a48 solid;
+            top: 55%;
+            width: 100%;
+            padding: 10px 10px 6px 10px;
+            filter:alpha(Opacity=80);-moz-opacity:0.8;opacity: 0.8;
+        }
+    </style>
+    
+
+</head>
+<body>
+    <div class="content">
+        <h4><strong><span id="content1" class="shine_blue" contenteditable="true">Dear 小莉</span></strong></h4>
+        <p class="lead shine_blue" id="content2" contenteditable="true">东营一别，转眼就3年过去了，十分想念，不知道你现在过得好不好，我们可以再回到那年，再续前缘吗。</p>
+    </div>
+</body>
+</html>
+
+

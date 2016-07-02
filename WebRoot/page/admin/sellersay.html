@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Title</title>
+<script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+	function submit() {
+		$.post("${rc.contextPath}/admin/addsellersay.html", {
+			content : $("#say").val()
+		}, function(data) {
+			alert(data);
+		});
+	}
+</script>
+<style>
+.container {
+	position: relative; width : 100%;
+	padding: 20px;
+	text-align: left;
+	font-size: 21px;
+	width: 100%;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div style="">卖家说</div>
+		<div style="margin-left: 50px; margin-top: 10px">
+			<textarea rows="" cols="" id="say" style="width: 60%; height: 300px"></textarea>
+		</div>
+		<div style="position: absolute; left: 50%">
+			<input type="button" onclick="submit()" value="保存">
+		</div>
+	</div>
+	<footer class="footer">
+		<div class="container">
+			<p class="text-muted">情书1.0 卓梦网络科技</p>
+		</div>
+	</footer>
+
+</body>
+</html>
