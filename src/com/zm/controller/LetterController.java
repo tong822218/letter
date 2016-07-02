@@ -41,6 +41,8 @@ public class LetterController extends BaseController {
 	public ModelAndView toTemp(@PathVariable("id") String id,HttpServletRequest request){
 		Map<String, Object> map = new HashMap<String, Object>();
 		Temp temp=tempService.getById(id);
+		if(temp==null)
+			return html("/slider/slider", null, request);
 		map.put("tempid", temp.getId());
 		return html(temp.getTemp_url(), map, request);
         
@@ -52,8 +54,8 @@ public class LetterController extends BaseController {
 		java.util.List<Temp> temp = tempService.getList();
 		json(response,temp);
 	}
-	@RequestMapping(value = "add")
-	public void addLetter(HttpServletRequest request,HttpServletResponse response) throws IOException{
+	@RequestMapping(value = "save")
+	public void saveLetter(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		
 	    Map map = request.getParameterMap();
 		Letter letter = new Letter();

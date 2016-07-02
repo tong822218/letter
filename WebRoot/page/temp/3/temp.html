@@ -6,15 +6,17 @@
 <title>模板-3</title>
 <link href="${rc.contextPath}/static/css/edit_border.css" type="text/css" rel="stylesheet"/>
 <link href="${rc.contextPath}/static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+<link rel="stylesheet" href="${rc.contextPath}/static/font-awesome/css/font-awesome.min.css">
 <script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${rc.contextPath}/static/js/tempbar-top.js"></script>
 <script type="text/javascript">
 	function submit()
 	{
 		var tempid=${obj.tempid!};
 		var content1=document.getElementById("content1").innerHTML;
 		var content2=document.getElementById("content2").innerHTML;
-		$.post("${rc.contextPath}/l/add.html", { tempid: tempid, content1: content1, content2: content2 },
+		$.post("${rc.contextPath}/l/save.html", { tempid: tempid, content1: content1, content2: content2 },
 				   function(data){
 				     if(data!='y')
 				    	 alert("提交失败");
