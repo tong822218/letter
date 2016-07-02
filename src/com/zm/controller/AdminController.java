@@ -1,6 +1,10 @@
 package com.zm.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.zm.model.User;
 import com.zm.service.UserService;
@@ -23,8 +29,8 @@ public class AdminController extends BaseController {
 	private UserService userService;
 	
 	@RequestMapping(value = "index")
-	public ModelAndView index(HttpServletRequest request){
-		return html("/admin/index", null, request);
+	public ModelAndView index(HttpServletRequest request, Map<String, Object> map){
+		return html("/admin/index", map, request);
         
 	}
 	
@@ -46,12 +52,15 @@ public class AdminController extends BaseController {
 	
 	//如果数据库没有这个商家，就存入数据库，然后返回到前台
 	@RequestMapping(value = "login")
-	public ModelAndView login(HttpServletRequest request,HttpServletResponse rsp) {
+	public ModelAndView login(HttpServletRequest request) {
+		SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String time = df.format(new Date());
 		String gs= request.getParameter("code");
 		Token.set(gs);
 		User user = API.getCurrentUser();
 		User u = userService.getById(user.getId());
 		if(u==null){
+			user.setCreate_time(time);
 			userService.add(user);
 		}
 		HashMap<String,Object> map=new HashMap<String,Object>();
