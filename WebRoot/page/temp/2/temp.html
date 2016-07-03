@@ -13,7 +13,7 @@
 <script type="text/javascript">
 	function submit()
 	{
-		var tempid=${obj.tempid!};
+		var tempid='${obj.tempid!}';
 		var content1=document.getElementById("content1").innerHTML;
 		var content2=document.getElementById("content2").innerHTML;
 		$.post("${rc.contextPath}/l/save.html", { tempid: tempid, content1: content1, content2: content2 },

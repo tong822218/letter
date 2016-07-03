@@ -70,7 +70,7 @@ public class QRCode {
      
      
     public static void main(String[] args) throws WriterException, IOException, NotFoundException, ChecksumException, FormatException {
-        QRCode.encode("http://www.xdemo.org/", "C:\\Users\\Administrator\\Desktop\\qrcode\\qr.PNG", 200, 200);
+        QRCode.encode("http://www.xdemo.org/积极", "C:\\Documents and Settings\\Administrator\\桌面\\qr\\qr.PNG", 200, 200);
         System.out.println(QRCode.decode("C:\\Users\\Administrator\\Desktop\\qrcode\\qr.PNG"));
     }
 }

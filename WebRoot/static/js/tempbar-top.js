@@ -1,22 +1,27 @@
 $(function($) {
 
+    var bar = document.createElement("div");
+    bar.style.width="100%";
+    bar.style.top=0;
+    bar.style.position="fixed";
+    bar.style.padding="3px 3px 3px 3px"
+    bar.style.backgroundColor="#ffffff";
+    bar.style.filter="alpha(Opacity=80)";
+    bar.style.filter="-moz-opacity:0.8";
+    bar.style.opacity="0.8";
+
     var save=document.createElement("a");
-    save.innerHTML="<i class='icon-circle-arrow-right icon-2x'></i><font size='5'>保存</font>";
-    save.href="#";
-    save.style.position="fixed";
-    save.style.top="3px";
-    save.style.right="3px";
-    save.onclick=function(){submit();}
+    save.innerHTML="<i class='icon-ok icon-3x'></i>";
+    save.href="javascript:submit()";
+    save.style.float="right";
 
     var back=document.createElement("a");
-    back.innerHTML="<font size='5'>返回</font><i class='icon-circle-arrow-left icon-2x'></i>";
-    back.href="#";
-    back.style.position="fixed";
-    back.style.top="3px";
-    back.style.left="3px";
-    back.onclick=function(){history.go(-1);}
+    back.innerHTML="<i class='icon-chevron-left icon-3x'></i>";
+    back.href="javascript:history.go(-1)";
+    back.style.float="left";
 
-    document.body.appendChild(back);
-    document.body.appendChild(save);
+    bar.appendChild(back);
+    bar.appendChild(save);
+    document.body.appendChild(bar);
 
 });
