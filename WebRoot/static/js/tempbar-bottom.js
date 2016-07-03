@@ -11,12 +11,12 @@ $(function($) {
     bar.style.opacity="0.8";
 
     var save=document.createElement("a");
-    save.innerHTML="<i class='icon-ok icon-3x'></i>";
+    save.innerHTML="<i class='icon-ok icon-2x'></i>";
     save.href="javascript:submit()";
     save.style.float="right";
 
     var back=document.createElement("a");
-    back.innerHTML="<i class='icon-chevron-left icon-3x'></i>";
+    back.innerHTML="<i class='icon-chevron-left icon-2x'></i>";
     back.href="javascript:history.go(-1)";
     back.style.float="left";
 
