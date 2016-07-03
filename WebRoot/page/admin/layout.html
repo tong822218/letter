@@ -14,12 +14,32 @@
     <script src="${rc.contextPath}/static/echarts/echarts.common.min.js"></script>
     <script src="${rc.contextPath}/static/qrcode/jquery-qrcode-0.14.0.min.js"></script>
     <script type="text/javascript">
+	    function utf16to8(str) { //转码 
+	        var out, i, len, c; 
+	        out = ""; 
+	        len = str.length; 
+	        for (i = 0; i < len; i++) { 
+	            c = str.charCodeAt(i); 
+	            if ((c >= 0x0001) && (c <= 0x007F)) { 
+	                out += str.charAt(i); 
+	            } else if (c > 0x07FF) { 
+	                out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F)); 
+	                out += String.fromCharCode(0x80 | ((c >> 6) & 0x3F)); 
+	                out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F)); 
+	            } else { 
+	                out += String.fromCharCode(0xC0 | ((c >> 6) & 0x1F)); 
+	                out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F)); 
+	            } 
+	        } 
+	        return out; 
+	    }   
         $(function($) {
             $("#qrcode").qrcode({
                 //render: "table", //table方式
-                text: "https:letter/ews.m.jaeapp.com/l/home.html?seller="+'${user.name}' //任意内容
+                text: utf16to8("https:letter/ews.m.jaeapp.com/l/home.html?seller="+'${user.name}') //任意内容
             });
         });
+        
         function downloadqr(){
         	var qrcanvas=$("#qrcode").find("canvas")[0];
         	//var imageDate = $("#qrcode").find("canvas")[0].toDataURL("image/png");//qrcanvas.toDataURL("image/png");
