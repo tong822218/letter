@@ -2,113 +2,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Title</title>
-    <link href="${rc.contextPath}/static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
-    <link rel="stylesheet" href="${rc.contextPath}/static/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="${rc.contextPath}/static/css/sticky-footer.css">
-	<script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
-	<script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>    
-	<script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/respond.min.js"></script>  
-    <script src="${rc.contextPath}/static/echarts/echarts.common.min.js"></script>
-    <script src="${rc.contextPath}/static/qrcode/jquery-qrcode-0.14.0.min.js"></script>
-    <script type="text/javascript">
-        $(function($) {
-            $("#qrcode").qrcode({
-                //render: "table", //table方式
-                text: "https://letter/ews.m.jaeapp.com/l/home.html?seller=${user.name}"; //任意内容
-            });
-        });
-        function downloadqr(){
-        	var qrcanvas=$("#qrcode").find("canvas")[0];
-        	//var imageDate = $("#qrcode").find("canvas")[0].toDataURL("image/png");//qrcanvas.toDataURL("image/png");
-            //window.location.href = "image/octet-stream" + imageDate;
-            
-        	var type = 'png';
-            var imgData = qrcanvas.toDataURL(type);
-            
-            var _fixType = function(type) {
-                type = type.toLowerCase().replace(/jpg/i, 'jpeg');
-                var r = type.match(/png|jpeg|bmp|gif/)[0];
-                return 'image/' + r;
-            };
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Title</title>
+<link href="${rc.contextPath}/static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="${rc.contextPath}/static/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="${rc.contextPath}/static/css/sticky-footer.css">
+<script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/respond.min.js"></script>
+<script src="${rc.contextPath}/static/echarts/echarts.common.min.js"></script>
+<!-- <script src="${rc.contextPath}/static/qrcode/jquery-qrcode-0.14.0.min.js"></script> -->
+<script src="${rc.contextPath}/static/qrcode/qrcode.js"></script>
+<script type="text/javascript">
+	$(function($) {
+		var name = '${user.name!}';
+		/* var name1 = EncodeUtf8(name);
+		alert(name1);
+		$("#qrcode").qrcode({
+			//render: "table", //table方式
+			text : "http://localhost:8080/l/home.html?seller=" + name1 //任意内容
+		}); */
+		var qrcode = new QRCode(document.getElementById("qrcode"), {
+			
+		});
+		qrcode.makeCode("https://letter.ews.m.jaeapp.com/l/home.html?seller="+name);
+	});
 
-            imgData = imgData.replace(_fixType(type),'image/octet-stream');
+	function downloadqr() {
+		var qrcanvas = $("#qrcode").find("canvas")[0];
+		//var imageDate = $("#qrcode").find("canvas")[0].toDataURL("image/png");//qrcanvas.toDataURL("image/png");
+		//window.location.href = "image/octet-stream" + imageDate;
 
-            var filename = 'qrcode_' + (new Date()).getTime() + '.' + type;
+		var type = 'png';
+		var imgData = qrcanvas.toDataURL(type);
 
-            saveFile(imgData,filename);
-        }
+		var _fixType = function(type) {
+			type = type.toLowerCase().replace(/jpg/i, 'jpeg');
+			var r = type.match(/png|jpeg|bmp|gif/)[0];
+			return 'image/' + r;
+		};
 
-     
-     
-     var saveFile = function(data, filename){
-         var save_link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
-         save_link.href = data;
-         save_link.download = filename;
-       
-         var event = document.createEvent('MouseEvents');
-         event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-         save_link.dispatchEvent(event);
-     };
-       
-     
-    </script>
-    <style>
-        .navbar-top{
-            background: #ffffff;
-            border-bottom:3px solid #4ca000;
-            font-family: '微软雅黑';
-        }
-        .nav-tab{
-            margin: 10px 10px 10px 10px;
-        }
-        .nav-tab > li > a {
-            border: 1px #d0e9c6 solid;
-        }
-        .nav-tab > li.active > a, .nav-tab > li > a:hover, .nav-tab > li > ul > li >a:hover{
-            border: 2px solid #0062cc;
-            border-radius: 4px;
-        }
-    </style>
+		imgData = imgData.replace(_fixType(type), 'image/octet-stream');
+
+		var filename = 'qrcode_' + (new Date()).getTime() + '.' + type;
+
+		saveFile(imgData, filename);
+	}
+
+	var saveFile = function(data, filename) {
+		var save_link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
+		save_link.href = data;
+		save_link.download = filename;
+
+		var event = document.createEvent('MouseEvents');
+		event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+		save_link.dispatchEvent(event);
+	};
+</script>
+<style>
+.navbar-top {
+	background: #ffffff;
+	border-bottom: 3px solid #4ca000;
+	font-family: '微软雅黑';
+}
+
+.nav-tab {
+	margin: 10px 10px 10px 10px;
+}
+
+.nav-tab>li>a {
+	border: 1px #d0e9c6 solid;
+}
+
+.nav-tab>li.active>a, .nav-tab>li>a:hover, .nav-tab>li>ul>li>a:hover {
+	border: 2px solid #0062cc;
+	border-radius: 4px;
+}
+</style>
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-top">
-        <div class="container">
-            <div class="navbar-header" >
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">情书1.0</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">情书</a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                
-                <ul class="nav navbar-nav navbar-right">
-                   <li><a href="#">${user.name!}</a></li>
-                   <!--  <li><a href="#">注销</a></li> -->
-                </ul>
-            </div><!--/.nav-collapse -->
-        </div>
-    </nav>
-</header>
+	<header>
+		<nav class="navbar navbar-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+						aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">情书1.0</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">情书</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
 
-<div class="container">
-    <div class="row">
-        <div class="col-sm-3">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#">${user.name!}</a></li>
+						<!--  <li><a href="#">注销</a></li> -->
+					</ul>
+				</div>
+				<!--/.nav-collapse -->
+			</div>
+		</nav>
+	</header>
 
-            <div class="nav nav-tab">
-                <li>
-                    <a href="${rc.contextPath}/admin/index.html">
-                        <i class="icon-home"></i>
-                        首页
-                    </a>
-                </li>
-                <!-- <li>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-3">
+
+				<div class="nav nav-tab">
+					<li><a href="${rc.contextPath}/admin/index.html"> <i class="icon-home"></i> 首页
+					</a></li>
+					<!-- <li>
                     <a href="#systemSetting" data-toggle="collapse">
                         <i class="icon-cog"></i>
                         系统管理
@@ -122,14 +126,10 @@
                         <li><a href="#">日志查看</a></li>
                     </ul>
                 </li> -->
-                <li>
-                    <a href="${rc.contextPath}/admin/taobaoset.html">
-                        <i class="icon-asterisk"></i>
-                        无线设置
-                    </a>
-                </li>
+					<li><a href="${rc.contextPath}/admin/taobaoset.html"> <i class="icon-asterisk"></i> 无线设置
+					</a></li>
 
-        <!--         <li>
+					<!--         <li>
                     <a href="${rc.contextPath}/admin/index.html">
                         <i class="icon-picture"></i>
                         卡片管理
@@ -137,54 +137,48 @@
                     </a>
                 </li> -->
 
-                <li>
-                    <a href="${rc.contextPath}/admin/sellersay.html">
-                        <i class="icon-heart"></i>
-                        卖家说
-                    </a>
-                </li>
-           <!--      <li>
+					<li><a href="${rc.contextPath}/admin/sellersay.html"> <i class="icon-heart"></i> 卖家说
+					</a></li>
+					<!--      <li>
                     <a href="#">
                         <i class="icon-leaf"></i>
                         关于
                     </a>
                 </li> -->
 
-            </div>
+				</div>
 
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <h3 class="panel-title">本店二维码(<a href="javascript:downloadqr()">点这里下载</a>)</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div id="qrcode" class="text-center"></div>
-                    </div>
-                </div>
+				<div class="panel panel-success">
+					<div class="panel-heading">
+						<h3 class="panel-title">
+							本店二维码(<a href="javascript:downloadqr()">点这里下载</a>)
+						</h3>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div id="qrcode" class="text-center"></div>
+						</div>
+					</div>
 
-            </div>
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <h3 class="panel-title">公告</h3>
-                </div>
-                <div class="panel-body">
-                    情书1.0
-                </div>
+				</div>
+				<div class="panel panel-success">
+					<div class="panel-heading">
+						<h3 class="panel-title">公告</h3>
+					</div>
+					<div class="panel-body">情书1.0</div>
 
-            </div>
+				</div>
 
-        </div>
-        <div class="col-sm-9">
-            <#nested>
-        </div>
-    </div>
-</div>
+			</div>
+			<div class="col-sm-9"><#nested></div>
+		</div>
+	</div>
 
-<footer class="footer">
-    <div class="container">
-        <p class="text-muted">情书1.0 卓梦网络科技</p>
-    </div>
-</footer>
+	<footer class="footer">
+		<div class="container">
+			<p class="text-muted">情书1.0 卓梦网络科技</p>
+		</div>
+	</footer>
 
 </body>
 </html>

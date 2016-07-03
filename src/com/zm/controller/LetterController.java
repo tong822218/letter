@@ -23,7 +23,6 @@ import com.zm.model.User;
 import com.zm.service.LetterService;
 import com.zm.service.TempService;
 import com.zm.service.UserService;
-import com.zm.util.Common;
 
 @Controller
 @RequestMapping("/l")

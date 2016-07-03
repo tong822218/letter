@@ -2,8 +2,13 @@
 <meta charset="UTF-8">
 <script type="text/javascript">
 	function submit() {
+		var cc=$("#say").val();
+		if(cc.length>20){
+			alert('最多不超过40字');
+			return;
+		}
 		$.post("${rc.contextPath}/admin/addsellersay.html", {
-			content : $("#say").val()
+			content : cc
 		}, function(data) {
 			alert(data);
 		});
@@ -15,14 +20,14 @@
 	position: relative;
 	padding: 20px;
 	text-align: left;
-	font-size: 21px;
+	font-size: 16px;
 	width: 100%;
 }
 </style>
 	<div class="container1">
 		<div style="">卖家说</div>
 		<div style="margin-left: 50px; margin-top: 10px">
-			<textarea rows="" cols="" id="say" style="width: 60%; height: 300px">${obj.user.seller_say!}</textarea>
+			<textarea rows="" placeholder="如，仅限北京市内使用该服务（40字以内）" cols="" id="say" style="width: 60%; height: 150px">${obj.user.seller_say!}</textarea>
 		</div>
 		<div style="position: absolute; left: 50%">
 			<button type="button"  onclick="submit()" class="btn btn-success">保存</button>

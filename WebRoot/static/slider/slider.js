@@ -45,7 +45,7 @@ Slider.prototype.renderDOM = function(flag) {
 		if (flag == 1) {
 			li.style.webkitTransform = 'translate3d(' + i * this.scaleW + 'px, -50px, 0) scale(0.8)';
 		} else {
-			li.style.webkitTransform = 'translate3d(' + i * this.scaleW + 'px, 0, 0)';
+			li.style.webkitTransform = 'translate3d(' + i * this.scaleW + 'px, 0, 0) scale(0.94)';
 		}
 
 		if (item) {
@@ -106,9 +106,9 @@ Slider.prototype.goIndex = function(n, flag) { //flag=0,代表大图滚动，1�
 		lis[cidx - 1] && (lis[cidx - 1].style.webkitTransform = 'translate3d(-' + this.scaleW + 'px, -50px, 0) scale(0.8)');
 		lis[cidx + 1] && (lis[cidx + 1].style.webkitTransform = 'translate3d(' + this.scaleW + 'px, -50px, 0) scale(0.8)');
 	} else {
-		lis[cidx].style.webkitTransform = 'translate3d(0, 0, 0)';
-		lis[cidx - 1] && (lis[cidx - 1].style.webkitTransform = 'translate3d(-' + this.scaleW + 'px, 0, 0)');
-		lis[cidx + 1] && (lis[cidx + 1].style.webkitTransform = 'translate3d(' + this.scaleW + 'px, 0, 0)');
+		lis[cidx].style.webkitTransform = 'translate3d(0, 0, 0) scale(0.94)';
+		lis[cidx - 1] && (lis[cidx - 1].style.webkitTransform = 'translate3d(-' + this.scaleW + 'px, 0, 0) scale(0.94)');
+		lis[cidx + 1] && (lis[cidx + 1].style.webkitTransform = 'translate3d(' + this.scaleW + 'px, 0, 0) scale(0.94)');
 	}
 
 	for (var i = 0; i < len; i++) {
@@ -170,7 +170,7 @@ Slider.prototype.bindDOM = function() {
 		//最小化改变DOM属性
 		for (i; i < m; i++) {
 			lis[i] && (lis[i].style.webkitTransition = '-webkit-transform 0s ease-out');
-			lis[i] && (lis[i].style.webkitTransform = 'translate3d(' + ((i - self.idx) * self.scaleW + self.offsetX) + 'px, 0, 0)');
+			lis[i] && (lis[i].style.webkitTransform = 'translate3d(' + ((i - self.idx) * self.scaleW + self.offsetX) + 'px, 0, 0) scale(0.94)');
 		}
 	};
 
