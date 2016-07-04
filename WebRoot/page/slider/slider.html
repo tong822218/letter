@@ -8,8 +8,15 @@
 <meta name="apple-touch-fullscreen" content="YES" />
 <meta name="apple-mobile-web-app-status-bar-style" content="white" />
 <meta content="yes" name="apple-mobile-web-app-capable">
+<link href="${rc.contextPath}/static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="${rc.contextPath}/static/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="${rc.contextPath}/static/slider/slider.css" />
 <script src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
+<script src="${rc.contextPath}/static/jquery.cookie.js"></script>
+<script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/respond.min.js"></script>
+
+
 <script src="${rc.contextPath}/static/slider/slider.js"
 	type="text/javascript" charset="utf-8"></script>
 <script src="${rc.contextPath}/static/slider/sliderlittel.js"
@@ -17,7 +24,7 @@
 <style type="text/css">
 .sellersay {
 	z-index:100;
-    display: flex;
+    display: none;
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -39,15 +46,21 @@
 	<div class="sellersay"><span>${obj.sellerSay!}</span></div>
 	<div id="canvas"></div>
 	<div class="button" id="button"></div>
-	<div class="edit" id="edit"><i class="icon-edit"></i></div>
+	<div class="edit" id="edit" onclick="toDetail()"></div>
 	<div id="bottom">
 		<div class="little" id="little"></div>
 	</div>
 	<script type="text/javascript">
 		$(function(){
-			setInterval(function(){
-				$(".sellersay").css({display:"none"});
-			}, 3000);
+			var sellersay=$.cookie('sellersay'); // 读取 cookie 
+			if(sellersay!='true'){
+				$.cookie('sellersay', 'true', { expires: 7 }); // 存储一个带7天期限的 cookie 
+				$(".sellersay").css({display:"flex"});
+				setInterval(function(){
+					$(".sellersay").css({display:"none"});
+				}, 3000);
+			}
+			
 		})
 		var isShowLittleSlider = false;
 		var slider, sliderLittle;
@@ -75,8 +88,10 @@
 
 		$(".button").click(function() {
 			var bu = document.getElementById("button");
+			var edit = document.getElementById("edit");
 			$("#bottom").toggle();
 			bu.style.display = "none";
+			edit.style.display = "none";
 			isShowLittleSlider = true;
 			slider.renderDOM(1);
 			slider.bindDOM();
@@ -104,11 +119,21 @@
 				$("#button").css({
 					"display" : "block"
 				});
+				$("#edit").css({
+					"display" : "block"
+				});
 				isShowLittleSlider = false;
 			} else {
 				window.location.href = "${rc.contextPath}/l/temp/" + id
 						+ ".html";
 			}
+		}
+		
+		function toDetail(){
+			var arr=JSON.parse(list);
+			var ss=arr[slider.idx];
+			var id=ss['id'];
+			toEdite(id);
 		}
 	</script>
 </body>

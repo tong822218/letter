@@ -16,7 +16,7 @@ public class LetterDaoImpl implements LetterDao {
 	private JdbcDao mysqlJdbcDao;
 	@Override
 	public void add(Letter letter) {
-		String sql = "insert into s_letter(id,user,userid,temp,imgs,params,create_time,seller,tel,sender) values ('"+letter.getId()+"','"+letter.getUser()+"','"+letter.getUserid()+"','"+letter.getTemp()+"','"+letter.getImgs()+"','"+letter.getParams()+"','"+letter.getCreateTime()+"','"+letter.getSeller()+"','"+letter.getTel()+"','"+letter.getSender()+"') ";
+		String sql = "insert into s_letter(id,user,userid,temp,imgs,params,create_time,seller,tel,sender,sender_tel) values ('"+letter.getId()+"','"+letter.getUser()+"','"+letter.getUserid()+"','"+letter.getTemp()+"','"+letter.getImgs()+"','"+letter.getParams()+"','"+letter.getCreateTime()+"','"+letter.getSeller()+"','"+letter.getTel()+"','"+letter.getSender()+"','"+letter.getSenderTel()+"') ";
 		mysqlJdbcDao.execSql(sql);
 	}
 

@@ -158,6 +158,9 @@ Slider.prototype.bindDOM = function() {
 		$("#button").css({
 			"display": "block"
 		});
+		$("#edit").css({
+			"display": "block"
+		});
 		//计算手指的偏移量
 		self.offsetX = evt.targetTouches[0].pageX - self.startX;
 

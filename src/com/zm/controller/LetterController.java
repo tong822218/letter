@@ -38,8 +38,10 @@ public class LetterController extends BaseController {
 		String name = request.getParameter("seller");
 		User user = userService.getByName(name);
 		Map<String, Object> map=new HashMap<String, Object>();
-		map.put("sellerSay", user.getSeller_say());
-		request.getSession().setAttribute("seller", name);
+		if(user!=null){
+			map.put("sellerSay", user.getSeller_say());
+			request.getSession().setAttribute("seller", name);
+		}
 		return html("/slider/slider", map, request);
         
 	}
@@ -78,12 +80,12 @@ public class LetterController extends BaseController {
 	@RequestMapping(value = "s")
 	public ModelAndView toSend(HttpServletRequest request){
 		
-		return html("/letter/send", null, request);
+		return html("/letter/sendnew", null, request);
 	}
 	@RequestMapping(value = "send")
 	public ModelAndView send(HttpServletRequest request){
 		String tel=request.getParameter("tel");
-		String sender=request.getParameter("sender");
+		String senderTel=request.getParameter("senderTel");
 		HttpSession session = request.getSession();
 		Letter letter = (Letter) session.getAttribute("letter");
 		if(letter==null){
@@ -92,7 +94,7 @@ public class LetterController extends BaseController {
 		String seller=(String) session.getAttribute("seller");
 		letter.setSeller(seller);
 		letter.setTel(tel);
-		letter.setSender(sender);
+		letter.setSenderTel(senderTel);
 		letterService.add(letter);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", letter.getId());
