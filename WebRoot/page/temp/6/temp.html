@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<title>模板-1</title>
+<link href="${rc.contextPath}/static/css/edit_border.css" type="text/css" rel="stylesheet"/>
+<link href="${rc.contextPath}/static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+<link rel="stylesheet" href="${rc.contextPath}/static/font-awesome/css/font-awesome.min.css">
+<script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${rc.contextPath}/static/js/tempbar-top.js"></script>
+<script type="text/javascript">
+	function submit()
+	{
+		var tempid='${obj.tempid!}';
+		var content1=document.getElementById("content1").innerHTML;
+		var content2=document.getElementById("content2").innerHTML;
+		 $.post("${rc.contextPath}/l/save.html", { tempid: tempid, content1: content1, content2: content2 },
+			   function(data){
+			     if(data=='1'||data==1)
+			    	 window.location.href="${rc.contextPath}/l/s.html";
+			     else
+			    	 alert("提交失败");
+			   });
+	}
+</script>
+    <style>
+        body{
+            background: url("demo6bg.jpg")no-repeat;
+            background-size: cover;
+        }
+        .content{
+            color: #000000;
+            background-color: #f5e79e;
+            position: absolute;
+            border: 3px #ec971f solid;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%,0);
+            width: 70%;
+            padding: 10px 10px 10px 10px;
+            filter:alpha(Opacity=30);-moz-opacity:0.3;opacity: 0.3;
+            font-family: "Microsoft YaHei";
+        }
+    </style>
+    <script>
+    </script>
+
+</head>
+<body>
+    <div class="content">
+        <h3 class="text-center"><strong><span style="color: red" >我会陪在你身边</span></strong></h3>
+        <p class="lead">东营一别，转眼就3年过去了，十分想念，不知道你现在过得好不好，我们可以再回到那年，再续前缘吗。</p>
+    </div>
+
+</body>
+</html>

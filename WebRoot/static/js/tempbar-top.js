@@ -4,19 +4,19 @@ $(function($) {
     bar.style.width="100%";
     bar.style.top=0;
     bar.style.position="fixed";
-    bar.style.padding="3px 3px 3px 3px"
+    bar.style.padding="3px 6px 3px 6px"
     bar.style.backgroundColor="#ffffff";
-    bar.style.filter="alpha(Opacity=80)";
-    bar.style.filter="-moz-opacity:0.8";
-    bar.style.opacity="0.8";
+    bar.style.filter="alpha(Opacity=30)";
+    bar.style.filter="-moz-opacity:0.3";
+    bar.style.opacity="0.3";
 
     var save=document.createElement("a");
-    save.innerHTML="<i class='icon-ok icon-2x'></i>";
+    save.innerHTML="<i class='icon-share-alt icon-2x'></i>";
     save.href="javascript:submit()";
     save.style.float="right";
 
     var back=document.createElement("a");
-    back.innerHTML="<i class='icon-chevron-left icon-2x'></i>";
+    back.innerHTML="<i class='icon-reply icon-2x'></i>";
     back.href="javascript:history.go(-1)";
     back.style.float="left";
 
