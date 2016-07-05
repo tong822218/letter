@@ -73,6 +73,7 @@ Slider.prototype.goIndex = function(n, flag) { //flag=0,代表大图滚动，1�
 	var lis = this.outer.getElementsByTagName('li');
 	var len = lis.length;
 	var cidx;
+	
 
 	//如果传数字 2,3 之类可以使得直接滑动到该索引
 	if (typeof n == 'number') {
@@ -152,15 +153,7 @@ Slider.prototype.bindDOM = function() {
 	var moveHandler = function(evt) {
 		//兼容chrome android，阻止浏览器默认行为
 		evt.preventDefault();
-		$("#bottom").css({
-			"display": "none"
-		});
-		$("#button").css({
-			"display": "block"
-		});
-		$("#edit").css({
-			"display": "block"
-		});
+		
 		//计算手指的偏移量
 		self.offsetX = evt.targetTouches[0].pageX - self.startX;
 
@@ -180,6 +173,16 @@ Slider.prototype.bindDOM = function() {
 	//手指抬起的处理事件
 	var endHandler = function(evt) {
 		//evt.preventDefault();
+		
+		$("#bottom").css({
+			"display": "none"
+		});
+		$("#button").css({
+			"display": "block"
+		});
+		$("#edit").css({
+			"display": "block"
+		});
 
 		//边界就翻页值
 		var boundary = scaleW / 6;
