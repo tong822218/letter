@@ -26,7 +26,8 @@
 		var qrcode = new QRCode(document.getElementById("qrcode"), {
 			
 		});
-		qrcode.makeCode("https://letter.ews.m.jaeapp.com/l/home.html?seller="+name);
+		//qrcode.makeCode("https://letter.ews.m.jaeapp.com/l/home.html?seller="+name);
+		qrcode.makeCode("http://192.168.31.101:8080/l/home.html?seller="+name);
 	});
 
 	function downloadqr() {
