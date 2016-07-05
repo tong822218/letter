@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>模板</title>
+    <link href="${rc.contextPath}/static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+	<script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+	function submittemp()
+	{
+		var id=$("#id").val(); 
+		var title=$("#title").val(); 
+		var url=$("#url").val(); 
+		var tempurl=$("#tempurl").val(); 
+		 $.post("${rc.contextPath}/t/addtemp.html", { id: id, title: title, url: url, tempurl: tempurl },
+			   function(data){
+			     if(data=='1'||data==1)
+			    	 alert("提交成功");
+			     else
+			    	 alert("提交失败");
+			   });
+	}
+	</script>
+</head>
+<body>
+
+<div class="container">
+    <legend>模板</legend>
+
+	<div class="form-group  has-success">
+        <label for="id" class="col-lg-2 control-label">id</label>
+        <div class="col-lg-10">
+            <input type="text" class="form-control" id="id" name="id" placeholder="" required>
+        </div>
+    </div>
+    
+    <div class="form-group has-success">
+        <label for="title" class="col-lg-2 control-label">title</label>
+        <div class="col-lg-10">
+            <input type="text" class="form-control" id="title" name="title" placeholder="" value="情书" required>
+        </div>
+    </div>
+    <div class="form-group  has-success">
+        <label for="url" class="col-lg-2 control-label">url</label>
+        <div class="col-lg-10">
+            <input type="text" class="form-control" id="url" name="url" placeholder="" value="/temp/1/index" required>
+        </div>
+    </div>
+    
+    <div class="form-group has-success">
+        <label for="tempurl" class="col-lg-2 control-label">temp_url</label>
+        <div class="col-lg-10">
+            <input type="text" class="form-control" id="tempurl" name="tempurl" placeholder="" value="/temp/1/temp" required>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-lg-10">
+            <button type="submit" class="btn btn-default" onclick="submittemp()">发送</button>
+        </div>
+    </div>
+    
+</div>
+
+</body>
+</html>

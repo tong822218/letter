@@ -35,5 +35,11 @@ public class TempDaoImpl implements TempDao{
 		String sql = "select * from s_temp";
 		return (List)mysqlJdbcDao.queryList(sql,Temp.class);
 	}
+	@Override
+	public void add(Temp temp) {
+		// TODO Auto-generated method stub
+		String sql = "insert into s_temp(id,title,title2,url,temp_url,type,img_path,create_user,create_time) values ('"+temp.getId()+"','"+temp.getTitle()+"','"+temp.getTitle2()+"','"+temp.getUrl()+"','"+temp.getTemp_url()+"','"+temp.getType()+"','"+temp.getImg_path()+"','"+temp.getCreate_user()+"','"+temp.getCreate_time()+"') ";
+		mysqlJdbcDao.execSql(sql);
+	}
 	
 }

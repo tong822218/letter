@@ -10,4 +10,6 @@ public interface TempDao {
 
 	List<Temp> getList();
 
+	void add(Temp temp);
+
 }

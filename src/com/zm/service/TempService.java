@@ -10,4 +10,6 @@ public interface TempService {
 	
 	List<Temp> getList();
 
+	void add(Temp temp);
+
 }

@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-<title>模板-1</title>
+<title>${obj.title!}</title>
 <link href="${rc.contextPath}/static/css/edit_border.css" type="text/css" rel="stylesheet"/>
 <link href="${rc.contextPath}/static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
 <link rel="stylesheet" href="${rc.contextPath}/static/font-awesome/css/font-awesome.min.css">
@@ -12,7 +12,7 @@
 
     <style>
         body{
-            background: url("demo9bg.jpg")no-repeat;
+            background: url("bg.jpg")no-repeat;
             background-size: cover;
         }
         .content{
@@ -35,7 +35,7 @@
 </head>
 <body>
     <div class="content">
-        <h3><strong>这是一个默认的引用实这是一个默认的引用实例。这是引用实例。</strong></h3>
+        <h3><strong>${obj.content1!}</strong></h3>
     </div>
 
 </body>

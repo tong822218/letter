@@ -25,4 +25,10 @@ public class TempServiceImpl implements TempService {
 		return tempDao.getList();
 	}
 
+	@Override
+	public void add(Temp temp) {
+		// TODO Auto-generated method stub
+		tempDao.add(temp);
+	}
+
 }

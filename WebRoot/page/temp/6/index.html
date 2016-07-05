@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-<title>模板-1</title>
+<title>${obj.title!}</title>
 <link href="${rc.contextPath}/static/css/edit_border.css" type="text/css" rel="stylesheet"/>
 <link href="${rc.contextPath}/static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
 <link rel="stylesheet" href="${rc.contextPath}/static/font-awesome/css/font-awesome.min.css">
@@ -12,7 +12,7 @@
 
     <style>
         body{
-            background: url("demo6bg.jpg")no-repeat;
+            background: url("bg.jpg")no-repeat;
             background-size: cover;
         }
         .content{
@@ -35,8 +35,8 @@
 </head>
 <body>
     <div class="content">
-        <h3 class="text-center"><strong><span style="color: red" >我会陪在你身边</span></strong></h3>
-        <p class="lead">东营一别，转眼就3年过去了，十分想念，不知道你现在过得好不好，我们可以再回到那年，再续前缘吗。</p>
+        <h3 class="text-center"><strong><span style="color: red" >${obj.content1!}</span></strong></h3>
+        <p class="lead">${obj.content2!}</p>
     </div>
 
 </body>
