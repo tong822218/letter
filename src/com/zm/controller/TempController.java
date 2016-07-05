@@ -35,12 +35,13 @@ public class TempController extends BaseController {
 		String title=request.getParameter("title");
 		String url=request.getParameter("url");
 		String tempurl=request.getParameter("tempurl");
-		
+		String img=request.getParameter("img");
 		Temp temp=new Temp();
 		temp.setId(id);
 		temp.setTitle(title);
 		temp.setUrl(url);
 		temp.setTemp_url(tempurl);
+		temp.setImg_path(img);
 		temp.setCreate_time(now());
 		tempService.add(temp);
 		json(response,1);
