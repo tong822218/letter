@@ -83,22 +83,26 @@ public class LetterController extends BaseController {
 		return html("/letter/sendnew", null, request);
 	}
 	@RequestMapping(value = "send")
-	public ModelAndView send(HttpServletRequest request){
-		String tel=request.getParameter("tel");
-		String senderTel=request.getParameter("senderTel");
-		HttpSession session = request.getSession();
-		Letter letter = (Letter) session.getAttribute("letter");
-		if(letter==null){
-			return html("/slider/slider", null, request);
+	public void send(HttpServletRequest request,HttpServletResponse response){
+		try {
+			String tel=request.getParameter("tel");
+			String senderTel=request.getParameter("senderTel");
+			HttpSession session = request.getSession();
+			Letter letter = (Letter) session.getAttribute("letter");
+			if(letter==null){
+				//return html("/slider/slider", null, request);
+			}
+			String seller=(String) session.getAttribute("seller");
+			letter.setSeller(seller);
+			letter.setTel(tel);
+			letter.setSenderTel(senderTel);
+			letterService.add(letter);
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("id", letter.getId());
+			json(response,true);
+		} catch (Exception e) {
+			json(response,false);
 		}
-		String seller=(String) session.getAttribute("seller");
-		letter.setSeller(seller);
-		letter.setTel(tel);
-		letter.setSenderTel(senderTel);
-		letterService.add(letter);
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("id", letter.getId());
-		return html("/letter/result", map, request);
 	}
 	@RequestMapping(value = "read")
 	public ModelAndView read(HttpServletRequest request){
