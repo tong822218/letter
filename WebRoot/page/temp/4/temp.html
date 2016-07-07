@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="${rc.contextPath}/static/font-awesome/css/font-awesome.min.css">
 <script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${rc.contextPath}/static/iscroll/iscroll.js"></script>
 <script type="text/javascript" src="${rc.contextPath}/static/js/tempbar-top.js"></script>
 <script type="text/javascript">
 	function submit()
@@ -26,11 +27,22 @@
 			    	 alert("提交失败");
 			   });
 	}
+
+    var myscroll;
+    function loaded(){
+   		setTimeout(function(){
+   			$("#content").css({"display":"block"});
+   			//var myscroll=new iScroll("#wrapper",{hScrollbar:false, vScrollbar:false});
+   			
+     	},500);
+	}
+	window.addEventListener("load",loaded,false);
+
 </script>
     <style>
         body{
-            background: url("${rc.contextPath}/page/temp/4/bg.jpg")no-repeat;
-            background-size: cover;
+            /* background: url("${rc.contextPath}/page/temp/4/bg.jpg")no-repeat;
+            background-size: cover; */
         }
         .content{
             color: #ffffff;
@@ -39,18 +51,28 @@
             width: 100%;
             font-family: "Microsoft YaHei";
         }
+        
+        #wrapper {
+			position: relative;
+		}
+
     </style>
     <script>
     </script>
 
 </head>
 <body>
-    <div class="text-center content">
-        <h3><strong><span id="content1" class="shine_white" contenteditable="true">无论发生什么</span></strong></h3>
-        <h3><strong><span id="content2" class="shine_white" contenteditable="true">我会陪在你身边</span></strong></h3>
-        <h3><strong><span id="content3" class="shine_white" contenteditable="true">不离不弃</span></strong></h3>
-        <h3><strong><span id="content4" class="shine_white" contenteditable="true">生死相依</span></strong></h3>
-    </div>
-
+	<div id="wrapper">
+	
+	<div id="scroller">
+	<img src="${rc.contextPath}/page/temp/4/bg.jpg" height="100%" width="100%" />
+	    <div class="text-center content" id="content" style="display:none">
+	        <h3><strong><span id="content1" class="shine_white" contenteditable="true">无论发生什么</span></strong></h3>
+	        <h3><strong><span id="content2" class="shine_white" contenteditable="true">我会陪在你身边</span></strong></h3>
+	        <h3><strong><span id="content3" class="shine_white" contenteditable="true">不离不弃</span></strong></h3>
+	        <h3><strong><span id="content4" class="shine_white" contenteditable="true">生死相依</span></strong></h3>
+	    </div>
+	</div>
+	</div>
 </body>
 </html>
