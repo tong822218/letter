@@ -73,7 +73,7 @@ ul {
 	bottom: 50px;
 	left: 50%;
 	-webkit-transform: translateX(-100%);
-	transform: translateX(-100%);
+	transform: translateX(-200%);
 	width:30px;
 	height: 30px;
 	z-index: 3;
@@ -87,7 +87,7 @@ ul {
 	position: absolute;
 	bottom: 46px;
 	left: 50%;
-	-webkit-transform: translateX(100%);
+	-webkit-transform: translateX(200%);
 	transform: translateX(100%);
 	width:33px;
 	height: 33px;

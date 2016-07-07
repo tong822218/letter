@@ -23,18 +23,17 @@
 	type="text/javascript" charset="utf-8"></script>
 <style type="text/css">
 .sellersay {
+	opacity:0.5;
 	z-index:100;
     display: none;
 	position: absolute;
-	top: 50%;
-	left: 50%;
-	height: 400px;
-	width: 80%;
-	padding:10% 5%;
-	transform:translate(-50%,-50%);
-	background-color: #fff;
+	top: 0;
+	left:0;
+	color:#fff;
+	height: 100%;
+	width: 100%;
+	background-color: #000;
 	font-size: 24px;
-	box-shadow:0 0 5px 5px #fac;  
 	justify-content:center;
 	align-items:center;
 }
@@ -52,8 +51,9 @@
 	</div>
 	<script type="text/javascript">
 		$(function(){
+			var ss="${obj.sellerSay!}";
 			var sellersay=$.cookie('sellersay'); // 读取 cookie 
-			if(sellersay!='true'){
+			if(sellersay!='true' && ss!="如，仅限北京市内使用该服务"){
 				$.cookie('sellersay', 'true', { expires: 7 }); // 存储一个带7天期限的 cookie 
 				$(".sellersay").css({display:"flex"});
 				setInterval(function(){
