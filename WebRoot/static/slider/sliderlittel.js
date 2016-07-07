@@ -144,7 +144,7 @@ SliderLittle.prototype.bindDOM = function() {
 
 		var time = endTime - self.startTime;
 		// 当手指移动时间超过300ms 的时候，按位移算
-		if (this.allW > window.innerWidth) {
+		if (self.allW > window.innerWidth) {
 
 			if (endTime - self.startTime > 200) {
 				if (self.offsetX >= boundary) {

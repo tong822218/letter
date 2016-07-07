@@ -43,7 +43,7 @@ Slider.prototype.renderDOM = function(flag) {
     			}  
   			})();
 		if (flag == 1) {
-			li.style.webkitTransform = 'translate3d(' + i * this.scaleW + 'px, -50px, 0) scale(0.8)';
+			li.style.webkitTransform = 'translate3d(' + i * this.scaleW + 'px, -40px, 0) scale(0.8)';
 		} else {
 			li.style.webkitTransform = 'translate3d(' + i * this.scaleW + 'px, 0, 0) scale(0.94)';
 		}
@@ -103,9 +103,9 @@ Slider.prototype.goIndex = function(n, flag) { //flag=0,代表大图滚动，1�
 	//改变动画后所应该的位移值
 
 	if (flag == 1) {
-		lis[cidx].style.webkitTransform = 'translate3d(0, -50px, 0) scale(0.8)';
-		lis[cidx - 1] && (lis[cidx - 1].style.webkitTransform = 'translate3d(-' + this.scaleW + 'px, -50px, 0) scale(0.8)');
-		lis[cidx + 1] && (lis[cidx + 1].style.webkitTransform = 'translate3d(' + this.scaleW + 'px, -50px, 0) scale(0.8)');
+		lis[cidx].style.webkitTransform = 'translate3d(0, -40px, 0) scale(0.8)';
+		lis[cidx - 1] && (lis[cidx - 1].style.webkitTransform = 'translate3d(-' + this.scaleW + 'px, -40px, 0) scale(0.8)');
+		lis[cidx + 1] && (lis[cidx + 1].style.webkitTransform = 'translate3d(' + this.scaleW + 'px, -40px, 0) scale(0.8)');
 	} else {
 		lis[cidx].style.webkitTransform = 'translate3d(0, 0, 0) scale(0.94)';
 		lis[cidx - 1] && (lis[cidx - 1].style.webkitTransform = 'translate3d(-' + this.scaleW + 'px, 0, 0) scale(0.94)');

@@ -8,18 +8,95 @@
 	<script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="${rc.contextPath}/static/audiojs/audio.min.js"></script>
-	
+	<script>
+	function check() {
+		var sender = document.getElementById('id').value;
+		if (sender == null || sender == "") {
+			alert("手机号码不能为空");
+			return false;
+		}
+		return true;
+	}
+	function submit(){
+		if(check()){
+			$("#myform").submit();
+		}
+	}
+</script>
+	<style type="text/css">
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: #fff;
+	width: 100%;
+	height: auto;
+}
+.cont{
+	width: 100%;
+	height: 100%;
+	display: flex;
+}
+
+.bg {
+	margin:50px auto;
+	position:relative;
+	width:90%;
+	height:330px;
+	background: url("${rc.contextPath}/static/image/send_biankuang.png") no-repeat;
+	background-size: contain;
+	overflow: hidden;
+}
+.sjr{
+	position:absolute;
+	width:180px;
+	top:115px;
+	left:65px;
+	height: 30px;
+}
+.sjr input{
+	border:none;
+	background-color:transparent;
+	outline:none;
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+}
+.send{
+	position:absolute;
+	bottom:70px;
+	left:125px;
+	width:80px;
+	height:30px;
+	color:#2c2c2c;
+	text-align:center;
+	font-weight:bold;
+	font-size:13px;
+	line-height:30px;
+	border:solid 2px #eee;
+	border-radius: 10%;
+	background-color:#fff;
+	box-shadow: 1px px 1px #eee;
+}
+input{	
+	text-align:center;
+	background: url("${rc.contextPath}/static/image/send_input.png") no-repeat;
+	background-size:contain;
+}
+</style>
 </head>
 <body>
 <#if (obj.message)??>
 	${obj.message }
 </#if>
 <div class="container">
-<form class="form-horizontal" role="form" onsubmit="return check();" action="${rc.contextPath}/l/read.html">
+<form class="form-horizontal" role="form" id="myform" onsubmit="return check();" action="${rc.contextPath}/l/read.html">
     
-    <legend>您有一封留言</legend>
+   <!-- <legend>您有一封留言</legend>
 
-    <div class="form-group  has-success">
+     <div class="form-group  has-success">
         <label for="id" class="col-sm-2 control-label">您的电话</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="id" name="id" placeholder="请验证电话" required>
@@ -29,7 +106,17 @@
         <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-success">确定</button>
         </div>
-    </div>
+    </div> -->
+    <div class="cont">
+		<div class="bg">
+				 <div class="sjr">
+					<input type="text" id="id" name="id" placeholder="您的电话" required>
+				</div>
+				<div class="send" id="send" onclick="submit()">
+					确&nbsp;定
+				</div> 
+		</div>
+	</div>
 </form>
 </div>
 </body>
