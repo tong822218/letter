@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
 <title>模板-4</title>
 <link href="${rc.contextPath}/static/css/edit_border.css" type="text/css" rel="stylesheet"/>
 <link href="${rc.contextPath}/static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
 <link rel="stylesheet" href="${rc.contextPath}/static/font-awesome/css/font-awesome.min.css">
 <script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="${rc.contextPath}/static/iscroll/iscroll.js"></script>
 <script type="text/javascript" src="${rc.contextPath}/static/js/tempbar-top.js"></script>
 <script type="text/javascript">
 	function submit()
@@ -43,6 +42,7 @@
         body{
             /* background: url("${rc.contextPath}/page/temp/4/bg.jpg")no-repeat;
             background-size: cover; */
+            position: absolute;
         }
         .content{
             color: #ffffff;
@@ -52,19 +52,12 @@
             font-family: "Microsoft YaHei";
         }
         
-        #wrapper {
-			position: relative;
-		}
-
     </style>
     <script>
     </script>
 
 </head>
 <body>
-	<div id="wrapper">
-	
-	<div id="scroller">
 	<img src="${rc.contextPath}/page/temp/4/bg.jpg" height="100%" width="100%" />
 	    <div class="text-center content" id="content" style="display:none">
 	        <h3><strong><span id="content1" class="shine_white" contenteditable="true">无论发生什么</span></strong></h3>
@@ -72,7 +65,5 @@
 	        <h3><strong><span id="content3" class="shine_white" contenteditable="true">不离不弃</span></strong></h3>
 	        <h3><strong><span id="content4" class="shine_white" contenteditable="true">生死相依</span></strong></h3>
 	    </div>
-	</div>
-	</div>
 </body>
 </html>
