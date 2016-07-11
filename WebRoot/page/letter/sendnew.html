@@ -38,7 +38,9 @@
 				$(".alert").css({"opacity":1,"-webkit-transform":"translate(-50%,-50%) scale(1)"});
 			    setInterval(function(){
 					$(".alert").css({"-webkit-transform": "translate(-50%,-50%) scale(0)"});
-					window.location.href="https://shop.m.taobao.com/shop/shopIndex.htm?shop_id=${sellerid!}";
+					//window.location.href="https://shop.m.taobao.com/shop/shopIndex.htm?shop_name=${seller!}";
+					//history.go(-1);
+					window.location.replace("https://letter.ews.m.jaeapp.com/l/home.html?seller=j11016&sellerid=366426558");
 				}, 2000); 
 			});
 		}
