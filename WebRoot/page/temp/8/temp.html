@@ -23,6 +23,14 @@
 			    	 alert("提交失败");
 			   });
 	}
+	function loaded(){
+   		setTimeout(function(){
+   			$("#content").css({"display":"block"});
+   			//var myscroll=new iScroll("#wrapper",{hScrollbar:false, vScrollbar:false});
+   			
+     	},500);
+	}
+	window.addEventListener("load",loaded,false);
 </script>
     <style>
         body{
@@ -44,7 +52,7 @@
 </head>
 <body>
 <img src="${rc.contextPath}/page/temp/8/bg.jpg" height="100%" width="100%" />
-    <div class="content">
+    <div class="content" id="content" style="display:none">
         <h3 id="content1" class="shine_white" contenteditable="true"><strong>这是一个默认的引用实这是一个默认的引用实例。这是引用实例。</strong></h3>
     </div>
 

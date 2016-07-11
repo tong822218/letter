@@ -24,6 +24,14 @@
 				    	 alert("提交失败");
 				   });
 	}
+	function loaded(){
+   		setTimeout(function(){
+   			$("#content").css({"display":"block"});
+   			//var myscroll=new iScroll("#wrapper",{hScrollbar:false, vScrollbar:false});
+   			
+     	},500);
+	}
+	window.addEventListener("load",loaded,false);
 </script>
     <style>
         body{
@@ -45,7 +53,7 @@
 </head>
 <body>
 <img src="${rc.contextPath}/page/temp/3/bg.jpg" height="100%" width="100%" />
-    <div class="content">
+    <div class="content" id="content" style="display:none">
         <h4 class="strong shine_blue" contenteditable="true" id="content1">这是标题</h4>
         <p class="lead shine_blue" contenteditable="true" id="content2">这是可编辑的内容区域，被边框包裹的部分可以自由编辑，收信时将不会展示边框，Enjoy it</p>
     </div>

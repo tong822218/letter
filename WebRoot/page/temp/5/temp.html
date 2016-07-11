@@ -25,7 +25,14 @@ function submit()
 		    	 alert("提交失败");
 		   });
 }
-
+function loaded(){
+		setTimeout(function(){
+			$("#content").css({"display":"block"});
+			//var myscroll=new iScroll("#wrapper",{hScrollbar:false, vScrollbar:false});
+			
+ 	},500);
+}
+window.addEventListener("load",loaded,false);
 </script>
     <style>
         body{
@@ -45,7 +52,7 @@ function submit()
 </head>
 <body>
 <img src="${rc.contextPath}/page/temp/5/bg.jpg" height="100%" width="100%" />
-    <div class="text-center content">
+    <div class="text-center content" id="content" style="display:none">
         <h3><strong><span id="content1" class="shine_white" contenteditable="true" style="color: chocolate">i love u</span></strong></h3>
         <h3><strong><span id="content2" class="shine_white" contenteditable="true">我想和你</span></strong></h3>
         <h3><strong><span id="content3" class="shine_white" contenteditable="true">永远在一起</span></strong></h3>
