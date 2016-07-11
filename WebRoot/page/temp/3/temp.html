@@ -15,8 +15,7 @@
 	{
 		var tempid='${obj.tempid!}';
 		var content1=document.getElementById("content1").innerHTML;
-		var content2=document.getElementById("content2").innerHTML;
-		$.post("${rc.contextPath}/l/save.html", { tempid: tempid, content1: content1, content2: content2 },
+		$.post("${rc.contextPath}/l/save.html", { tempid: tempid, content1: content1 },
 				function(data){
 				     if(data=='1'||data==1)
 				    	 window.location.href="${rc.contextPath}/l/s.html";
@@ -54,8 +53,7 @@
 <body>
 <img src="${rc.contextPath}/page/temp/3/bg.jpg" height="100%" width="100%" />
     <div class="content" id="content" style="display:none">
-        <h4 class="strong shine_blue" contenteditable="true" id="content1">这是标题</h4>
-        <p class="lead shine_blue" contenteditable="true" id="content2">这是可编辑的内容区域，被边框包裹的部分可以自由编辑，收信时将不会展示边框，Enjoy it</p>
+        <p class="lead shine_blue" contenteditable="true" id="content1">这是可编辑的内容区域，被边框包裹的部分可以自由编辑，收信时将不会展示边框，Enjoy it</p>
     </div>
 
 </body>

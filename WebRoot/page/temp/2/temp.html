@@ -15,8 +15,7 @@
 	{
 		var tempid='${obj.tempid!}';
 		var content1=document.getElementById("content1").innerHTML;
-		var content2=document.getElementById("content2").innerHTML;
-		$.post("${rc.contextPath}/l/save.html", { tempid: tempid, content1: content1, content2: content2 },
+		$.post("${rc.contextPath}/l/save.html", { tempid: tempid, content1: content1 },
 				function(data){
 				     if(data=='1'||data==1)
 				    	 window.location.href="${rc.contextPath}/l/s.html";
@@ -61,8 +60,7 @@
 <img src="${rc.contextPath}/page/temp/2/bg.jpg" height="100%" width="100%" />
     <div class="front-bg"></div>
     <div class="content" id="content" style="display:none">
-        <h4 class="text-center" style="color: #d43f3a"><strong><span id="content1" class="shine_red" contenteditable="true">我和你 心连心</span></strong></h4>
-        <p class="text-center"><span id="content2" class="shine_red" contenteditable="true">我们是一家人</span></p>
+        <p class="text-center"><span id="content1" class="shine_red" contenteditable="true">我们是一家人</span></p>
     </div>
 </body>
 </html>

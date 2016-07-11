@@ -15,10 +15,7 @@
 	{
 		var tempid='${obj.tempid!}';
 		var content1=document.getElementById("content1").innerHTML;
-		var content2=document.getElementById("content2").innerHTML;
-		var content3=document.getElementById("content3").innerHTML;
-		var content4=document.getElementById("content4").innerHTML;
-		 $.post("${rc.contextPath}/l/save.html", { tempid: tempid, content1: content1, content2: content2, content3: content3, content4: content4 },
+		 $.post("${rc.contextPath}/l/save.html", { tempid: tempid, content1: content1 },
 			   function(data){
 			     if(data=='1'||data==1)
 			    	 window.location.href="${rc.contextPath}/l/s.html";
@@ -47,7 +44,8 @@
             color: #ffffff;
             position: absolute;
             top: 20%;
-            width: 100%;
+            left: 20%;
+            width: 60%;
             font-family: "Microsoft YaHei";
         }
         
@@ -59,10 +57,7 @@
 <body>
 	<img src="${rc.contextPath}/page/temp/4/bg.jpg" height="100%" width="100%" />
 	    <div class="text-center content" id="content" style="display:none">
-	        <h3><strong><span id="content1" class="shine_white" contenteditable="true">无论发生什么</span></strong></h3>
-	        <h3><strong><span id="content2" class="shine_white" contenteditable="true">我会陪在你身边</span></strong></h3>
-	        <h3><strong><span id="content3" class="shine_white" contenteditable="true">不离不弃</span></strong></h3>
-	        <h3><strong><span id="content4" class="shine_white" contenteditable="true">生死相依</span></strong></h3>
+	        <p class="lead"><span id="content1" class="shine_white" contenteditable="true">东营一别，转眼就3年过去了，十分想念，不知道你现在过得好不好，我们可以再回到那年，再续前缘吗。</span></p>
 	    </div>
 </body>
 </html>
