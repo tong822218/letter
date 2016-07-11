@@ -99,7 +99,7 @@ public class LetterController extends BaseController {
 			letterService.add(letter);
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("id", letter.getId());
-			json(response,true);
+			json(response,"");
 		} catch (Exception e) {
 			json(response,false);
 		}

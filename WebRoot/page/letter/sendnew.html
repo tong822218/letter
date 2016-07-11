@@ -27,16 +27,16 @@
 			var sender=$("#sender").val();
 			$.post("${rc.contextPath}/l/send.html", {"tel":tel,"sender":sender}, function(data) {
 				var d = "";
-				if(data=="true"){
+				/* if(data=="true"){
 					$("#send").css({"display":"none"});
-					d='保存成功';
+					d='发送成功';
 				}else{
-					d='保存失败';
-				}
-				$(".alert .content").html(d);
-				$(".alert").css({"opacity":"1","transform": "translate(-50%,-50%) scale(1)"});
+					d='发送失败';
+				} */
+				$(".alert .content").html("发送成功");
+				$(".alert").css({"opacity":1,"-webkit-transform":"translate(-50%,-50%) scale(1)"});
 				setInterval(function(){
-					$(".alert").css({"transform": "translate(-50%,-50%) scale(0)","scale":"0"});
+					$(".alert").css({"-webkit-transform": "translate(-50%,-50%) scale(0)"});
 				}, 2000);
 			});
 		}
@@ -120,8 +120,8 @@ input{
 	background-size:contain;
 }
 .alert{
-	opacity: 0;
-	position:fixed;
+	opacity:0;
+	position:absolute;
 	width: 170px;
 	height: 140px;
 	top:50%;
@@ -129,8 +129,8 @@ input{
 	border:solid 1px #eee;
 	background-color:#fff;
 	border-radius:5%;
-	transform: translate(-50%,-50%) scale(0);
-	transition: all .2s ease-out;
+	-webkit-transform:translate(-50%,-50%) scale(0);
+	-webkit-transition: all .2s ease-out;
 }
 .alert .title{
 	width: 100%;
@@ -165,7 +165,7 @@ input{
 	</div>
 	<div class="alert">
 		<div class="title">&nbsp;消息</div>
-		<div class="content">保存成功！</div>
+		<div class="content"></div>
 	</div>
 </body>
 </html>
