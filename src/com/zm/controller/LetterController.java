@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
@@ -45,6 +46,12 @@ public class LetterController extends BaseController {
 		return html("/slider/slider", map, request);
         
 	}
+	@RequestMapping(value = "open")
+	public ModelAndView open(HttpServletRequest request) {
+		return html("/slider/open", null, request);
+
+	}
+
 	@RequestMapping(value = "temp/{id}")
 	public ModelAndView toTemp(@PathVariable("id") String id,HttpServletRequest request){
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -84,8 +91,8 @@ public class LetterController extends BaseController {
 	}
 	@RequestMapping(value = "send")
 	public void send(HttpServletRequest request,HttpServletResponse response){
-		try {
 			String tel=request.getParameter("tel");
+			String sender=request.getParameter("sender");
 			String senderTel=request.getParameter("senderTel");
 			HttpSession session = request.getSession();
 			Letter letter = (Letter) session.getAttribute("letter");
@@ -95,14 +102,12 @@ public class LetterController extends BaseController {
 			String seller=(String) session.getAttribute("seller");
 			letter.setSeller(seller);
 			letter.setTel(tel);
+			letter.setSender(sender);
 			letter.setSenderTel(senderTel);
 			letterService.add(letter);
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("id", letter.getId());
-			json(response,"");
-		} catch (Exception e) {
-			json(response,false);
-		}
+			json(response, 1);
 	}
 	@RequestMapping(value = "read")
 	public ModelAndView read(HttpServletRequest request){

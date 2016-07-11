@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport"
 	content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
 <title>发信</title>
@@ -24,8 +24,9 @@
 	function submit(){
 		if(check()){
 			var tel=$("#tel").val();
+			var senderTel=$("#senderTel").val();
 			var sender=$("#sender").val();
-			$.post("${rc.contextPath}/l/send.html", {"tel":tel,"sender":sender}, function(data) {
+			$.post("${rc.contextPath}/l/send.html", {tel:tel,sender:sender,senderTel:senderTel}, function(data) {
 				var d = "";
 				/* if(data=="true"){
 					$("#send").css({"display":"none"});
@@ -35,9 +36,9 @@
 				} */
 				$(".alert .content").html("发送成功");
 				$(".alert").css({"opacity":1,"-webkit-transform":"translate(-50%,-50%) scale(1)"});
-				setInterval(function(){
+			    setInterval(function(){
 					$(".alert").css({"-webkit-transform": "translate(-50%,-50%) scale(0)"});
-				}, 2000);
+				}, 2000); 
 			});
 		}
 	}
@@ -83,10 +84,25 @@ body {
 	height: 30px;
 	line-height: 30px;
 }
-.fjr{
+.fjrname{
 	position:absolute;
 	width:180px;
 	top:158px;
+	left:65px;
+	height: 30px;
+}
+.fjrname input{
+	border:none;
+	background-color:transparent;
+	outline:none;
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+}
+.fjr{
+	position:absolute;
+	width:180px;
+	top:201px;
 	left:65px;
 	height: 30px;
 }
@@ -100,7 +116,7 @@ body {
 }
 .send{
 	position:absolute;
-	bottom:70px;
+	bottom:35px;
 	left:125px;
 	width:80px;
 	height:30px;
@@ -150,17 +166,18 @@ input{
 <body>
 	<div class="cont">
 		<div class="bg">
-			<form id="myform" action="${rc.contextPath}/l/send.html" method="post">
 				 <div class="sjr">
 					<input type="text" id="tel" name="tel" placeholder="收信人电话" required>
 				</div>
+				<div class="fjrname">
+					<input type="text" id="sender" name="sender" placeholder="收信人姓名" required>
+				</div>
 				<div class="fjr">
-					<input type="text" id="sender" name="senderTel" placeholder="发件人电话" required>
+					<input type="text" id="senderTel" name="senderTel" placeholder="发件人电话" required>
 				</div>
 				<div class="send" id="send" onclick="submit()">
 					发&nbsp;送
 				</div> 
-			</form>
 		</div>
 	</div>
 	<div class="alert">
