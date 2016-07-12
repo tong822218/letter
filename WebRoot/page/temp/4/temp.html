@@ -18,7 +18,7 @@
 		 $.post("${rc.contextPath}/l/save.html", { tempid: tempid, content1: content1 },
 			   function(data){
 			     if(data=='1'||data==1)
-			    	 window.location.href="${rc.contextPath}/l/s.html";
+			    	 window.location.replace("${rc.contextPath}/l/s.html");
 			     else
 			    	 alert("提交失败");
 			   });
