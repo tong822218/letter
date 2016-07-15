@@ -8,9 +8,9 @@
 <script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
 <script>
 	function check() {
-		var sender = document.getElementById('sender').value;
-		if (sender == null || sender == "") {
-			alert("发信人不可为空");
+		var senderTel = document.getElementById('senderTel').value;
+		if (senderTel == null || senderTel == "") {
+			alert("发信人电话不可为空");
 			return false;
 		}
 		var tel = document.getElementById('tel').value;
@@ -90,7 +90,7 @@ body {
 .fjrname{
 	position:absolute;
 	width:180px;
-	top:148px;
+	top:191px;
 	left:65px;
 	height: 30px;
 }
@@ -105,7 +105,7 @@ body {
 .fjr{
 	position:absolute;
 	width:180px;
-	top:191px;
+	top:148px;
 	left:65px;
 	height: 30px;
 }
@@ -170,13 +170,13 @@ input{
 	<div class="cont">
 		<div class="bg">
 				 <div class="sjr">
-					<input type="text" id="tel" name="tel" placeholder="收信人电话" required>
+					<input type="text" id="tel" name="tel" placeholder="收信人电话" required><span style="color:red;position:absolute;right: -10px;top:5px">*</span>
+				</div>
+				<div class="fjr">
+					<input type="text" id="senderTel" name="senderTel" placeholder="发件人电话" required><span style="color:red;position:absolute;right: -10px;top:5px">*</span>
 				</div>
 				<div class="fjrname">
 					<input type="text" id="sender" name="sender" placeholder="收信人姓名" required>
-				</div>
-				<div class="fjr">
-					<input type="text" id="senderTel" name="senderTel" placeholder="发件人电话" required>
 				</div>
 				<div class="send" id="send" onclick="submit()">
 					发&nbsp;送
