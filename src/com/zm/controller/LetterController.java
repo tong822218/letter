@@ -1,6 +1,9 @@
 package com.zm.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,14 +41,51 @@ public class LetterController extends BaseController {
 	public ModelAndView toSlider(HttpServletRequest request){
 		String name = request.getParameter("seller");
 		String sellerid = request.getParameter("sellerid");
-		User user = userService.getByName(name);
-		Map<String, Object> map=new HashMap<String, Object>();
-		if(user!=null){
-			map.put("sellerSay", user.getSeller_say());
+		if(sellerid.length()>20){
+			User u = userService.getByToken(sellerid);
+			
+			if(u!=null){
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				Date now = new Date();
+				long nows = now.getTime();
+				long cres = 0;
+				String time = u.getCreate_time();
+				if(null!=time && !time.equals("")){
+					try {
+						Date ti = sdf.parse(time);
+						cres=ti.getTime();
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+					long sevenDay = 60*60*24*1000*7;
+					if((nows-cres)>sevenDay){
+						return html("/slider/404", null, request);
+					}else{
+						Map<String, Object> map=new HashMap<String, Object>();
+						map.put("sellerSay", u.getSeller_say());
+						return html("/slider/slider", map, request);
+					}
+				}else{
+					u.setCreate_time(sdf.format(now));
+					userService.update(u);
+					Map<String, Object> map=new HashMap<String, Object>();
+					map.put("sellerSay", u.getSeller_say());
+					return html("/slider/slider", map, request);
+				}
+				
+			}
+			return null;
+		}else{
+			User user = userService.getByName(name);
+			Map<String, Object> map=new HashMap<String, Object>();
+			if(user!=null){
+				map.put("sellerSay", user.getSeller_say());
+			}
+			request.getSession().setAttribute("seller", name);
+			request.getSession().setAttribute("sellerid", sellerid);
+			return html("/slider/slider", map, request);
 		}
-		request.getSession().setAttribute("seller", name);
-		request.getSession().setAttribute("sellerid", sellerid);
-		return html("/slider/slider", map, request);
+		
         
 	}
 	@RequestMapping(value = "open")

@@ -23,6 +23,9 @@ public interface UserService {
 	
 	@Transactional(isolation = Isolation.READ_COMMITTED, readOnly = true)
 	public User getByName(String name);
+	
+	@Transactional(isolation = Isolation.READ_COMMITTED, readOnly = true)
+	public User getByToken(String token);
 
 	@Transactional(isolation = Isolation.DEFAULT, propagation = Propagation.REQUIRED)
 	public void add(User user);

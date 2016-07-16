@@ -54,4 +54,11 @@ public class UserDaoImpl implements UserDao {
 		String sql = "update  u_seller set id='"+letter.getId()+"',username='"+ letter.getUsername()+"',password='"+ letter.getPassword()+"',name='"+ letter.getName()+"',token='"+ letter.getToken()+"',create_time='"+ letter.getCreate_time()+"',seller_say='"+ letter.getSeller_say()+"' where id='"+letter.getId()+"'";
 		mysqlJdbcDao.execSql(sql);
 	}
+	@Override
+	public User getByToken(String token) {
+		ArrayList list = new ArrayList();
+		String sql = "select * from u_seller where token = ?";
+		list.add(token);
+		return (User)mysqlJdbcDao.queryForObject(sql, list.toArray(), User.class);
+	}
 }

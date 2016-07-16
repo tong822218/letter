@@ -69,5 +69,10 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public User getByToken(String token) {
+		// TODO Auto-generated method stub
+		return userDao.getByToken(token);
+	}
 
 }
