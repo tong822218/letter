@@ -27,6 +27,7 @@ import com.zm.model.User;
 import com.zm.service.LetterService;
 import com.zm.service.TempService;
 import com.zm.service.UserService;
+import com.zm.util.HtmlUtil;
 
 @Controller
 @RequestMapping("/l")
@@ -170,10 +171,10 @@ public class LetterController extends BaseController {
 				return html("/letter/check", map, request);
 			}
 			Temp temp=tempService.getById(letter.getTemp());
-			return html(temp.getUrl(), JSON.parseObject(letter.getParams()), request);
+			return html(temp.getUrl(), JSON.parseObject(HtmlUtil.filterHtml(letter.getParams())), request);
 		}else if(letters.size()==1){
 			Temp temp=tempService.getById(letters.get(0).getTemp());
-			return html(temp.getUrl(), JSON.parseObject(letters.get(0).getParams()), request);
+			return html(temp.getUrl(), JSON.parseObject(HtmlUtil.filterHtml(letters.get(0).getParams())), request);
 		}else{
 			map.put("letters", letters);
 			return html("/letter/list", map, request);
