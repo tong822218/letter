@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="${rc.contextPath}/static/font-awesome/css/font-awesome.min.css">
 <script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${rc.contextPath}/static/typing/typing.min.js"></script>
 
     <style>
         body{
@@ -25,14 +26,30 @@
             font-family: "Microsoft YaHei";
         }
     </style>
-    <script>
-    </script>
+    <script type="text/javascript">
+		function loaded(){
+	   		setTimeout(function(){
+	   			$("#content").css({"display":"block"});
+	   			
+	   			var typing = new Typing({
+	                source: document.getElementById('source'),
+	                output: document.getElementById('content'),
+	                delay: 150
+	            });
+	            typing.start();
+	            
+	     	},500);
+		}
+		window.addEventListener("load",loaded,false);
+	</script>
+
 
 </head>
 <body>
-    <div class="content">
+    <div class="content" id="content">
+    <div id="source" hidden>
         <h3><strong>${obj.content1!}</strong></h3>
     </div>
-
+	</div>
 </body>
 </html>
