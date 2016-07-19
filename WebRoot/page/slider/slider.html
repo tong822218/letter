@@ -53,7 +53,7 @@
 		$(function(){
 			var ss="${obj.sellerSay!}";
 			var sellersay=$.cookie('sellersay'); // 读取 cookie 
-			if(sellersay!='true' && ss!="如，仅限北京市内使用该服务"){
+			if(sellersay!='true' && ss!="如，仅限北京市内使用该服务" && ss!=null && ss!='null'){
 				$.cookie('sellersay', 'true', { expires: 7 }); // 存储一个带7天期限的 cookie 
 				$(".sellersay").css({display:"flex"});
 				setInterval(function(){

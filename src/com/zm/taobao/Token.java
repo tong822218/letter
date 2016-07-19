@@ -21,8 +21,8 @@ public class Token {
 		String url ="https://oauth.taobao.com/token";
 		String appkey = "23293480";
 		String secret = "7a2f7cac57e40e0f570b7bf54bdd41d5";
-		//String redirect_uri = "http://127.0.0.1:8080/admin/login.html";
-		String redirect_uri = "https://letter.ews.m.jaeapp.com/admin/login.html";
+		String redirect_uri = "http://127.0.0.1:8080/admin/login.html";
+		//String redirect_uri = "https://letter.ews.m.jaeapp.com/admin/login.html";
 
 		Map<String, String> props = new HashMap<String, String>();
 		props.put("grant_type", "authorization_code");
