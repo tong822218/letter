@@ -22,17 +22,17 @@
         <div class="panel-body">
             <div id="main" style="width: 600px;height:400px;"></div>
             <script type="text/javascript">
-            $('#datetimepicker').datetimepicker({
+            /* $('#datetimepicker').datetimepicker({
             	weekStart: 1,
             	autoclose: true,
             	todayBtn: 'linked',
             	minView :2,
             	language: 'zh-CN'
-               });
+               }); */
                 // 基于准备好的dom，初始化echarts实例
                 var myChart = echarts.init(document.getElementById('main'));
                 // 指定图表的配置项和数据
-                var option = {
+                /* var option = {
                     title: {
                         text: ''
                     },
@@ -41,8 +41,8 @@
                         data:['定制卡片','打开卡片']
                     },
                     xAxis: {
-                        //data:  [${obj.tem!}]
-                    data:['12','42']
+                        data:  [${obj.tem!}]
+                    	//data:['12','42']
                     },
                     yAxis: {
                     	data:[]
@@ -56,8 +56,49 @@
                         type: 'line',
                         data: [${obj.count}]
                     }]
-                };
-
+                }; 
+ */
+ 		var option = {
+		    title: {
+		        text: '',
+		        subtext: '数据来自卓梦网络科技'
+		    },
+		    tooltip: {
+		        trigger: 'axis',
+		        axisPointer: {
+		            type: 'shadow'
+		        }
+		    },
+		    legend: {
+		        data: ['定制卡片', '打开卡片']
+		    },
+		    grid: {
+		        left: '3%',
+		        right: '4%',
+		        bottom: '3%',
+		        containLabel: false
+		    },
+		    xAxis: {
+		    	type: 'category',
+		        data: [${obj.month!}]
+		    },
+		    yAxis: {
+		    	type: 'value',
+		        boundaryGap: [0, 0.01]
+		    },
+		    series: [
+		        {
+		            name: '定制卡片',
+		            type: 'bar',
+		            data: [${obj.useTimes!}]
+		        },
+		        {
+		            name: '打开卡片',
+		            type: 'bar',
+		            data: [${obj.openTimes!}]
+		        }
+		    ]
+		};
                 // 使用刚指定的配置项和数据显示图表。
                 myChart.setOption(option);
             </script>

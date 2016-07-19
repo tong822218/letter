@@ -13,6 +13,36 @@ public class Letter {
 	private String tel;
 	private String sender;
 	private String senderTel;
+	private String openTimes;
+	//以下两个字段用于图表
+	private String useTimes;//使用次数
+	private String month;//月份
+	
+	public String getUseTimes() {
+		return useTimes;
+	}
+
+	public void setUseTimes(String useTimes) {
+		this.useTimes = useTimes;
+	}
+
+	public String getMonth() {
+		return month;
+	}
+
+	public void setMonth(String month) {
+		this.month = month;
+	}
+
+	
+
+	public String getOpenTimes() {
+		return openTimes;
+	}
+
+	public void setOpenTimes(String openTimes) {
+		this.openTimes = openTimes;
+	}
 
 	public String getSenderTel() {
 		return senderTel;

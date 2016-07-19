@@ -51,5 +51,14 @@ public class LetterDaoImpl implements LetterDao {
 		return (List<Letter>) mysqlJdbcDao.queryList(sql, list.toArray(), Letter.class);
 	}
 
+	@Override
+	public List<Letter> getChart(Letter letter) {
+		ArrayList<String> list = new ArrayList<String>();
+		String sql = " select DATE_FORMAT(create_time, '%Y-%m') as month,COUNT(1) as useTimes,SUM(open_times) as openTimes FROM s_letter where seller = '?' and create_time > '?' group by month(create_time) ";
+		list.add(letter.getSeller());
+		list.add(letter.getCreateTime());
+		return (List<Letter>) mysqlJdbcDao.queryList(sql, list.toArray(), Letter.class);
+	}
+
 	
 }

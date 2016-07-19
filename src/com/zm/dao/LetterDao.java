@@ -14,4 +14,6 @@ public interface LetterDao {
 
 	List<Letter> getBySeller(String sellerName);
 
+	List<Letter> getChart(Letter letter);
+
 }

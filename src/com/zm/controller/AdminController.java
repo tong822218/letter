@@ -34,48 +34,65 @@ public class AdminController extends BaseController {
 
 	@RequestMapping(value = "index")
 	public ModelAndView index(HttpServletRequest request) {
-		User user=Common.getUser(request);
-		List<Letter> let = letterService.getBySeller(user.getName());
-		List<Temp> tempList = tempService.getList();
-		String[] tem=new String[tempList.size()];
-		Integer[] count=new Integer[tempList.size()];
-		for (int i = 0; i < tempList.size(); i++) {
-			tem[i]=tempList.get(i).getTitle();
-			count[i]=0;
-		}
-		for(int i=0;i<let.size();i++){
-			for (int j = 0; j < tem.length; j++) {
-				if(let.get(i).getTempName().equals(tem[j])){
-					count[j]++;
-				}
-			}
-		}
-		
-		StringBuffer sb = new StringBuffer();
-		for(int i = 0; i < tem.length; i++){
-			if(i==tem.length-1){
-				 sb. append("'"+tem[i]+"'");
-			}else{
-				 sb. append("'"+tem[i]+"',");
-			}
-		
-		}
-		String tems = sb.toString();
-		
-		StringBuffer sb1 = new StringBuffer();
-		for(int i = 0; i < count.length; i++){
-			if(i==count.length-1){
-				 sb1. append("'"+count[i]+"'");
-			}else{
-				 sb1. append("'"+count[i]+"',");
-			}
-		}
-		String counts = sb1.toString();
-		
 		Map<String,Object> map=new HashMap<String, Object>();
-		map.put("tem", tems);
-		map.put("count", counts);
-		System.out.println(tems+"---"+counts);
+		User user=Common.getUser(request);
+		Letter letter = new Letter();
+		letter.setSeller(user.getName());
+		letter.setCreateTime("2016-06-06");
+		List<Letter> data = letterService.getChart(letter);
+		
+		StringBuffer month = new StringBuffer();
+		StringBuffer useTimes = new StringBuffer();
+		StringBuffer openTimes = new StringBuffer();
+		
+		for(int i = 0; i < data.size(); i++){
+			month.append("'"+data.get(i).getMonth()+"',");
+			useTimes.append(data.get(i).getUseTimes()+",");
+			openTimes.append(data.get(i).getOpenTimes()+",");
+		}
+		map.put("month", month.toString());
+		map.put("useTimes", useTimes.toString());
+		map.put("openTimes", openTimes.toString());
+		
+//		List<Letter> let = letterService.getBySeller(user.getName());
+//		List<Temp> tempList = tempService.getList();
+//		String[] tem=new String[tempList.size()];
+//		Integer[] count=new Integer[tempList.size()];
+//		for (int i = 0; i < tempList.size(); i++) {
+//			tem[i]=tempList.get(i).getTitle();
+//			count[i]=0;
+//		}
+//		for(int i=0;i<let.size();i++){
+//			for (int j = 0; j < tem.length; j++) {
+//				if(let.get(i).getTempName().equals(tem[j])){
+//					count[j]++;
+//				}
+//			}
+//		}
+//		StringBuffer sb = new StringBuffer();
+//		for(int i = 0; i < tem.length; i++){
+//			if(i==tem.length-1){
+//				 sb. append("'"+tem[i]+"'");
+//			}else{
+//				 sb. append("'"+tem[i]+"',");
+//			}
+//		}
+//		String tems = sb.toString();
+//		
+//		StringBuffer sb1 = new StringBuffer();
+//		for(int i = 0; i < count.length; i++){
+//			if(i==count.length-1){
+//				 sb1. append("'"+count[i]+"'");
+//			}else{
+//				 sb1. append("'"+count[i]+"',");
+//			}
+//		}
+//		String counts = sb1.toString();
+//		
+//		Map<String,Object> map=new HashMap<String, Object>();
+//		map.put("tem", tems);
+//		map.put("count", counts);
+//		System.out.println(tems+"---"+counts);
 		return html("/admin/index", map, request);
 
 	}

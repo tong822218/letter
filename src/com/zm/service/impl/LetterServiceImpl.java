@@ -29,5 +29,10 @@ public class LetterServiceImpl implements LetterService {
 	public List<Letter> getBySeller(String sellerName) {
 		return letterDao.getBySeller(sellerName);
 	}
+	@Override
+	public List<Letter> getChart(Letter letter) {
+		// TODO Auto-generated method stub
+		return letterDao.getChart(letter);
+	}
 
 }

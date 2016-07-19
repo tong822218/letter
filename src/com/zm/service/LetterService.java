@@ -13,4 +13,6 @@ public interface LetterService {
 	List<Letter> getByTel(String tel);
 	List<Letter> getBySeller(String sellerName);
 
+	List<Letter> getChart(Letter letter);
+
 }
