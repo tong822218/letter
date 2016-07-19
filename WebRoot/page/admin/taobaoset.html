@@ -2,6 +2,15 @@
     <meta charset="UTF-8">
     <script type="text/javascript" src="${rc.contextPath}/static/copyjs/zclip.js"></script>
     <script type="text/javascript">
+    $(document).ready(function () {
+        $('#fe_text').zclip({
+	        path: '${rc.contextPath}/static/copyjs/ZeroClipboard10.swf',
+	        copy: $('#cont').html(),
+	        afterCopy: function () {
+	        	alert("复制成功！");
+	        }
+	    });
+	});
     </script>
     <style>
     .container1{
@@ -36,11 +45,8 @@
     }
     
     </style>
-    <input id="cop"   style="width:50px" type="button" value="复制" />
-
-        <span id='tag3' style=' display:none;font-size:12px;color:red'>已复制</span>
 <div class="container1">
-<div class="url"><span>本店链接：</span><er id="cont">https://letter.ews.m.jaeapp.com/l/home.html?seller=${user.name!}&sellerid=${user.id!}</er><a class="copy_btn" onclick="aa()" id="fe_text">复制链接</a></div>
+<div class="url"><span>本店链接：</span><er id="cont">https://letter.ews.m.jaeapp.com/l/home.html?seller=${user.name!}&sellerid=${user.id!}</er><a class="copy_btn" id="fe_text">复制链接</a></div>
 1.打开淘宝无线运营中心，在店铺装修页面下，点击打开<span> 自定义菜单</span></br>
 <img src="/static/image/taobaoset1.png"></br>
 2.自定义一个模板名称</br>
