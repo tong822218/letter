@@ -2,6 +2,7 @@ package com.zm.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,7 @@ import com.zm.service.UserService;
 import com.zm.taobao.API;
 import com.zm.taobao.Token;
 import com.zm.util.Common;
+import com.zm.util.UseDate;
 
 @Controller
 @RequestMapping("/admin")
@@ -38,7 +40,8 @@ public class AdminController extends BaseController {
 		User user=Common.getUser(request);
 		Letter letter = new Letter();
 		letter.setSeller(user.getName());
-		letter.setCreateTime("2016-06-06");
+		UseDate u=new UseDate();
+		letter.setCreateTime(u.get_10month());
 		List<Letter> data = letterService.getChart(letter);
 		
 		StringBuffer month = new StringBuffer();
