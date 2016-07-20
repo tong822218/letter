@@ -78,7 +78,7 @@ public class AdminController extends BaseController {
 		StringBuffer openTimes = new StringBuffer();
 		
 		for(int i = 0; i < data.size(); i++){
-			month.append("'"+data.get(i).getMonth()+"',");
+			month.append(data.get(i).getMonth()+",");
 			useTimes.append(data.get(i).getUseTimes()+",");
 			openTimes.append(data.get(i).getOpenTimes()+",");
 		}

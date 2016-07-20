@@ -43,7 +43,7 @@
                 		   var option = {
                				    xAxis: {
                				    	type: 'category',
-               				        data: [obj.month.replace("\""," ")]
+               				        data: obj.month.split(",")
                				    },
                				    yAxis: {
                				    	type: 'value',
@@ -53,12 +53,12 @@
                				        {
                				            name: '定制卡片',
                				            type: 'line',
-               				            data: [obj.useTimes.replace("\""," ")]
+               				            data: obj.useTimes.split(",")
                				        },
                				        {
                				            name: '打开卡片',
                				            type: 'line',
-               				            data: [obj.openTimes.replace("\""," ")]
+               				            data: obj.openTimes.split(",")
                				        }
                				    ]
                				};
