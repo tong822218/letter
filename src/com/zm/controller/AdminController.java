@@ -61,6 +61,33 @@ public class AdminController extends BaseController {
 		return html("/admin/index", map, request);
 
 	}
+	@RequestMapping(value = "ajaxTime")
+	public void ajaxTime(HttpServletRequest request,HttpServletResponse rsp) {
+		Map<String,Object> map=new HashMap<String, Object>();
+		User user=Common.getUser(request);
+		Letter letter = new Letter();
+		letter.setSeller(user.getName());
+		UseDate u=new UseDate();
+		String time = request.getParameter("time");
+		time=u.millisToDate(Long.parseLong(time));
+		letter.setCreateTime(time);
+		List<Letter> data = letterService.getChart(letter);
+		
+		StringBuffer month = new StringBuffer();
+		StringBuffer useTimes = new StringBuffer();
+		StringBuffer openTimes = new StringBuffer();
+		
+		for(int i = 0; i < data.size(); i++){
+			month.append("'"+data.get(i).getMonth()+"',");
+			useTimes.append(data.get(i).getUseTimes()+",");
+			openTimes.append(data.get(i).getOpenTimes()+",");
+		}
+		map.put("month", month.toString());
+		map.put("useTimes", useTimes.toString());
+		map.put("openTimes", openTimes.toString());
+		json(rsp, map);
+
+	}
 
 	@RequestMapping(value = "hesay")
 	public ModelAndView hesay(HttpServletRequest request) {

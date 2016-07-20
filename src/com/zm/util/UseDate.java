@@ -53,12 +53,14 @@ public class UseDate {
 	public String getLocalDate() {
 		return sf.format(d);
 	}
-
+	public String millisToDate(long time){
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(time);
+		System.out.println(time + " = " + formatter.format(calendar.getTime()));
+		return formatter.format(calendar.getTime());
+	}
 	public static void main(String[] args) {
-		UseDate ud = new UseDate();
-		System.out.println(ud.getLocalDate());
-		System.out.println(ud.getYears());
-		System.out.println(ud.getHalfYear());
-		System.out.println(ud.getQuarters());
+		
 	}
 }

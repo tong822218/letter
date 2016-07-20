@@ -29,6 +29,43 @@
             	minView :2,
             	language: 'zh-CN'
                }); 
+             $('#datetimepicker').datetimepicker().on('changeDate', function(ev){
+                 //if (ev.date.valueOf() < date-start-display.valueOf()){
+                // }
+               //  alert(date-start-display.valueOf());
+                 $.ajax({
+                	   type: "POST",
+                	   url: "${rc.contextPath}/admin/ajaxTime.html",
+                	   data: {time:ev.date.valueOf()},
+                	   success: function(msg){
+                		   var obj = jQuery.parseJSON(msg);
+                		   alert(obj.openTimes);
+                		   var option = {
+               				    xAxis: {
+               				    	type: 'category',
+               				        data: [obj.month.replace("\""," ")]
+               				    },
+               				    yAxis: {
+               				    	type: 'value',
+               				        boundaryGap: [0, 0.01]
+               				    },
+               				    series: [
+               				        {
+               				            name: '定制卡片',
+               				            type: 'line',
+               				            data: [obj.useTimes.replace("\""," ")]
+               				        },
+               				        {
+               				            name: '打开卡片',
+               				            type: 'line',
+               				            data: [obj.openTimes.replace("\""," ")]
+               				        }
+               				    ]
+               				};
+                		   myChart.setOption(option);
+                	   }
+                	});
+	            });
                 // 基于准备好的dom，初始化echarts实例
                 var myChart = echarts.init(document.getElementById('main'));
 
