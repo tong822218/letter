@@ -3,12 +3,35 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-<title></title>
+<title>情书&电子卡片定制</title>
 <link href="${rc.contextPath}/static/css/edit_border.css" type="text/css" rel="stylesheet"/>
 <link href="${rc.contextPath}/static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+<link rel="stylesheet" href="${rc.contextPath}/static/font-awesome/css/font-awesome.min.css">
 <script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="${rc.contextPath}/static/typing/typing.min.js"></script>
+<script type="text/javascript" src="${rc.contextPath}/static/js/tempbar-top.js"></script>
+<script type="text/javascript">
+	function submit()
+	{
+		var tempid='${obj.tempid!}';
+		var content1=document.getElementById("content1").innerHTML;
+		$.post("${rc.contextPath}/l/save.html", { tempid: tempid, content1: content1 },
+				function(data){
+				     if(data=='1'||data==1)
+				    	 window.location.replace("${rc.contextPath}/l/s.html");
+				     else
+				    	 alert("提交失败");
+				   });
+	}
+	function loaded(){
+   		setTimeout(function(){
+   			$("#content").css({"display":"block"});
+   			//var myscroll=new iScroll("#wrapper",{hScrollbar:false, vScrollbar:false});
+   			
+     	},500);
+	}
+	window.addEventListener("load",loaded,false);
+</script>
     <style>
         body{
             position: absolute;
@@ -31,31 +54,15 @@
             padding: 15px 10px 0 10px;
         }
     </style>
-    <script type="text/javascript">
-		function loaded(){
-	   		setTimeout(function(){
-	   			$("#content").css({"display":"block"});
-	   			
-	   			var typing = new Typing({
-	                source: document.getElementById('source'),
-	                output: document.getElementById('content'),
-	                delay: 150
-	            });
-	            typing.start();
-	            
-	     	},500);
-		}
-		window.addEventListener("load",loaded,false);
-	</script>
+    <script>
+    </script>
 
 </head>
 <body>
 <img src="${rc.contextPath}/page/temp/2/bg.jpg" height="100%" width="100%" />
     <div class="front-bg"></div>
-    <div class="content" id="content">
-    <div id="source" hidden>
-        <h3><strong>${obj.content1!}</strong></h3>
-    </div>
+    <div class="content" id="content" style="display:none">
+        <h3 id="content1" class="shine_white" contenteditable="true" style="-webkit-user-select: auto"><strong>请在这里输入留言</strong></h3>
     </div>
 </body>
 </html>
