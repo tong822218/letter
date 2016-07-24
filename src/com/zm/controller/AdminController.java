@@ -61,6 +61,15 @@ public class AdminController extends BaseController {
 		return html("/admin/index", map, request);
 
 	}
+	@RequestMapping(value = "cardset")
+	public ModelAndView cardset(HttpServletRequest request) {
+		return html("/admin/cardset", null, request);
+	}
+	@RequestMapping(value = "getCards")
+	public void getCards(HttpServletRequest request,HttpServletResponse rsp) {
+		java.util.List<Temp> temp = tempService.getList();
+		json(rsp,temp);
+	}
 	@RequestMapping(value = "ajaxTime")
 	public void ajaxTime(HttpServletRequest request,HttpServletResponse rsp) {
 		Map<String,Object> map=new HashMap<String, Object>();

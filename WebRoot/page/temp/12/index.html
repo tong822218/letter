@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<title></title>
+<link href="${rc.contextPath}/static/css/edit_border.css" type="text/css" rel="stylesheet"/>
+<link href="${rc.contextPath}/static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+<link rel="stylesheet" href="${rc.contextPath}/static/font-awesome/css/font-awesome.min.css">
+<script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${rc.contextPath}/static/typing/typing.min.js"></script>
+
+    <style>
+        body{
+            background: url("${rc.contextPath}/page/temp/4/bg.jpg")no-repeat;
+            background-size: cover;
+        }
+        .content{
+            color: #ffffff;
+            position: absolute;
+            top: 20%;
+            left: 20%;
+            width: 60%;
+            font-family: "Microsoft YaHei";
+        }
+    </style>
+    <script type="text/javascript">
+		function loaded(){
+	   		setTimeout(function(){
+	   			$("#content").css({"display":"block"});
+	   			
+	   			var typing = new Typing({
+	                source: document.getElementById('source'),
+	                output: document.getElementById('content'),
+	                delay: 150
+	            });
+	            typing.start();
+	            
+	     	},500);
+		}
+		window.addEventListener("load",loaded,false);
+	</script>
+
+
+</head>
+<body>
+    <div class="text-center content" id="content">
+    <div id="source" hidden>
+        <h3><strong>${obj.content1!}</strong></h3>
+    </div>
+	</div>
+</body>
+</html>
