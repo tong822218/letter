@@ -3,6 +3,7 @@ package com.zm.controller;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +28,7 @@ import com.zm.model.User;
 import com.zm.service.LetterService;
 import com.zm.service.TempService;
 import com.zm.service.UserService;
+import com.zm.util.Common;
 import com.zm.util.HtmlUtil;
 
 @Controller
@@ -109,8 +111,22 @@ public class LetterController extends BaseController {
 	@RequestMapping(value = "temp/getList")
 	public void getTempList(HttpServletRequest request,HttpServletResponse response){
 		Map<String, Object> map = new HashMap<String, Object>();
-		java.util.List<Temp> temp = tempService.getList();
-		json(response,temp);
+		List<Temp> temp = tempService.getList();
+		List<Temp> list=new ArrayList<Temp>();
+		String userid = (String)request.getSession().getAttribute("sellerid");
+		if(userid!=null){
+			User user = userService.getById(userid);
+			String cards = user.getSel_cards();
+			String[] cardss = cards.split(";");
+			for(int i=0;i<temp.size();i++){
+				for(int j=0;j<cardss.length;j++){
+					if(temp.get(i).getId()==cardss[j]){
+						list.add(temp.get(i));
+					}
+				}
+			}
+		}
+		json(response,list);
 	}
 	@RequestMapping(value = "save")
 	public void saveLetter(HttpServletRequest request,HttpServletResponse response) throws IOException{

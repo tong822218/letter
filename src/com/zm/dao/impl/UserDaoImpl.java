@@ -46,12 +46,12 @@ public class UserDaoImpl implements UserDao {
 	}
 	@Override
 	public void add(User letter) {
-		String sql = "insert into u_seller(id,username,password,name,token,create_time,seller_say) values ('"+letter.getId()+"','"+letter.getUsername()+"','"+letter.getPassword()+"','"+letter.getName()+"','"+letter.getToken()+"','"+letter.getCreate_time()+"','"+letter.getSeller_say()+"') ";
+		String sql = "insert into u_seller(id,username,password,name,token,create_time,seller_say,sel_cards) values ('"+letter.getId()+"','"+letter.getUsername()+"','"+letter.getPassword()+"','"+letter.getName()+"','"+letter.getToken()+"','"+letter.getCreate_time()+"','"+letter.getSeller_say()+"','"+letter.getSel_cards()+"') ";
 		mysqlJdbcDao.execSql(sql);
 	}
 	@Override
 	public void update(User letter) {
-		String sql = "update  u_seller set id='"+letter.getId()+"',username='"+ letter.getUsername()+"',password='"+ letter.getPassword()+"',name='"+ letter.getName()+"',token='"+ letter.getToken()+"',create_time='"+ letter.getCreate_time()+"',seller_say='"+ letter.getSeller_say()+"' where id='"+letter.getId()+"'";
+		String sql = "update  u_seller set id='"+letter.getId()+"',username='"+ letter.getUsername()+"',password='"+ letter.getPassword()+"',name='"+ letter.getName()+"',token='"+ letter.getToken()+"',create_time='"+ letter.getCreate_time()+"',seller_say='"+ letter.getSeller_say()+"',sel_cards='"+ letter.getSel_cards()+"' where id='"+letter.getId()+"'";
 		mysqlJdbcDao.execSql(sql);
 	}
 	@Override

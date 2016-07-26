@@ -11,6 +11,14 @@ public class User {
 	private String token="";
 	private String create_time;
 	private String seller_say="";
+	private String sel_cards="";
+	
+	public String getSel_cards() {
+		return sel_cards;
+	}
+	public void setSel_cards(String sel_cards) {
+		this.sel_cards = sel_cards;
+	}
 	public String getId() {
 		return id;
 	}

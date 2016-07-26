@@ -67,8 +67,24 @@ public class AdminController extends BaseController {
 	}
 	@RequestMapping(value = "getCards")
 	public void getCards(HttpServletRequest request,HttpServletResponse rsp) {
+		Map<String,Object> map=new HashMap<String, Object>();
 		java.util.List<Temp> temp = tempService.getList();
-		json(rsp,temp);
+		User user = userService.getById(Common.getUser(request).getId());
+		String cards="";
+		if(user!=null){
+			cards=user.getSel_cards();
+		}
+		map.put("list", temp);
+		map.put("cards", cards);
+		json(rsp,map);
+	}
+	@RequestMapping(value = "setCards")
+	public void setCards(HttpServletRequest request,HttpServletResponse rsp) {
+		String card = request.getParameter("card");
+		User user = Common.getUser(request);
+		user.setSel_cards(card);
+		userService.update(user);
+		json(rsp,"保存成功");
 	}
 	@RequestMapping(value = "ajaxTime")
 	public void ajaxTime(HttpServletRequest request,HttpServletResponse rsp) {

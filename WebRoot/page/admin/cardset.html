@@ -1,22 +1,60 @@
 <#include "layout.html" /> <@layout>
 <meta charset="UTF-8">
 <script type="text/javascript">
-var sele='';
-$(function(){
-	$.post("${rc.contextPath}/admin/getCards.html", {
+	var sele = '';
+	$(function() {
+		$.post("${rc.contextPath}/admin/getCards.html", {
+
+		},function(data) {
+			var da = JSON.parse(data);
+			var list = da['list'];
+			var cards = da['cards'];
+			cards = cards.split(";");
+			var html = '';
+			for (var i = 0; i < list.length; i++) {
+				html += '<div class="item" id="' + list[i]['id']
+						+ '" onclick="sel(this)"><img  src="'+list[i]['img_path']+'" /><div class="bigo"></div></div>';
+			}
+			
+			$(".container1").html(html);
+			selected(cards);
+		});
 		
-	}, function(data) {
-		var list=JSON.parse(data);
-		var html='';
-		for(var i=0;i<list.length;i++){
-			html+='<div class="item" id="'+list[i]['id']+'" onclick="sel(this)"><img  src="'+list[i]['img_path']+'" /><div class="bigo"></div></div>';
+	})
+	function selected(cards){
+		$(".item").each(function(i,e){
+			for (var i = 0; i < cards.length; i++) {
+				var id=$(this).attr("id");
+				if(id==cards[i]){
+					$(this).find(".bigo").css({"display":"block"});
+					id+=";";
+					sele+=id;
+				}
+			} 
+		});
+	}
+	function sel(obj) {
+		if ($(obj).find(".bigo").css("display") == 'none') {
+			$(obj).find(".bigo").css({
+				"display" : "block"
+			});
+			sele += ($(obj).attr("id") + ";");
+		} else {
+			$(obj).find(".bigo").css({
+				"display" : "none"
+			});
+			var ss = $(obj).attr("id") + ";"
+			sele = sele.replace(ss, '');
 		}
-		$(".container1").html(html);
-	});
-})
-function sel(obj){
-	$(obj).css({"display":"block"});
-}
+
+	}
+	function submit() {
+		$.post("${rc.contextPath}/admin/setCards.html", {
+			card : sele
+		}, function(data) {
+			alert(data);
+		});
+	}
 </script>
 <style>
 * {
@@ -36,10 +74,12 @@ function sel(obj){
 
 .container1 .item {
 	position: relative;
-	box-shadow: 0px 0px 1px 1px;
-	width: 10%;
-	height: 200px;
+	box-shadow: 0px 0px 1px 1px #eee;
+	width: 15%;
+	height: 160px;
 	padding: 5px;
+	margin: 10px;
+	cursor: pointer;
 }
 
 .container1 .item img {
@@ -48,18 +88,30 @@ function sel(obj){
 }
 
 .bigo {
-	display:none;
+	display: none;
 	position: absolute;
 	right: 7px;
 	bottom: 7px;
 	width: 18px;
 	height: 18px;
-	background: url(img/bigo.png) no-repeat;
+	background: url(/static/image/bigo.png) no-repeat;
 	background-size: contain;
 }
-.bigo.block{
+
+.submit {
+	position: fixed;
+	width: 20px;
+	height: 15px;
+	top: 60px;
+	right: 80px;
+}
+
+.bigo.block {
 	display: block;
 }
 </style>
+<div class="submit">
+	<input class="btn btn-default" type="submit" onclick="submit()" value="保存">
+</div>
 <div class="container1"></div>
 </@layout>
