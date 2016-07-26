@@ -17,7 +17,7 @@ $(function($) {
 
     var back=document.createElement("a");
     back.innerHTML="<i class='icon-reply icon-2x'></i>";
-    back.href="javascript:history.go(-1)";
+    back.href="https://letter.ews.m.jaeapp.com/l/temp/a.html";
     back.style.float="left";
 
     bar.appendChild(back);
