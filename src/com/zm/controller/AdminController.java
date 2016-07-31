@@ -71,7 +71,7 @@ public class AdminController extends BaseController {
 		java.util.List<Temp> temp = tempService.getList();
 		User user = userService.getById(Common.getUser(request).getId());
 		String cards="";
-		if(user!=null){
+		if(user!=null&&user.getSel_cards()!=null&&!user.getSel_cards().equals("")){
 			cards=user.getSel_cards();
 		}
 		map.put("list", temp);

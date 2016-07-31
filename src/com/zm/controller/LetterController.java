@@ -42,52 +42,53 @@ public class LetterController extends BaseController {
 	
 	@RequestMapping(value = "home")
 	public ModelAndView toSlider(HttpServletRequest request){
-		String name = request.getParameter("seller");
+//		String name = request.getParameter("seller");
 		String sellerid = request.getParameter("sellerid");
-		if(sellerid.length()>20){
-			User u = userService.getByToken(sellerid);
-			
-			if(u!=null){
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-				Date now = new Date();
-				long nows = now.getTime();
-				long cres = 0;
-				String time = u.getCreate_time();
-				if(null!=time && !time.equals("")){
-					try {
-						Date ti = sdf.parse(time);
-						cres=ti.getTime();
-					} catch (ParseException e) {
-						e.printStackTrace();
-					}
-					long sevenDay = 60*60*24*1000*7;
-					if((nows-cres)>sevenDay){
-						return html("/slider/404", null, request);
-					}else{
-						Map<String, Object> map=new HashMap<String, Object>();
-						map.put("sellerSay", u.getSeller_say());
-						return html("/slider/slider", map, request);
-					}
-				}else{
-					u.setCreate_time(sdf.format(now));
-					userService.update(u);
-					Map<String, Object> map=new HashMap<String, Object>();
-					map.put("sellerSay", u.getSeller_say());
-					return html("/slider/slider", map, request);
-				}
-				
-			}
-			return null;
-		}else{
-			User user = userService.getByName(name);
+//		if(sellerid.length()>20){
+//			User u = userService.getByToken(sellerid);
+//			
+//			if(u!=null){
+//				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//				Date now = new Date();
+//				long nows = now.getTime();
+//				long cres = 0;
+//				String time = u.getCreate_time();
+//				if(null!=time && !time.equals("")){
+//					try {
+//						Date ti = sdf.parse(time);
+//						cres=ti.getTime();
+//					} catch (ParseException e) {
+//						e.printStackTrace();
+//					}
+//					long sevenDay = 60*60*24*1000*7;
+//					if((nows-cres)>sevenDay){
+//						return html("/slider/404", null, request);
+//					}else{
+//						Map<String, Object> map=new HashMap<String, Object>();
+//						map.put("sellerSay", u.getSeller_say());
+//						return html("/slider/slider", map, request);
+//					}
+//				}else{
+//					u.setCreate_time(sdf.format(now));
+//					userService.update(u);
+//					Map<String, Object> map=new HashMap<String, Object>();
+//					map.put("sellerSay", u.getSeller_say());
+//					return html("/slider/slider", map, request);
+//				}
+//				
+//			}
+//			return null;
+//		}else{
+//			User user = userService.getByName(name);
+			User user = userService.getById(sellerid);
 			Map<String, Object> map=new HashMap<String, Object>();
 			if(user!=null){
 				map.put("sellerSay", user.getSeller_say());
 			}
-			request.getSession().setAttribute("seller", name);
+//			request.getSession().setAttribute("seller", name);
 			request.getSession().setAttribute("sellerid", sellerid);
 			return html("/slider/slider", map, request);
-		}
+//		}
 		
         
 	}
@@ -158,8 +159,8 @@ public class LetterController extends BaseController {
 			if(letter==null){
 				//return html("/slider/slider", null, request);
 			}
-			String seller=(String) session.getAttribute("seller");
-			letter.setSeller(seller);
+			String sellerid=(String) session.getAttribute("sellerid");
+			letter.setSeller(sellerid);
 			letter.setTel(tel);
 			letter.setSender(sender);
 			letter.setSenderTel(senderTel);
