@@ -121,7 +121,7 @@ public class LetterController extends BaseController {
 			String[] cardss = cards.split(";");
 			for(int i=0;i<temp.size();i++){
 				for(int j=0;j<cardss.length;j++){
-					if(temp.get(i).getId()==cardss[j]){
+					if(temp.get(i).getId().equals(cardss[j])){
 						list.add(temp.get(i));
 					}
 				}
