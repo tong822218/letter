@@ -9,6 +9,7 @@
 <script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${rc.contextPath}/static/typing/typing.min.js"></script>
+<script type="text/javascript" src="//cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js"></script>
     <style>
         body{
             background: url("${rc.contextPath}/page/temp/2/bg.jpg")no-repeat;
@@ -45,6 +46,9 @@
 	     	},500);
 		}
 		window.addEventListener("load",loaded,false);
+		
+		$youziku.load("#content", "47de456561c242d6ba1cc27ef6be557c", "minijiankatong");
+	    $youziku.draw();
 	</script>
 
 </head>
