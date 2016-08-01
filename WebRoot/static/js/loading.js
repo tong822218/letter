@@ -11,7 +11,7 @@ $(function($) {
     bar.style.alignItems="center";
     bar.style.background="#fff"
     var save=document.createElement("img");
-    save.src="${rc.contextPath}/static/image/loading.gif";
+    save.src="/static/image/loading.gif";
     save.width=80;
     save.height=60;
     bar.appendChild(save);
