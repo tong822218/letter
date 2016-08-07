@@ -1,5 +1,6 @@
+var bar;
 $(function($) {
-    var bar = document.createElement("div");
+    bar = document.createElement("div");
     bar.style.width="100%"; 
     bar.style.height="100%";
     bar.style.top=0;
@@ -17,8 +18,4 @@ $(function($) {
     bar.appendChild(save);
     document.body.appendChild(bar);
     
-    setTimeout(function(){
-    	bar.style.display="none";
-    },3000);
-
 });

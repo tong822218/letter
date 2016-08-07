@@ -39,9 +39,14 @@
 	align-items:center;
 }
 </style>
+<script type="text/javascript">
+function dis(){
+	bar.style.display="none";
+}
+</script>
 </head>
 
-<body>
+<body onload="dis()">
 	<!-- 外层画布 -->
 	<div class="sellersay"><span>${obj.sellerSay!}</span></div>
 	<div id="canvas"></div>
