@@ -5,10 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>情书&电子卡片定制</title>
 <link href="${rc.contextPath}/static/css/edit_border.css" type="text/css" rel="stylesheet"/>
-<link href="${rc.contextPath}/static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
 <link rel="stylesheet" href="${rc.contextPath}/static/font-awesome/css/font-awesome.min.css">
 <script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${rc.contextPath}/static/js/tempbar-top.js"></script>
 <script type="text/javascript">
 	function submit()
@@ -28,30 +26,132 @@
    			$("#content").css({"display":"block"});
    			//var myscroll=new iScroll("#wrapper",{hScrollbar:false, vScrollbar:false});
    			
-     	},500);
+     	},2100);
 	}
 	window.addEventListener("load",loaded,false);
 </script>
     <style>
-        body{
-            position: absolute;
-        }
-        .front-bg{
-            position: absolute;
-            background: url("${rc.contextPath}/page/temp/2/frontbg.png") no-repeat top center;
-            background-size: contain;
-            left: 5%;
-            width: 90%;
-            height: 65%;
-            top:0 ;
-        }
+    	html,body{
+	        height: 100%;
+	        overflow: hidden;
+	    }
+	    .bg{
+	        position: absolute;
+	        height: 100%;
+	        width: 100%;
+	        z-index: -1;
+	        background: url("${rc.contextPath}/page/temp/2/bg.jpg") no-repeat center center;
+	        background-size: 100%;
+	        -webkit-animation:bgshow 2s linear;
+	        animation:bgshow 2s linear;
+	    }
+	    @keyframes bgshow
+	    {
+	        0% { opacity: 0 }
+	        100% { opacity: 1 }
+	    }
+	    @-webkit-keyframes bgshow /* Safari and Chrome */
+	    {
+	        0% { opacity: 0 }
+	        100% { opacity: 1 }
+	    }
+	    .snow{
+	        position: absolute;
+	        height: 100%;
+	        width: 100%;
+	        z-index: 1;
+	        background: url("${rc.contextPath}/page/temp/2/snow.png") no-repeat center center;
+	        background-size: 100%;
+	        -webkit-animation:snowshow 3s infinite;
+	        animation:snowshow 3s infinite;
+	    }
+	    @keyframes snowshow
+	    {
+	        0% { opacity: 0 }
+	        50% { opacity: 1 }
+	        100% { opacity: 0 }
+	    }
+	    @-webkit-keyframes snowshow /* Safari and Chrome */
+	    {
+	        0% { opacity: 0 }
+	        50% { opacity: 1 }
+	        100% { opacity: 0 }
+	    }
+	    .cycle{
+	        position: absolute;
+	        top: 0;
+	        right: 0;
+	        bottom: 0;
+	        left: 0;
+	        margin: auto;
+	        z-index: 2;
+	        width: 70vw;
+	        height: 70vh;
+	        background: url("${rc.contextPath}/page/temp/2/cycle.png") no-repeat center center;
+	        background-size: 100%;
+	        -webkit-animation:zhuan 3s linear infinite;
+	        animation:zhuan 3s linear infinite;
+	    }
+	    @keyframes zhuan
+	    {
+	        0% { transform: rotate(0deg); }
+	        100% { transform: rotate(360deg); }
+	    }
+	    @-webkit-keyframes zhuan /* Safari and Chrome */
+	    {
+	        0% { transform: rotate(0deg); }
+	        100% { transform: rotate(360deg); }
+	    }
+	    .love{
+	        position: absolute;
+	        top: 0;
+	        right: 0;
+	        bottom: 0;
+	        left: 0;
+	        margin: auto;
+	        z-index: 2;
+	        width: 70vw;
+	        height: 70vh;
+	        background: url("${rc.contextPath}/page/temp/2/love.png") no-repeat center center;
+	        background-size: 100%;
+	    }
+	    
+	    .top{
+	        position: absolute;
+	        top: 0;
+	        right: 0;
+	        left: 0;
+	        margin: auto;
+	        z-index: 2;
+	        width: 100vw;
+	        height: 30vh;
+	        background: url("${rc.contextPath}/page/temp/2/top.png") no-repeat center center;
+	        background-size: 100%;
+	        -webkit-animation:topshow 1s linear;
+	        animation:topshow 1s linear;
+	    }
+	    @keyframes topshow
+	    {
+	        0% { opacity: 0;top:100vh; }
+	        100% { opacity: 1;top:0; }
+	    }
+	    @-webkit-keyframes topshow /* Safari and Chrome */
+	    {
+	        0% { opacity: 0;top:100vh; }
+	        100% { opacity: 1;top:0; }
+	    }
+        
         .content{
             position: absolute;
-            top: 65%;
-            left: 15%;
-            width: 70%;
-            height: 24%;
-            padding: 15px 10px 0 10px;
+	        right: 0;
+	        bottom: 7vh;
+	        left: 0;
+	        margin: auto;
+            z-index:6;
+	        width: 60vw;
+	        height: 20vh;
+            color: #ffffff;
+            font-family: "Microsoft YaHei";
         }
     </style>
     <script>
@@ -59,10 +159,14 @@
 
 </head>
 <body>
-<img src="${rc.contextPath}/page/temp/2/bg.jpg" height="100%" width="100%" />
-    <div class="front-bg"></div>
+	<div class="bg"></div>
+    <div class="snow"></div>
+    <div class="cycle"></div>
+    <div class="love"></div>
+    <div class="top"></div>
     <div class="content" id="content" style="display:none">
         <h3 id="content1" class="shine_white" contenteditable="true" style="-webkit-user-select: auto"><strong>请在这里输入留言</strong></h3>
     </div>
+    
 </body>
 </html>

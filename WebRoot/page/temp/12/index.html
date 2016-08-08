@@ -5,10 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title></title>
 <link href="${rc.contextPath}/static/css/edit_border.css" type="text/css" rel="stylesheet"/>
-<link href="${rc.contextPath}/static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
 <link rel="stylesheet" href="${rc.contextPath}/static/font-awesome/css/font-awesome.min.css">
 <script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${rc.contextPath}/static/typing/typing.min.js"></script>
 <script type="text/javascript" src="//cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js"></script>
     <style>
@@ -42,7 +40,6 @@
 	        background: url("${rc.contextPath}/page/temp/12/f3.png") no-repeat center center;
 	        background-size: 100%;
 	        -webkit-animation:move1 3s;
-	        -o-animation:move1 3s;
 	        animation:move1 3s;
 	    }
 	    #front2{
@@ -50,7 +47,6 @@
 	        background: url("${rc.contextPath}/page/temp/12/f2.png") no-repeat center center;
 	        background-size: 100%;
 	        -webkit-animation:move2 3s;
-	        -o-animation:move2 3s;
 	        animation:move2 3s;
 	    }
 	    @keyframes move1
@@ -58,20 +54,7 @@
 	        0%   {bottom:-180vh;}
 	        100% {bottom: 0;}
 	    }
-	
-	    @-moz-keyframes move1 /* Firefox */
-	    {
-	        0%   {bottom:-180vh;}
-	        100% {bottom: 0;}
-	    }
-	
 	    @-webkit-keyframes move1 /* Safari and Chrome */
-	    {
-	        0%   {bottom:-180vh;}
-	        100% {bottom: 0;}
-	    }
-	
-	    @-o-keyframes move1 /* Opera */
 	    {
 	        0%   {bottom:-180vh;}
 	        100% {bottom: 0;}
@@ -82,34 +65,21 @@
 	        0%   {top:-180vh;}
 	        100% {top: 0;}
 	    }
-	
-	    @-moz-keyframes move2 /* Firefox */
-	    {
-	        0%   {top:-180vh;}
-	        100% {top: 0;}
-	    }
-	
 	    @-webkit-keyframes move2 /* Safari and Chrome */
-	    {
-	        0%   {top:-180vh;}
-	        100% {top: 0;}
-	    }
-	
-	    @-o-keyframes move2 /* Opera */
 	    {
 	        0%   {top:-180vh;}
 	        100% {top: 0;}
 	    }
         .content{
         	position: absolute;
-	        top: 0;
+	        top: 10vh;
 	        right: 0;
 	        bottom: 0;
 	        left: 0;
 	        margin: auto;
             z-index:5;
-	        width: 70vw;
-	        height: 70vh;
+	        width: 60vw;
+	        height: 20vh;
             color: #ffffff;
             font-family: "Microsoft YaHei";
         }

@@ -29,7 +29,6 @@
     function loaded(){
    		setTimeout(function(){
    			$("#content").css({"display":"block"});
-   			//var myscroll=new iScroll("#wrapper",{hScrollbar:false, vScrollbar:false});
    			
      	},3100);
 	}
@@ -67,7 +66,6 @@
 	        background: url("${rc.contextPath}/page/temp/12/f3.png") no-repeat center center;
 	        background-size: 100%;
 	        -webkit-animation:move1 3s;
-	        -o-animation:move1 3s;
 	        animation:move1 3s;
 	    }
 	    #front2{
@@ -75,7 +73,6 @@
 	        background: url("${rc.contextPath}/page/temp/12/f2.png") no-repeat center center;
 	        background-size: 100%;
 	        -webkit-animation:move2 3s;
-	        -o-animation:move2 3s;
 	        animation:move2 3s;
 	    }
 	    @keyframes move1
@@ -83,20 +80,7 @@
 	        0%   {bottom:-180vh;}
 	        100% {bottom: 0;}
 	    }
-	
-	    @-moz-keyframes move1 /* Firefox */
-	    {
-	        0%   {bottom:-180vh;}
-	        100% {bottom: 0;}
-	    }
-	
 	    @-webkit-keyframes move1 /* Safari and Chrome */
-	    {
-	        0%   {bottom:-180vh;}
-	        100% {bottom: 0;}
-	    }
-	
-	    @-o-keyframes move1 /* Opera */
 	    {
 	        0%   {bottom:-180vh;}
 	        100% {bottom: 0;}
@@ -107,20 +91,7 @@
 	        0%   {top:-180vh;}
 	        100% {top: 0;}
 	    }
-	
-	    @-moz-keyframes move2 /* Firefox */
-	    {
-	        0%   {top:-180vh;}
-	        100% {top: 0;}
-	    }
-	
 	    @-webkit-keyframes move2 /* Safari and Chrome */
-	    {
-	        0%   {top:-180vh;}
-	        100% {top: 0;}
-	    }
-	
-	    @-o-keyframes move2 /* Opera */
 	    {
 	        0%   {top:-180vh;}
 	        100% {top: 0;}
