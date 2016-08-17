@@ -28,7 +28,10 @@
 
     function loaded(){
    		setTimeout(function(){
-   			$("#content").css({"display":"block"});
+   			$(".front-bg").fadeIn(2000,function(){
+   				$("#content").css({"display":"block"});
+   			});
+   			
    			//var myscroll=new iScroll("#wrapper",{hScrollbar:false, vScrollbar:false});
    			
      	},500);
@@ -44,12 +47,13 @@
         }
         .front-bg{
             position: absolute;
-            background: url("frontbg1.png") no-repeat top center;
+            background: url("${rc.contextPath}/page/temp/11/frontbg1.png") no-repeat top center;
             background-size: contain;
             left: 5%;
             width: 90%;
             height: 65%;
             top:2% ;
+            display:none;
         }
         .content{
             color: #000;
@@ -69,7 +73,7 @@
 
 </head>
 <body>
-	<img src="bg.jpg" height="100%" width="100%" />
+	<img src="${rc.contextPath}/page/temp/11/bg.jpg" height="100%" width="100%" />
 	<div class="front-bg"></div>
 	    <div class="text-center content" id="content" style="display:none">
 	        <h3 id="content1" class="shine_white" contenteditable="true" style="-webkit-user-select: auto"><strong>此去经年，应是良辰好景虚设，便纵有千种风情，更与谁人说</strong></h3>

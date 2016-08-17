@@ -4,7 +4,7 @@ $(function($) {
     bar.style.width="100%";
     bar.style.top=0;
     bar.style.position="fixed";
-    bar.style.padding="3px 6px 3px 6px"
+    //bar.style.padding="3px 6px"
     bar.style.backgroundColor="#ffffff";
     bar.style.filter="alpha(Opacity=30)";
     bar.style.filter="-moz-opacity:0.3";

@@ -10,7 +10,36 @@
 <script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${rc.contextPath}/static/js/tempbar-top.js"></script>
+
+<script src="//g.alicdn.com/tmapp/tida2/2.0.141/tida.js?appkey=23293481"></script>
+<script src="//g.alicdn.com/mtb/lib-httpurl/1.3.2/httpurl.js"></script>
+
 <script type="text/javascript">
+	
+	Tida.ready({
+	    // interactId:"", // 互动实列ID type string 若无抽奖模块，此参数无须传入。给错误的实例ID会走错误流程
+	    // module: [] // 应用所需要的模块。非必选，默认加载所有模块。支持的模块见注释。
+	    // sellerNick:"" // 商家名称 
+	    // shopId:123 // 店铺ID 从url中取 可选
+	}, function(){
+	    // TODO
+	//Tida.showLoading("加载中...");	
+	})
+	//Tida.showTitle();
+	var imgHelper = lib.img({
+		'class':'lib-img',//图片class
+		'dataSrc':'data-src',//图片真实src 的data字段
+		'size': '320x320',//cdn尺寸
+		'sharpen': 's150',//锐化参数
+		'q': ['q50', 'q30'],//图片质量[非弱网，弱网]
+		'enableLazyload':true//是否开启懒加载功能，默认true,
+		'lazyHeight': 0,//[可选]，预加载当前屏幕以下lazyHeight内的图片，默认0
+		'lazyWidth': 0,//[可选]，预加载当前屏幕右边lazyWidth内的图片，默认0
+		'enalbeIOSWifiLoadMore':false//ios&&wifi情况下 是否取消懒加载,采用一次性加载，默认false
+		});
+
+
+	
 	function submit()
 	{
 		var tempid='${obj.tempid!}';
@@ -51,7 +80,7 @@
 
 </head>
 <body>
-<img src="${rc.contextPath}/page/temp/1/bg.jpg" height="100%" width="100%" />
+<img src="${rc.contextPath}/page/temp/1/bg.jpg" height="100%" width="100%" class="lib-img"/>
     <div class="content" id="content" style="display:none">
         <h5 id="content1" class="shine_blue" contenteditable="true" style="-webkit-user-select: auto"><strong>东营一别，转眼就3年过去了，十分想念，不知道你现在过得好不好，我们可以再回到那年，再续前缘吗。</strong></h5>
     </div>
