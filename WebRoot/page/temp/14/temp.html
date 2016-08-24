@@ -11,15 +11,6 @@
 <script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${rc.contextPath}/static/js/tempbar-top.js"></script>
 <script type="text/javascript">
-	function main(){
-		$("top").style.cssText="opacity:1";
-		$("bottom").style.cssText="opacity:1";
-		$("bg").style.cssText="transform:translate(0,0)";
-		$("love").style.cssText="transform:translate(0,0)";
-	}
-	function $(obj){
-		return document.getElementById(obj);
-	}
 	function submit()
 	{
 		var tempid='${obj.tempid!}';
@@ -35,88 +26,97 @@
 	function loaded(){
    		setTimeout(function(){
    			$("#content").css({"display":"block"});
-     	},1200);
+     	},2500);
 	}
 	window.addEventListener("load",loaded,false);
 </script>
     <style>
-		html,body{
-    		margin:0;
-    		padding: 0;
-    		height: 100%;
-    	}
-    	#container{
-    		position: relative;
-    		width: 100%;
-    		height: 100%;
-    	}
-    	#top{
-    		width: 100%;
-    		height: 70px;
-    		background: url('${rc.contextPath}/page/temp/14/xqx_top.png') no-repeat;
-    		background-size: contain;
-    		transition: all 1.5s ease-in;
-    		opacity:0;
-    	}
-    	#bottom{
-    		position: absolute;
-    		width: 30%;
-    		bottom: 0px;
-    		right: 0px;
-    		height: 200px;
-    		background: url(${rc.contextPath}/page/temp/14/xqx_bottom.png) no-repeat;
-    		background-size:contain;
-    		transition: all 1.5s ease-in;
-    		opacity:0;
-    	}
-    	#bg{
-    		position: relative;
-    		height: 60%;
-    		background: url(${rc.contextPath}/page/temp/14/xqx_bg.png) no-repeat;
-    		background-size: contain;
-    		display: flex;
-    		justify-content:center;
-    		align-items:center;
-    		transition: all 1.5s ease-in;
-    		transform: translate(800px,0px);
-    	}
-    	#love{
-    		margin-top:70px;
-    		margin-left: 20px;
-    		width: 60%;
-    		height: 60%;
-    		background: url(${rc.contextPath}/page/temp/14/xqx_love.png) no-repeat;
-    		background-size: contain;
-    		transition: all 1.5s ease-in;
-    		transform: translate(-1600px,0px);
-
-    	}
-        .content{
-            position: absolute;
-            top: 70%;
-            left: 0;
-            right: 0;
-            margin: auto;
-            width: 50%;
-            height: 25%;
-            padding: 15px 10px 0 10px;
-            color: #842B00;
-	        font-family: "Microsoft YaHei";
-        }
+    html,body{
+        margin: auto;
+        height: 100%;
+        width: 100%
+        overflow: hidden;
+    }
+    .bg{
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: -1;
+        background: url("${rc.contextPath}/page/temp/14/bg.jpg") no-repeat;
+        background-size: 100%; 
+        -webkit-animation:bg 3s ;
+        animation:bg 3s ;
+    }
+    .flower{
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        top: 5%;
+        right: 0;
+        height: 70%;
+        width: 70%;
+        margin: auto;
+        background: url("${rc.contextPath}/page/temp/14/flower.png") no-repeat center center;
+        background-size: 100%;
+        -webkit-animation:bg 3s ;
+        animation:bg 3s ;
+    }
+    .love{
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        top:8%;
+        right: 0;
+        height: 65%;
+        width: 65%;
+        margin: auto;
+        background: url("${rc.contextPath}/page/temp/14/love.png") no-repeat center center;
+        background-size: 100%;
+        -webkit-animation:love 2s ;
+        animation:love 2s ;
+    }
+    @keyframes love
+    {
+        0%   {top: 100%;}
+        100% {top: 8%;}
+    }
+    @-webkit-keyframes love /* Safari and Chrome */
+    {
+        0%   {top: 100%;}
+        100% {top: 8%;}
+    }
+    @keyframes bg
+    {
+        0% { opacity: 0 }
+        100% { opacity: 1 }
+    }
+    @-webkit-keyframes bg /* Safari and Chrome */
+    {
+        0% { opacity: 0 }
+        100% { opacity: 1 }
+    }
+    .content{
+        position: absolute;
+        top: 50%;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        z-index:5;
+        width: 70%;
+        height: 20%;
+        color: #842B00;
+        font-family: "Microsoft YaHei";
+    }
     </style>
-
 </head>
 
-<body onload="main()">
-	<div id="container">
-		<div id="top"></div>
-		<div id="bottom"></div>
-		<div id="bg">
-			<div id="love"></div>
-		</div>
-		<div class="content" id="content" style="display:none">
+<body>
+    <div class="bg"></div>
+    <div class="flower"></div>
+    <div class="love"></div>
+    <div class="content" id="content" style="display:none">
 	        <h3 id="content1" class="shine_white" contenteditable="true" style="-webkit-user-select: auto"><strong>请在这里输入留言</strong></h3>
 	    </div>
-	</div>
 </body>
 </html>
