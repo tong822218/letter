@@ -1,0 +1,171 @@
+html,body{
+	        height: 100%;
+	        overflow: hidden;
+	    }
+	    .bg{
+	        position: absolute;
+	        height: 100%;
+	        width: 100%;
+	        z-index: -1;
+	        background: url("./bg.jpg") no-repeat center center;
+	        background-size: 100%;
+	        -webkit-animation:bgshow 2s linear;
+	        -moz-animation:bgshow 2s linear;
+	        -o-animation:bgshow 2s linear;
+	        animation:bgshow 2s linear;
+	    }
+	    @keyframes bgshow
+	    {
+	        0% { opacity: 0 }
+	        100% { opacity: 1 }
+	    }
+	    @-webkit-keyframes bgshow /* Safari and Chrome */
+	    {
+	        0% { opacity: 0 }
+	        100% { opacity: 1 }
+	    }
+	    @-moz-keyframes bgshow /* Safari and Chrome */
+	    {
+	        0% { opacity: 0 }
+	        100% { opacity: 1 }
+	    }
+	    @-o-keyframes bgshow /* Safari and Chrome */
+	    {
+	        0% { opacity: 0 }
+	        100% { opacity: 1 }
+	    }
+	    .snow{
+	        position: absolute;
+	        height: 100%;
+	        width: 100%;
+	        z-index: 1;
+	        background: url("./snow.png") no-repeat center center;
+	        background-size: 100%;
+	        -webkit-animation:snowshow 3s infinite;
+	        -moz-animation:snowshow 3s infinite;
+	        -o-animation:snowshow 3s infinite;
+	        animation:snowshow 3s infinite;
+	    }
+	    @keyframes snowshow
+	    {
+	        0% { opacity: 0 }
+	        50% { opacity: 1 }
+	        100% { opacity: 0 }
+	    }
+	    @-webkit-keyframes snowshow /* Safari and Chrome */
+	    {
+	        0% { opacity: 0 }
+	        50% { opacity: 1 }
+	        100% { opacity: 0 }
+	    }
+	    @-moz-keyframes snowshow /* Safari and Chrome */
+	    {
+	        0% { opacity: 0 }
+	        50% { opacity: 1 }
+	        100% { opacity: 0 }
+	    }
+	    @-o-keyframes snowshow /* Safari and Chrome */
+	    {
+	        0% { opacity: 0 }
+	        50% { opacity: 1 }
+	        100% { opacity: 0 }
+	    }
+	    .cycle{
+	        position: absolute;
+	        top: 0;
+	        right: 0;
+	        bottom: 0;
+	        left: 0;
+	        margin: auto;
+	        z-index: 2;
+	        width: 70vw;
+	        height: 70vh;
+	        background: url("./cycle.png") no-repeat center center;
+	        background-size: 100%;
+	        -webkit-animation:zhuan 3s linear infinite;
+	        -moz-animation:zhuan 3s linear infinite;
+	        -o-animation:zhuan 3s linear infinite;
+	        animation:zhuan 3s linear infinite;
+	    }
+	    @keyframes zhuan
+	    {
+	        0% { transform: rotate(0deg); }
+	        100% { transform: rotate(360deg); }
+	    }
+	    @-webkit-keyframes zhuan /* Safari and Chrome */
+	    {
+	        0% { transform: rotate(0deg); }
+	        100% { transform: rotate(360deg); }
+	    }
+	    @-moz-keyframes zhuan /* Firefox */
+		{
+			0% { transform: rotate(0deg); }
+	        100% { transform: rotate(360deg); }
+		}
+		@-o-keyframes zhuan /* Firefox */
+		{
+			0% { transform: rotate(0deg); }
+	        100% { transform: rotate(360deg); }
+		}
+	    .love{
+	        position: absolute;
+	        top: 0;
+	        right: 0;
+	        bottom: 0;
+	        left: 0;
+	        margin: auto;
+	        z-index: 2;
+	        width: 70vw;
+	        height: 70vh;
+	        background: url("./love.png") no-repeat center center;
+	        background-size: 100%;
+	    }
+	    
+	    .top{
+	        position: absolute;
+	        top: 0;
+	        right: 0;
+	        left: 0;
+	        margin: auto;
+	        z-index: 2;
+	        width: 100vw;
+	        height: 30vh;
+	        background: url("./top.png") no-repeat center center;
+	        background-size: 100%;
+	        -webkit-animation:topshow 1s linear;
+	        -moz-animation:topshow 1s linear;
+	        -o-animation:topshow 1s linear;
+	        animation:topshow 1s linear;
+	    }
+	    @keyframes topshow
+	    {
+	        0% { opacity: 0;top:100vh; }
+	        100% { opacity: 1;top:0; }
+	    }
+	    @-webkit-keyframes topshow /* Safari and Chrome */
+	    {
+	        0% { opacity: 0;top:100vh; }
+	        100% { opacity: 1;top:0; }
+	    }
+        @-moz-keyframes topshow /* Safari and Chrome */
+	    {
+	        0% { opacity: 0;top:100vh; }
+	        100% { opacity: 1;top:0; }
+	    }
+	    @-o-keyframes topshow /* Safari and Chrome */
+	    {
+	        0% { opacity: 0;top:100vh; }
+	        100% { opacity: 1;top:0; }
+	    }
+        .content{
+            position: absolute;
+	        right: 0;
+	        bottom: 7vh;
+	        left: 0;
+	        margin: auto;
+            z-index:6;
+	        width: 60vw;
+	        height: 20vh;
+            color: #ffffff;
+            font-family: "Microsoft YaHei";
+        }
