@@ -39,7 +39,11 @@ public class LetterController extends BaseController {
 	private LetterService letterService;
 	private UserService userService;
 	
-	
+	@RequestMapping(value = "slide")
+	public ModelAndView slide(HttpServletRequest request){
+		Map<String, Object> map = new HashMap<String, Object>();
+		return html("/slider/index", map, request);
+	}
 	@RequestMapping(value = "home")
 	public ModelAndView toSlider(HttpServletRequest request){
 //		String name = request.getParameter("seller");
