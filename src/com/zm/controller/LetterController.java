@@ -109,6 +109,31 @@ public class LetterController extends BaseController {
 		if(temp==null)
 			return html("/slider/slider", null, request);
 		map.put("tempid", temp.getId());
+		String pre1=temp.getId();
+		String pre2=temp.getId();
+		String next1=temp.getId();
+		String next2=temp.getId();
+		String userid = (String)request.getSession().getAttribute("sellerid");
+		if(userid!=null){
+			User user = userService.getById(userid);
+			if(user.getSel_cards()!=null){
+				String[] cards = user.getSel_cards().split(";");
+				if(cards.length>1){
+					for (int i = 0; i < cards.length; i++) {
+						if(cards[i].equals(temp.getId())){
+							pre1=cards[(i-1+cards.length)%cards.length];
+							pre2=cards[(i-2+cards.length)%cards.length];
+							next1=cards[(i+1+cards.length)%cards.length];
+							next2=cards[(i+2+cards.length)%cards.length];
+						}
+					}
+				}
+			}
+		}
+		map.put("pre1", "http://letter.ews.m.jaeapp.com/l/temp/"+pre1+".html");
+		map.put("pre2", "http://letter.ews.m.jaeapp.com/l/temp/"+pre2+".html");
+		map.put("next1", "http://letter.ews.m.jaeapp.com/l/temp/"+next1+".html");
+		map.put("next2", "http://letter.ews.m.jaeapp.com/l/temp/"+next2+".html");
 		return html(temp.getTemp_url(), map, request);
         
 	}

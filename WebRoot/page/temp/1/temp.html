@@ -10,15 +10,10 @@
 <script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${rc.contextPath}/static/js/tempbar-top.js"></script>
-
-<script src="//g.alicdn.com/tmapp/tida2/2.0.141/tida.js?appkey=23293481"></script>
-<script src="//g.alicdn.com/mtb/lib-httpurl/1.3.2/httpurl.js"></script>
+<script type="text/javascript" src="${rc.contextPath}/static/jquerymobile/jquery.mobile-1.4.5.min.js"></script>
 
 <script type="text/javascript">
-	
 
-
-	
 	function submit()
 	{
 		var tempid='${obj.tempid!}';
@@ -34,7 +29,12 @@
 	function loaded(){
    		setTimeout(function(){
    			$("#content").css({"display":"block"});
-   			//var myscroll=new iScroll("#wrapper",{hScrollbar:false, vScrollbar:false});
+   			$("body").on("swipeleft",function(){
+   			    window.location.href="${obj.pre1!}";
+   			  });    
+   			  $("body").on("swiperight",function(){
+   				  window.location.href="${obj.next1!}";
+   			  });
      	},500);
 	}
 	window.addEventListener("load",loaded,false);

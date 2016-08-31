@@ -9,10 +9,11 @@
 <script>
 $(document).on("pagecreate","#pageone",function(){
 	  $("body").on("swipeleft",function(){
-	    $.mobile.changePage('http://letter.ews.m.jaeapp.com/l/temp/2.html','fade',false,false);
+	    //$.mobile.changePage("https://letter.ews.m.jaeapp.com/l/temp/2.html","slide",{reloadPage:true});
+	  	window.location.href="http://letter.ews.m.jaeapp.com/l/temp/2.html";
 	  });    
 	  $("body").on("swiperight",function(){
-	    $.mobile.changePage('http://letter.ews.m.jaeapp.com/l/temp/12.html','fade',false,false);
+		 $.mobile.changePage("http://letter.ews.m.jaeapp.com/l/temp/12.html","slide",{reloadPage:true});
 	  });                      
 	});
 </script>
