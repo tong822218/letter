@@ -11,14 +11,7 @@
 <script type="text/javascript" src="${rc.contextPath}/static/jquerymobile/jquery.mobile-1.4.5.min.js"></script>
 
 <script type="text/javascript">
-$(document).on("pagecreate","body",function(){
-	  $("body").on("swipeleft",function(){
-	    window.location.href="${obj.pre1!}";
-	  });    
-	  $("body").on("swiperight",function(){
-		  window.location.href="${obj.next1!}";
-	  });                      
-	});
+
 	function submit()
 	{
 		var tempid='${obj.tempid!}';
@@ -51,12 +44,17 @@ $(document).on("pagecreate","body",function(){
    			//var myscroll=new iScroll("#wrapper",{hScrollbar:false, vScrollbar:false});
    			
      	},2100); */
+		$("body").on("swipeleft",function(){
+			    window.location.href="${obj.pre1!}";
+			  });    
+			  $("body").on("swiperight",function(){
+				  window.location.href="${obj.next1!}";
+			  });
 	}
 	window.addEventListener("load",loaded,false);
 </script>
     <style>
    	html,body{
-   		pointer-events: none;
    		margin: auto;
         height: 100%;
         width: 100%
