@@ -4,38 +4,35 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
 <title>情书&电子卡片定制</title>
-<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 <link href="${rc.contextPath}/static/css/edit_border.css" type="text/css" rel="stylesheet"/>
-<link href="${rc.contextPath}/static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
 <link rel="stylesheet" href="${rc.contextPath}/static/font-awesome/css/font-awesome.min.css">
-<script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${rc.contextPath}/static/zepto/zepto.min.js"></script>
 <script type="text/javascript" src="${rc.contextPath}/static/js/tempbar-top.js"></script>
-<script type="text/javascript" src="${rc.contextPath}/static/jquerymobile/jquery.mobile-1.4.5.min.js"></script>
 <script type="text/javascript">
 
 	function submit()
 	{
 		var tempid='${obj.tempid!}';
 		var content1=document.getElementById("content1").innerHTML;
-		 $.post("${rc.contextPath}/l/save.html", { tempid: tempid, content1: content1 },
+		 /* $.post("${rc.contextPath}/l/save.html", { tempid: tempid, content1: content1 },
 			   function(data){
 			     if(data=='1'||data==1)
 			    	 window.location.replace("${rc.contextPath}/l/s.html");
 			     else
 			    	 alert("提交失败");
-			   });
+			   }); */
+	   $.post('${rc.contextPath}/l/save.html', { tempid: tempid, content1: content1 }, function(response){
+		   if(response=='1'||response==1)
+		    	 window.location.replace("${rc.contextPath}/l/s.html");
+		     else
+		    	 alert("提交失败");
+		 })
 	}
 
     function loaded(){
    		setTimeout(function(){
    			$("#content").css({"display":"block"});
-   			$("body").on("swipeleft",function(){
-   			    window.location.href="${obj.pre1!}";
-   			  });    
-   			  $("body").on("swiperight",function(){
-   				  window.location.href="${obj.next1!}";
-   			  });
+   			
      	},3100);
 	}
 	window.addEventListener("load",loaded,false);
