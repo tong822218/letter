@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="${rc.contextPath}/static/font-awesome/css/font-awesome.min.css">
 <script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="${rc.contextPath}/static/js/tempbar-top.js"></script>
-<script type="text/javascript" src="${rc.contextPath}/static/jquerymobile/jquery.mobile-1.4.5.min.js"></script>
 
 <script type="text/javascript">
 
@@ -39,17 +38,7 @@
             });
             
         });
-   		/* setTimeout(function(){
-   			$("#content").css({"display":"block"});
-   			//var myscroll=new iScroll("#wrapper",{hScrollbar:false, vScrollbar:false});
-   			
-     	},2100); */
-		$("body").on("swipeleft",function(){
-			    window.location.href="${obj.pre1!}";
-			  });    
-			  $("body").on("swiperight",function(){
-				  window.location.href="${obj.next1!}";
-			  });
+
 	}
 	window.addEventListener("load",loaded,false);
 </script>

@@ -4,32 +4,87 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title></title>
-<link href="${rc.contextPath}/static/css/edit_border.css" type="text/css" rel="stylesheet"/>
-<link href="${rc.contextPath}/static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
 <script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${rc.contextPath}/static/typing/typing.min.js"></script>
 <script type="text/javascript" src="//cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js"></script>
     <style>
-        body{
-            background: url("${rc.contextPath}/page/temp/2/bg.jpg")no-repeat;
-            background-size: cover;
-        }
-        .front-bg{
-            position: absolute;
-            background: url("${rc.contextPath}/page/temp/2/frontbg.png") no-repeat top center;
-            background-size: contain;
-            width: 100%;
-            height: 65%;
-        }
-        .content{
-            position: absolute;
-            top: 65%;
-            left: 5%;
-            width: 90%;
-            height: 24%;
-            padding: 15px 10px 0 10px;
-        }
+        html,body{
+	        margin: auto;
+	        height: 100%;
+	        width: 100%
+	        overflow: hidden;
+	    }
+	    .bg{
+	        position: absolute;
+	        height: 100%;
+	        width: 100%;
+	        z-index: -1;
+	        background: url("${rc.contextPath}/page/temp/14/bg.jpg") no-repeat;
+	        background-size: 100%; 
+	        -webkit-animation:bg 3s ;
+	        animation:bg 3s ;
+	    }
+	    .flower{
+	        position: absolute;
+	        z-index: 1;
+	        left: 0;
+	        top: 5%;
+	        right: 0;
+	        height: 70%;
+	        width: 70%;
+	        margin: auto;
+	        background: url("${rc.contextPath}/page/temp/14/flower.png") no-repeat center center;
+	        background-size: 100%;
+	        -webkit-animation:bg 3s ;
+	        animation:bg 3s ;
+	    }
+	    .love{
+	        position: absolute;
+	        z-index: 1;
+	        left: 0;
+	        top:8%;
+	        right: 0;
+	        height: 65%;
+	        width: 65%;
+	        margin: auto;
+	        background: url("${rc.contextPath}/page/temp/14/love.png") no-repeat center center;
+	        background-size: 100%;
+	        -webkit-animation:love 2s ;
+	        animation:love 2s ;
+	    }
+	    @keyframes love
+	    {
+	        0%   {top: 100%;}
+	        100% {top: 8%;}
+	    }
+	    @-webkit-keyframes love /* Safari and Chrome */
+	    {
+	        0%   {top: 100%;}
+	        100% {top: 8%;}
+	    }
+	    @keyframes bg
+	    {
+	        0% { opacity: 0 }
+	        100% { opacity: 1 }
+	    }
+	    @-webkit-keyframes bg /* Safari and Chrome */
+	    {
+	        0% { opacity: 0 }
+	        100% { opacity: 1 }
+	    }
+	    .content{
+	        position: absolute;
+	        top: 50%;
+	        right: 0;
+	        bottom: 0;
+	        left: 0;
+	        margin: auto;
+	        z-index:5;
+	        width: 70%;
+	        height: 20%;
+	        color: #842B00;
+	        font-family: "Microsoft YaHei";
+	    }
     </style>
     <script type="text/javascript">
 		function loaded(){
@@ -43,7 +98,7 @@
 	            });
 	            typing.start();
 	            
-	     	},500);
+	     	},2800);
 		}
 		window.addEventListener("load",loaded,false);
 		
@@ -53,11 +108,13 @@
 
 </head>
 <body>
-    <div class="front-bg"></div>
-    <div class="content" id="content">
-    <div id="source" hidden>
-        <h3><strong>${obj.content1!}</strong></h3>
-    </div>
+    <div class="bg"></div>
+    <div class="flower"></div>
+    <div class="love"></div>
+    <div class="content" id="content" style="display:none">
+        <div id="source" hidden>
+	        <h3><strong>${obj.content1!}</strong></h3>
+	    </div>
     </div>
 </body>
 </html>
