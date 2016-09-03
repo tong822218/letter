@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="${rc.contextPath}/static/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="${rc.contextPath}/static/css/sub_button.css">
 <script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="${rc.contextPath}/static/jquerymobile/jquery.mobile-1.4.5.min.js"></script>
 
 <script type="text/javascript">
 
@@ -27,12 +26,7 @@
 	function loaded(){
    		setTimeout(function(){
    			$("#content").css({"display":"block"});
-   			$("body").on("swipeleft",function(){
-   			    window.location.href="${obj.pre1!}";
-   			  });    
-   			  $("body").on("swiperight",function(){
-   				  window.location.href="${obj.next1!}";
-   			  });
+   			
      	},500);
 	}
 	window.addEventListener("load",loaded,false);
