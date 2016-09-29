@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title></title>
+<link href="${rc.contextPath}/static/css/edit_border.css" type="text/css" rel="stylesheet"/>
+<link href="${rc.contextPath}/static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${rc.contextPath}/static/typing/typing.min.js"></script>
+<script type="text/javascript" src="//cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js"></script>
+    <style>
+        
+         body{
+            position: absolute;
+        }
+        .content{
+            position: absolute;
+            top: 40%;
+            left: 15%;
+            width: 70%;
+            height: 24%;
+            padding: 15px 10px 0 10px;
+        }
+
+        .front{
+        position: absolute;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+        top:0;
+        left: 0;
+        margin: auto;
+        background: url("${rc.contextPath}/page/temp/16/front.png") no-repeat center center;
+        background-size: 100%;
+        -webkit-animation:front 3s ease-in-out 1s forwards;
+        animation:front 3s ease-in-out 1s forwards;
+    }
+    @keyframes front
+    {
+        0% { transform: perspective(600px) rotateY(0deg); }
+        20% { transform: perspective(600px) rotateY(30deg); }
+        40% { transform: perspective(600px) rotateY(-30deg); }
+        60% { transform: perspective(600px) rotateY(30deg); }
+        80% { transform: perspective(600px) rotateY(-30deg); }
+        100% { transform: perspective(600px) rotateY(0deg); }
+    }
+    @-webkit-keyframes front /* Safari and Chrome */
+    {
+        0% { transform: perspective(600px) rotateY(0deg); }
+        20% { transform: perspective(600px) rotateY(30deg); }
+        40% { transform: perspective(600px) rotateY(-30deg); }
+        60% { transform: perspective(600px) rotateY(30deg); }
+        80% { transform: perspective(600px) rotateY(-30deg); }
+        100% { transform: perspective(600px) rotateY(0deg); }
+    }
+    </style>
+    <script type="text/javascript">
+		function loaded(){
+	   		setTimeout(function(){
+	   			$("#content").css({"display":"block"});
+	   			
+	   			var typing = new Typing({
+	                source: document.getElementById('source'),
+	                output: document.getElementById('content'),
+	                delay: 150
+	            });
+	            typing.start();
+	            
+	     	},500);
+		}
+		window.addEventListener("load",loaded,false);
+		
+		$youziku.load("#content", "47de456561c242d6ba1cc27ef6be557c", "minijiankatong");
+	    $youziku.draw();
+	</script>
+
+</head>
+<body>
+    <div class="front"></div>
+    <div class="content" id="content">
+    <div id="source" hidden>
+        <h3><strong>${obj.content1!}</strong></h3>
+    </div>
+    </div>
+</body>
+</html>

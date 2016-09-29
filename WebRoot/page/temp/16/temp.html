@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>情书&电子卡片定制</title>
+<link href="${rc.contextPath}/static/css/edit_border.css" type="text/css" rel="stylesheet"/>
+<link href="${rc.contextPath}/static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+<link rel="stylesheet" href="${rc.contextPath}/static/font-awesome/css/font-awesome.min.css">
+<script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${rc.contextPath}/static/js/tempbar-top.js"></script>
+<script type="text/javascript">
+	function submit()
+	{
+		var tempid='${obj.tempid!}';
+		var content1=document.getElementById("content1").innerHTML;
+		$.post("${rc.contextPath}/l/save.html", { tempid: tempid, content1: content1 },
+				function(data){
+				     if(data=='1'||data==1)
+				    	 window.location.replace("${rc.contextPath}/l/s.html");
+				     else
+				    	 alert("提交失败");
+				   });
+	}
+	function back1()
+	{
+		var sellerid='${sellerid}';
+    	 window.location.replace("${rc.contextPath}/l/home.html?sellerid="+sellerid);
+	}
+	function loaded(){
+   		setTimeout(function(){
+   			$("#content").css({"display":"block"});   			
+     	},500);
+	}
+	window.addEventListener("load",loaded,false);
+</script>
+    <style>
+        body{
+            position: absolute;
+        }
+        .content{
+            position: absolute;
+            top: 40%;
+            left: 15%;
+            width: 70%;
+            height: 24%;
+            padding: 15px 10px 0 10px;
+        }
+
+        .front{
+        position: absolute;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+        top:0;
+        left: 0;
+        margin: auto;
+        background: url("${rc.contextPath}/page/temp/16/front.png") no-repeat center center;
+        background-size: 100%;
+        -webkit-animation:front 3s ease-in-out 1s forwards;
+        animation:front 3s ease-in-out 1s forwards;
+    }
+    @keyframes front
+    {
+        0% { transform: perspective(600px) rotateY(0deg); }
+        20% { transform: perspective(600px) rotateY(30deg); }
+        40% { transform: perspective(600px) rotateY(-30deg); }
+        60% { transform: perspective(600px) rotateY(30deg); }
+        80% { transform: perspective(600px) rotateY(-30deg); }
+        100% { transform: perspective(600px) rotateY(0deg); }
+    }
+    @-webkit-keyframes front /* Safari and Chrome */
+    {
+        0% { transform: perspective(600px) rotateY(0deg); }
+        20% { transform: perspective(600px) rotateY(30deg); }
+        40% { transform: perspective(600px) rotateY(-30deg); }
+        60% { transform: perspective(600px) rotateY(30deg); }
+        80% { transform: perspective(600px) rotateY(-30deg); }
+        100% { transform: perspective(600px) rotateY(0deg); }
+    }
+    </style>
+    <script>
+    </script>
+
+</head>
+<body>
+<img src="${rc.contextPath}/page/temp/16/bg.jpg" height="100%" width="100%" />
+    <div class="front"></div>
+    <div class="content" id="content" style="display:none">
+        <h3 id="content1" class="shine_white" contenteditable="true" style="-webkit-user-select: auto"><strong>请在这里输入留言</strong></h3>
+    </div>
+</body>
+</html>
