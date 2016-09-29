@@ -32,8 +32,8 @@
 	        bottom: 0;
 	        left: 0;
 	        margin: auto;
-	        width: 80vw;
-	        height: 80vh;
+	        width: 80%;
+	        height: 80%;
 	    }
 	    #front1{
 	        z-index: 1;
@@ -51,35 +51,35 @@
 	    }
 	    @keyframes move1
 	    {
-	        0%   {bottom:-180vh;}
+	        0%   {bottom:-180%;}
 	        100% {bottom: 0;}
 	    }
 	    @-webkit-keyframes move1 /* Safari and Chrome */
 	    {
-	        0%   {bottom:-180vh;}
+	        0%   {bottom:-180%;}
 	        100% {bottom: 0;}
 	    }
 	
 	    @keyframes move2
 	    {
-	        0%   {top:-180vh;}
+	        0%   {top:-180%;}
 	        100% {top: 0;}
 	    }
 	    @-webkit-keyframes move2 /* Safari and Chrome */
 	    {
-	        0%   {top:-180vh;}
+	        0%   {top:-180%;}
 	        100% {top: 0;}
 	    }
         .content{
         	position: absolute;
-	        top: 10vh;
+	        top: 0;
 	        right: 0;
 	        bottom: 0;
 	        left: 0;
 	        margin: auto;
             z-index:5;
-	        width: 60vw;
-	        height: 20vh;
+	        width: 60%;
+	        height: 20%;
             color: #ffffff;
             font-family: "Microsoft YaHei";
         }
@@ -96,7 +96,7 @@
 	            });
 	            typing.start();
 	            
-	     	},500);
+	     	},3000);
 		}
 		window.addEventListener("load",loaded,false);
 		

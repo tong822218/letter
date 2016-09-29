@@ -23,6 +23,11 @@
 				    	 alert("提交失败");
 				   });
 	}
+	function back1()
+	{
+		var sellerid='${sellerid}';
+    	 window.location.replace("${rc.contextPath}/l/home.html?sellerid="+sellerid);
+	}
 	function loaded(){
    		setTimeout(function(){
    			$("#content").css({"display":"block"});
@@ -116,7 +121,7 @@
     <div class="flower"></div>
     <div class="love"></div>
     <div class="content" id="content" style="display:none">
-	        <h3 id="content1" class="shine_white" contenteditable="true" style="-webkit-user-select: auto"><strong>请在这里输入留言</strong></h3>
-	    </div>
+        <h3 id="content1" class="shine_white" contenteditable="true" style="-webkit-user-select: auto"><strong>请在这里输入留言</strong></h3>
+    </div>
 </body>
 </html>

@@ -18,11 +18,13 @@
 			
 			$(".container1").html(html);
 			selected(cards);
+			cantSel(cards);
 		});
 		
 	})
+	//将选择的模版打上对号
 	function selected(cards){
-		$(".item").each(function(i,e){
+		$(".item").each(function(j,e){
 			for (var i = 0; i < cards.length; i++) {
 				var id=$(this).attr("id");
 				if(id==cards[i]){
@@ -32,6 +34,22 @@
 				}
 			} 
 		});
+	}
+	//将没有做好的模版盖上遮罩层，不能被选中
+	function cantSel(cards){
+		$(".item").each(function(j,e){
+			if($(this).find(".bigo").css("display") == 'none'){
+				var html=$(this).html();
+				var ht='<div style="z-index:3;position:absolute;width:'+$(this).width()+'px;height:'+$(this).height()+'px;top:6px;left:6px;background-color:rgba(200,200,200,0.7);font-size:14px;text-align:center;line-height:150px;">敬请期待</div>';
+				ht+=html;
+				$(this).html(ht);
+				$(this).removeAttr("onclick");
+				//event.stopPropagation();
+			}
+		});
+	}
+	function aa(){
+		
 	}
 	function sel(obj) {
 		if ($(obj).find(".bigo").css("display") == 'none') {

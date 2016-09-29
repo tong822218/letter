@@ -4,12 +4,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
 <title>情书&电子卡片定制</title>
-<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 <link href="${rc.contextPath}/static/css/edit_border.css" type="text/css" rel="stylesheet"/>
-<link href="${rc.contextPath}/static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
 <link rel="stylesheet" href="${rc.contextPath}/static/font-awesome/css/font-awesome.min.css">
 <script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${rc.contextPath}/static/js/tempbar-top.js"></script>
 
 <script type="text/javascript">
@@ -24,6 +21,11 @@
 			     else
 			    	 alert("提交失败");
 			   });
+	}
+	function back1()
+	{
+		var sellerid='${sellerid}';
+    	 window.location.replace("${rc.contextPath}/l/home.html?sellerid="+sellerid);
 	}
 
     function loaded(){
@@ -57,14 +59,14 @@
         }
         .content{
             color: #000;
-            font-size: 13px;
             position: absolute;
-            top: 20%;
-            left: 20%;
-            width: 60%;
+            top: 24%;
+            left: 25%;
+            width: 50%;
             z-index: 3;
             padding-top: 10px;
             font-family: "Microsoft YaHei";
+            font-size: 1.2rem;
         }
         
     </style>
@@ -76,7 +78,7 @@
 	<img src="${rc.contextPath}/page/temp/11/bg.jpg" height="100%" width="100%" />
 	<div class="front-bg"></div>
 	    <div class="text-center content" id="content" style="display:none">
-	        <h3 id="content1" class="shine_white" contenteditable="true" style="-webkit-user-select: auto"><strong>此去经年，应是良辰好景虚设，便纵有千种风情，更与谁人说</strong></h3>
+	        <span id="content1" class="shine_white" contenteditable="true" style="-webkit-user-select: auto">此去经年，应是良辰好景虚设，便纵有千种风情，更与谁人说</span>
 	    </div>
 </body>
 </html>

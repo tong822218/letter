@@ -8,9 +8,12 @@
 <script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="${rc.contextPath}/static/typing/typing.min.js"></script>
 <script type="text/javascript" src="//cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js"></script>
+
     <style>
     	html,body{
+	   		margin: auto;
 	        height: 100%;
+	        width: 100%
 	        overflow: hidden;
 	    }
 	    .bg{
@@ -19,20 +22,10 @@
 	        width: 100%;
 	        z-index: -1;
 	        background: url("${rc.contextPath}/page/temp/2/bg.jpg") no-repeat center center;
-	        background-size: 100%;
-	        -webkit-animation:bgshow 2s linear;
-	        animation:bgshow 2s linear;
+	        background-size: 100%;  
+	        display: none;  
 	    }
-	    @keyframes bgshow
-	    {
-	        0% { opacity: 0 }
-	        100% { opacity: 1 }
-	    }
-	    @-webkit-keyframes bgshow /* Safari and Chrome */
-	    {
-	        0% { opacity: 0 }
-	        100% { opacity: 1 }
-	    }
+	
 	    .snow{
 	        position: absolute;
 	        height: 100%;
@@ -40,20 +33,6 @@
 	        z-index: 1;
 	        background: url("${rc.contextPath}/page/temp/2/snow.png") no-repeat center center;
 	        background-size: 100%;
-	        -webkit-animation:snowshow 3s infinite;
-	        animation:snowshow 3s infinite;
-	    }
-	    @keyframes snowshow
-	    {
-	        0% { opacity: 0 }
-	        50% { opacity: 1 }
-	        100% { opacity: 0 }
-	    }
-	    @-webkit-keyframes snowshow /* Safari and Chrome */
-	    {
-	        0% { opacity: 0 }
-	        50% { opacity: 1 }
-	        100% { opacity: 0 }
 	    }
 	    .cycle{
 	        position: absolute;
@@ -63,23 +42,12 @@
 	        left: 0;
 	        margin: auto;
 	        z-index: 2;
-	        width: 70vw;
-	        height: 70vh;
+	        width: 30%;
+	        height: 30%;
 	        background: url("${rc.contextPath}/page/temp/2/cycle.png") no-repeat center center;
 	        background-size: 100%;
-	        -webkit-animation:zhuan 3s linear infinite;
-	        animation:zhuan 3s linear infinite;
 	    }
-	    @keyframes zhuan
-	    {
-	        0% { transform: rotate(0deg); }
-	        100% { transform: rotate(360deg); }
-	    }
-	    @-webkit-keyframes zhuan /* Safari and Chrome */
-	    {
-	        0% { transform: rotate(0deg); }
-	        100% { transform: rotate(360deg); }
-	    }
+	    
 	    .love{
 	        position: absolute;
 	        top: 0;
@@ -88,52 +56,55 @@
 	        left: 0;
 	        margin: auto;
 	        z-index: 2;
-	        width: 70vw;
-	        height: 70vh;
+	        width: 70%;
+	        height: 70%;
 	        background: url("${rc.contextPath}/page/temp/2/love.png") no-repeat center center;
 	        background-size: 100%;
 	    }
 	    
 	    .top{
 	        position: absolute;
-	        top: 0;
+	        top: 100%;
 	        right: 0;
 	        left: 0;
+	        opacity: 0.1;
 	        margin: auto;
 	        z-index: 2;
-	        width: 100vw;
-	        height: 30vh;
+	        width: 100%;
+	        height: 30%;
 	        background: url("${rc.contextPath}/page/temp/2/top.png") no-repeat center center;
 	        background-size: 100%;
-	        -webkit-animation:topshow 1s linear;
-	        animation:topshow 1s linear;
 	    }
-	    @keyframes topshow
-	    {
-	        0% { opacity: 0;top:100vh; }
-	        100% { opacity: 1;top:0; }
-	    }
-	    @-webkit-keyframes topshow /* Safari and Chrome */
-	    {
-	        0% { opacity: 0;top:100vh; }
-	        100% { opacity: 1;top:0; }
-	    }
-        
-        .content{
-            position: absolute;
+	    .content{
+	        position: absolute;
 	        right: 0;
-	        bottom: 7vh;
+	        bottom: 7%;
 	        left: 0;
 	        margin: auto;
-            z-index:6;
-	        width: 60vw;
-	        height: 20vh;
-            color: #ffffff;
-            font-family: "Microsoft YaHei";
-        }
+	        z-index:6;
+	        width: 60%;
+	        height: 20%;
+	        color: #ffffff;
+	        font-family: "Microsoft YaHei";
+	    }
     </style>
     <script type="text/javascript">
 		function loaded(){
+			$(".bg").fadeIn(2000,function(){
+	            $(".top").animate({
+	                top:0,
+	                opacity:1.0
+	            },1500,function(){
+	                $(".cycle").animate({
+	                    width:"70%",
+	                    height:"70%"
+	                },3000,function(){
+	                	$("#content").css({"display":"block"});
+	                });
+	            });
+	            
+	        });
+			
 	   		setTimeout(function(){
 	   			$("#content").css({"display":"block"});
 	   			
@@ -165,6 +136,5 @@
         <h3><strong>${obj.content1!}</strong></h3>
     </div>
     </div>
-    
 </body>
 </html>

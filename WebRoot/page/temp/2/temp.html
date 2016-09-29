@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="${rc.contextPath}/static/font-awesome/css/font-awesome.min.css">
 <script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="${rc.contextPath}/static/js/tempbar-top.js"></script>
-<script type="text/javascript" src="${rc.contextPath}/static/jquerymobile/jquery.mobile-1.4.5.min.js"></script>
 
 <script type="text/javascript">
 
@@ -24,34 +23,36 @@
 				    	 alert("提交失败");
 				   });
 	}
+	function back1()
+	{
+		var sellerid='${sellerid}';
+    	 window.location.replace("${rc.contextPath}/l/home.html?sellerid="+sellerid);
+	}
 	function loaded(){
+		 var animationDiv = $(".cycle");
+		    animationDiv.bind("webkitAnimationEnd", function() {
+		        animationDiv.removeClass("cycle");
+		        animationDiv.addClass("cycle1");
+		    });
+		    
 		$(".bg").fadeIn(2000,function(){
             $(".top").animate({
                 top:0,
                 opacity:1.0
             },1500,function(){
-                $(".cycle").animate({
-                    width:"70%",
-                    height:"70%"
-                },3000,function(){
-                	$("#content").css({"display":"block"});
-                });
+                $(".love").css({"transform":"scale(1)"});
+                
+                setTimeout(function(){
+                     $("#content").css({"display":"block"});
+                 },2000);
+               
             });
             
         });
-   		/* setTimeout(function(){
-   			$("#content").css({"display":"block"});
-   			//var myscroll=new iScroll("#wrapper",{hScrollbar:false, vScrollbar:false});
-   			
-     	},2100); */
-		$("body").on("swipeleft",function(){
-			    window.location.href="${obj.pre1!}";
-			  });    
-			  $("body").on("swiperight",function(){
-				  window.location.href="${obj.next1!}";
-			  });
+
 	}
 	window.addEventListener("load",loaded,false);
+   
 </script>
     <style>
    	html,body{
@@ -59,6 +60,12 @@
         height: 100%;
         width: 100%
         overflow: hidden;
+    }
+    .startZ{
+        -webkit-animation:circle1 4s infinite linear;/*匀速 循环*/
+    }
+    .startY{
+        -webkit-animation:circle2 4s 1 linear;/*匀速 循环*/
     }
     .bg{
         position: absolute;
@@ -86,12 +93,28 @@
         left: 0;
         margin: auto;
         z-index: 2;
-        width: 30%;
-        height: 30%;
+        width: 70%;
+        height: 70%;
         background: url("${rc.contextPath}/page/temp/2/cycle.png") no-repeat center center;
         background-size: 100%;
+        -webkit-animation:circle2 4s 1 linear;/*匀速 循环*/
+        
     }
-    
+    .cycle1{
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        z-index: 2;
+        width: 70%;
+        height: 70%;
+        background: url("${rc.contextPath}/page/temp/2/cycle.png") no-repeat center center;
+        background-size: 100%;
+        -webkit-animation:circle1 4s infinite linear;/*匀速 循环*/
+        
+    }
     .love{
         position: absolute;
         top: 0;
@@ -104,6 +127,11 @@
         height: 70%;
         background: url("${rc.contextPath}/page/temp/2/love.png") no-repeat center center;
         background-size: 100%;
+        -webkit-transform: scale(0);
+        -ms-transform: scale(0);
+        -o-transform: scale(0);
+        transform: scale(0);
+        transition: all 2s;
     }
     
     .top{
@@ -131,6 +159,18 @@
         color: #ffffff;
         font-family: "Microsoft YaHei";
        }
+
+    @-webkit-keyframes circle1{
+        0%{ transform:rotateZ(0deg); }
+        100%{ transform:rotateZ(-360deg); }
+    }
+     @-webkit-keyframes circle2{
+        0%{ transform:rotateY(0deg); }
+        25%{ transform:rotateY(70deg); }
+        50%{ transform:rotateY(0deg); }
+        75%{ transform:rotateY(70deg); }
+        100%{ transform:rotateY(0deg); }
+    }
     </style>
     <script>
     </script>

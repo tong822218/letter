@@ -26,17 +26,14 @@
 		    	 window.location.replace("${rc.contextPath}/l/s.html");
 		     else
 		    	 alert("提交失败");
-		 })
+		 });
 	}
 
-    function loaded(){
-   		setTimeout(function(){
-   			$("#content").css({"display":"block"});
-   			
-     	},3100);
+	function back1()
+	{
+		var sellerid='${sellerid}';
+    	 window.location.replace("${rc.contextPath}/l/home.html?sellerid="+sellerid);
 	}
-	window.addEventListener("load",loaded,false);
-
 </script>
     <style>
         html,body{
@@ -101,7 +98,7 @@
 	    }
         .content{
         	position: absolute;
-	        top: 10%;
+	        top: 0;
 	        right: 0;
 	        bottom: 0;
 	        left: 0;
@@ -111,7 +108,13 @@
 	        height: 20%;
             color: #ffffff;
             font-family: "Microsoft YaHei";
+            animation:showslow 2s;
         }
+        @-webkit-keyframes showslow /* Safari and Chrome */
+	    {
+	        0% { opacity: 0 }
+	        100% { opacity: 1 }
+	    }
     </style>
 
 </head>
@@ -121,7 +124,7 @@
         <div class="bg"></div>
         <div class="front" id="front1"></div>
         <div class="front" id="front2">
-        <div class="text-center content" id="content" style="display:none">
+        <div class="text-center content" id="content">
 	        <h3 id="content1" class="shine_white" contenteditable="true" style="-webkit-user-select: auto;pointer-events: auto;"><strong>此去经年，应是良辰好景虚设，便纵有千种风情，更与谁人说</strong></h3>
 		</div>
         </div>

@@ -5,10 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>情书&电子卡片定制</title>
 <link href="${rc.contextPath}/static/css/edit_border.css" type="text/css" rel="stylesheet"/>
-<link href="${rc.contextPath}/static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
 <link rel="stylesheet" href="${rc.contextPath}/static/font-awesome/css/font-awesome.min.css">
-<script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${rc.contextPath}/static/zepto/zepto.min.js"></script>
 <script type="text/javascript" src="${rc.contextPath}/static/js/tempbar-top.js"></script>
 <script type="text/javascript">
 	function submit()
@@ -23,37 +21,97 @@
 			    	 alert("提交失败");
 			   });
 	}
-	function loaded(){
-   		setTimeout(function(){
-   			$("#content").css({"display":"block"});
-   			//var myscroll=new iScroll("#wrapper",{hScrollbar:false, vScrollbar:false});
-   			
-     	},500);
+	function back1()
+	{
+		var sellerid='${sellerid}';
+    	 window.location.replace("${rc.contextPath}/l/home.html?sellerid="+sellerid);
 	}
-	window.addEventListener("load",loaded,false);
 </script>
     <style>
-        body{
-            position: absolute;
-        }
-        .content{
-            color: #ffffff;
-            position: absolute;
-            top: 26%;
-            left: 20%;
-            width: 60%;
-            font-family: "Microsoft YaHei";
-        }
+        html,body{
+	        margin: auto;
+	        height: 100%;
+	        width: 100%
+	        overflow: hidden;
+	        background-color: #F0EBCD;
+	    }
+	    .front{
+	        position: absolute;
+	        overflow: hidden;
+	        z-index: 2;
+	        left: 0;
+	        top:0;
+	        height: 50%;
+	        width: 100%;
+	        background: url("${rc.contextPath}/page/temp/8/front.png") no-repeat center center;
+	        background-size: 100%;
+	        -webkit-animation:front 2s linear;
+	        animation:front 2s linear;
+	    }
+	    .heart{
+	        position: absolute;
+	        z-index: 2;
+	        left: 0;
+	        right: 0;
+	        bottom:30%;
+	        height: 20%;
+	        width: 100%;
+	        background: url("${rc.contextPath}/page/temp/8/heart.png") no-repeat center center;
+	        background-size: 100%;
+	        -webkit-animation:heart 3s infinite;
+	        animation:heart 3s infinite;
+	    }
+	    .cat{
+	        position: absolute;
+	        left: 30%;
+	        right: 30%;
+	        bottom: 10%;
+	        height: 36%;
+	        width: 40%;
+	        z-index: 2;
+	        background: url("${rc.contextPath}/page/temp/8/cat.png") no-repeat center center;
+	        background-size: 100%; 
+	        -webkit-animation:cat 1.5s;
+	        animation:cat 1.5s;
+	    }
+	    @-webkit-keyframes heart /* Safari and Chrome */
+	    {
+	        0% { opacity: 0 }
+	        50% { opacity: 1 }
+	        100% { opacity: 0 }
+	    }
+	    @-webkit-keyframes cat /* Safari and Chrome */
+	    {
+	        0%   {bottom: 100%;transform: rotate(0deg);}
+	        100% {bottom: 10%;transform: rotate(360deg);}
+	    }
+	    @-webkit-keyframes front /* Safari and Chrome */
+	    {
+	        0% { opacity: 0 }
+	        100% { opacity: 1 }
+	    }
+	    .content{
+	        margin: 30% 22% 0 24%;
+	        z-index:5;
+	        color: #ffffff;
+	        font-family: "Microsoft YaHei";
+	        font-size: 1.2rem;
+	        -webkit-animation:front 3s linear;
+	        animation:front 3s linear;
+	    }
     </style>
     <script>
     </script>
 
 </head>
 <body>
-<img src="${rc.contextPath}/page/temp/8/bg.jpg" height="100%" width="100%" />
-    <div class="content" id="content" style="display:none">
-        <h3 id="content1" class="shine_white" contenteditable="true" style="-webkit-user-select: auto"><strong>这是内容部分，点击可以编辑，请写上您想发送的话吧。</strong></h3>
-    </div>
-
+    
+	<div class="front">
+	    <div class="text-center content" id="content">
+	        <span id="content1" class="shine_white" contenteditable="true" style="-webkit-user-select: auto">此去经年，应是良辰好景虚设，便纵有千种风情，更与谁人说</span>
+	    </div>
+	</div>
+	<div class="heart"></div>
+	<div class="cat"></div>
 </body>
 </html>
