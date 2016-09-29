@@ -25,6 +25,11 @@ function submit()
 		    	 alert("提交失败");
 		   });
 }
+function back1()
+{
+	var sellerid='${sellerid}';
+	 window.location.replace("${rc.contextPath}/l/home.html?sellerid="+sellerid);
+}
 function loaded(){
 		setTimeout(function(){
 			$("#content").css({"display":"block"});

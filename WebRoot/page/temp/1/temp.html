@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="${rc.contextPath}/static/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="${rc.contextPath}/static/css/sub_button.css">
 <script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="${rc.contextPath}/static/js/tempbar-top.js"></script>
 
 <script type="text/javascript">
 
@@ -22,6 +23,12 @@
 			     else
 			    	 alert("提交失败");
 			   });
+	}
+	
+	function back1()
+	{
+		var sellerid='${sellerid}';
+    	 window.location.replace("${rc.contextPath}/l/home.html?sellerid="+sellerid);
 	}
 	function loaded(){
    		setTimeout(function(){
@@ -42,7 +49,7 @@
             border-bottom: 2px #b94a48 solid;
             top: 55%;
             width: 100%;
-            padding: 10px 10px 6px 10px;
+            padding: 10px 0 6px 0;
             filter:alpha(Opacity=80);-moz-opacity:0.8;opacity: 0.8;
             /* font-family:STKaiti; */
         }
@@ -55,7 +62,7 @@
     <div class="content" id="content" style="display:none">
         <h5 id="content1" class="shine_blue" contenteditable="true" style="-webkit-user-select: auto;pointer-events: auto;"><strong>东营一别，转眼就3年过去了，十分想念，不知道你现在过得好不好，我们可以再回到那年，再续前缘吗。</strong></h5>
     </div>
-<input type="button" class="sub blue" onclick="submit();" value="提交" />
+<!-- <input type="button" class="sub blue" onclick="submit();" value="提交" /> -->
 </body>
 </html>
 
