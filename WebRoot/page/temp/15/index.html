@@ -4,32 +4,78 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title></title>
-<link href="${rc.contextPath}/static/css/edit_border.css" type="text/css" rel="stylesheet"/>
-<link href="${rc.contextPath}/static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
 <script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${rc.contextPath}/static/typing/typing.min.js"></script>
 <script type="text/javascript" src="//cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js"></script>
     <style>
-        body{
-            background: url("${rc.contextPath}/page/temp/2/bg.jpg")no-repeat;
-            background-size: cover;
-        }
-        .front-bg{
-            position: absolute;
-            background: url("${rc.contextPath}/page/temp/2/frontbg.png") no-repeat top center;
-            background-size: contain;
-            width: 100%;
-            height: 65%;
-        }
-        .content{
-            position: absolute;
-            top: 65%;
-            left: 5%;
-            width: 90%;
-            height: 24%;
-            padding: 15px 10px 0 10px;
-        }
+    html,body{
+        margin: auto;
+        height: 100%;
+        width: 100%
+        overflow: hidden;
+    }
+    .bg{
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: -1;
+        background: url("${rc.contextPath}/page/temp/15/bg.jpg") no-repeat center center;
+        background-size: 100%; 
+        -webkit-animation:bg 3s ;
+        animation:bg 3s ;
+    }
+    .front{
+        position: absolute;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+        margin: auto;
+        background: url("${rc.contextPath}/page/temp/15/front.png") no-repeat center center;
+        background-size: 100%;
+        -webkit-animation:front 1s ease 2s forwards;
+        animation:front 1s ease 2s forwards;
+    }
+    @keyframes front
+    {
+        0% { transform: perspective(600px) rotateY(0deg); }
+        20% { transform: perspective(600px) rotateY(30deg); }
+        40% { transform: perspective(600px) rotateY(-30deg); }
+        60% { transform: perspective(600px) rotateY(30deg); }
+        80% { transform: perspective(600px) rotateY(-30deg); }
+        100% { transform: perspective(600px) rotateY(0deg); }
+    }
+    @-webkit-keyframes front /* Safari and Chrome */
+    {
+        0% { transform: perspective(600px) rotateY(0deg); }
+        20% { transform: perspective(600px) rotateY(30deg); }
+        40% { transform: perspective(600px) rotateY(-30deg); }
+        60% { transform: perspective(600px) rotateY(30deg); }
+        80% { transform: perspective(600px) rotateY(-30deg); }
+        100% { transform: perspective(600px) rotateY(0deg); }
+    }
+    @keyframes bg
+    {
+        0% { transform: scale(0.7,0.7) }
+        100% { transform: scale(1,1) }
+    }
+    @-webkit-keyframes bg 
+    {
+        0% { transform: scale(0.7,0.7) }
+        100% { transform: scale(1,1) }
+    }
+    .content{
+        position: absolute;
+        top: 50%;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        z-index:5;
+        width: 70%;
+        height: 20%;
+        color: #ffffff;
+        font-family: "Microsoft YaHei";
+    }
     </style>
     <script type="text/javascript">
 		function loaded(){
@@ -43,7 +89,7 @@
 	            });
 	            typing.start();
 	            
-	     	},500);
+	     	},3500);
 		}
 		window.addEventListener("load",loaded,false);
 		
@@ -53,8 +99,9 @@
 
 </head>
 <body>
-    <div class="front-bg"></div>
-    <div class="content" id="content">
+    <div class="bg"></div>
+    <div class="front"></div>
+    <div class="text-center content" id="content">
     <div id="source" hidden>
         <h3><strong>${obj.content1!}</strong></h3>
     </div>
