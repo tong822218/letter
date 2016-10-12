@@ -5,9 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title></title>
 <link href="${rc.contextPath}/static/css/edit_border.css" type="text/css" rel="stylesheet"/>
-<link href="${rc.contextPath}/static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
 <script type="text/javascript" src="${rc.contextPath}/static/jquery/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${rc.contextPath}/static/typing/typing.min.js"></script>
 <script type="text/javascript" src="//cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js"></script>
     <style>
@@ -18,10 +16,12 @@
         .content{
             position: absolute;
             top: 40%;
-            left: 15%;
-            width: 70%;
+            left: 17%;
+            width: 66%;
             height: 24%;
+            z-index:2;
             padding: 15px 10px 0 10px;
+            color: #ffffff;
         }
 
         .front{
@@ -78,6 +78,7 @@
 
 </head>
 <body>
+<img src="${rc.contextPath}/page/temp/16/bg.jpg" height="100%" width="100%" />
     <div class="front"></div>
     <div class="content" id="content">
     <div id="source" hidden>
