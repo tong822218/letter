@@ -124,6 +124,27 @@
 			});
 		}
 	}
+	
+	$(document).ready(function(){
+        var limitNum = 40;
+        var pattern = '还可以输入' + limitNum + '字符';
+        $('#contentwordage').html(pattern);
+        var val=$('#letterContent').val();
+        $('#letterContent').keyup(
+                function(){
+                    var remain = $(this).val().length;
+                    if(remain > limitNum){
+                    	$('#letterContent').val(val);
+                        pattern = "字数超过限制！";
+                    }else{
+                        var result = limitNum - remain;
+                        pattern = '还可以输入' + result + '字';
+                        val = $('#letterContent').val();
+                    }
+                    $('#contentwordage').html(pattern);
+                }
+        );
+    });
 </script>
 
 <style type="text/css">
@@ -194,7 +215,6 @@ body {
 	border-radius:10px;
 }
 .letterContent textarea{
-	text-align:center;
 	vertical-align: middle;
 	border:none;
 	background-color:transparent;
@@ -202,6 +222,8 @@ body {
 	width: 100%;
 	height: 70px;
 	line-height: 15px;
+	padding-left:5px;
+	padding-top:5px;
 	
 }
 .fjr{
@@ -236,23 +258,14 @@ body {
 	box-shadow: 1px px 1px #eee;
 }
 input{	
-	text-align:center;
+	padding-left:5px;
 	background: url("${rc.contextPath}/static/image/send_input.png") no-repeat;
 	background-size:contain;
 }
 
 </style>
 
-<div class="row" style='margin-top:10px'>
-  <div class="col-lg-6">
-    <div class="input-group">
-      <input type="text" class="form-control">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Go!</button>
-      </span>
-    </div><!-- /input-group -->
-  </div><!-- /.col-lg-6 -->
-</div>
+
 
 <div class="container1"></div>
 <!-- 弹出窗口 -->
@@ -276,10 +289,10 @@ input{
 							<input type="text" id="senderTel" name="senderTel" placeholder="发件人电话" required><span style="color:red;position:absolute;right: -10px;top:5px">*</span>
 						</div>
 						<div class="fjrname">
-							<input type="text" id="sender" name="sender" placeholder="收件人姓名" required>
+							<input type="text" id="sender" name="sender" placeholder="发件人姓名" required>
 						</div>
 						<div class="letterContent">
-							<textarea type="text" id="letterContent" name="letterContent"  required></textarea><span style="color:red;position:absolute;right: -10px;top:5px">*</span>
+							<textarea  id="letterContent" name="letterContent"  required></textarea><span style="color:red;position:absolute;right: -10px;top:5px">*</span><div id="contentwordage" style='font-size:5px;;margin-top:10px;text-align:right;color:#aaa'></div>
 						</div>
 						 
 				</div>

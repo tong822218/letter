@@ -1,34 +1,50 @@
 <#include "layout.html" /> <@layout>
 <meta charset="UTF-8">
 <style>
-
+	table tr{text-align:center;}
 </style>
 <script type="text/javascript">
-
+var list=[];
 $(function(){
 	$.post("${rc.contextPath}/admin/getLetterList.html", {
 
 	},function(data) {
-		var da = JSON.parse(data).list;
-		var html='<table class="table table-bordered"><tr><td>id</td><td>收件人电话</td><td>内容</td><td>时间</td></tr>';
-		for(var i = 0;i<da.length;i++){
-			html+='<tr><td>'+da[i]['id']+'</td><td>'+da[i]['tel']+'</td><td>'+da[i]['params']+'</td><td>'+da[i]['createTime']+'</td></tr>';
-		}
-		html+='</table>';
-		$("#container").html(html);
+		list = JSON.parse(data).list;
+		createDom();
 	});
 
 })
-function hh(){
-	alert(1);
+function createDom(keyword){
+	$("#container").html("");
+	var html='<table class="table table-bordered"><tr><td>id</td><td>收件人电话</td><td>制作来源</td><td width=300px>内容</td><td>时间</td></tr>';
+	for(var i = 0;i<list.length;i++){
+		var ispc='无线端';
+		var content=list[i]['params'].substring(0,45);
+		if(list[i]['user']==1 || list[i]['user']=='1'){
+			ispc='电脑端';
+		}
+		if(keyword && keyword!=''){
+			if(list[i]['tel'].indexOf(keyword)!=-1){
+				html+='<tr><td>'+list[i]['id']+'</td><td>'+list[i]['tel']+'</td><td>'+ispc+'</td><td>'+content+'</td><td>'+list[i]['createTime']+'</td></tr>';
+			}
+		}else{
+			html+='<tr><td>'+list[i]['id']+'</td><td>'+list[i]['tel']+'</td><td>'+ispc+'</td><td>'+content+'</td><td>'+list[i]['createTime']+'</td></tr>';
+		}
+	}
+	html+='</table>';
+	$("#container").html(html);
+}
+function search(){
+	var key = $("#searchValue").val();
+	createDom(key);
 }
 </script>
-<div class="row" style='margin:10px 0' >
+<div class="row" style='margin-top:10px;margin-bottom:10px' >
   <div class="col-lg-6">
     <div class="input-group">
-      <input type="text" class="form-control">
+      <input type="text" class="form-control" id='searchValue'>
       <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Go!</button>
+        <button class="btn btn-default" type="button" onclick='search()'>Go!</button>
       </span>
     </div><!-- /input-group -->
   </div><!-- /.col-lg-6 -->
