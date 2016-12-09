@@ -1,0 +1,298 @@
+<#include "layout.html" /> <@layout>
+<meta charset="UTF-8">
+<script type="text/javascript">
+	var currentTem;
+	var sele = '';
+	$(function() {
+		$.post("${rc.contextPath}/admin/getCards.html", {
+
+		},function(data) {
+			var da = JSON.parse(data);
+			var list = da['list'];
+			var cards = da['cards'];
+			cards = cards.split(";");
+			var html = '';
+			for(var j = 0;j<cards.length;j++){
+				for (var i = 0; i < list.length; i++) {
+					if(cards[j] == list[i]['id']){
+						html += '<div class="item" id="' + list[i]['id']+ '" pic="'+list[i]['img_path']+'" onclick="sel(this)"><img  src="'+list[i]['img_path']+'" /></div>';
+					}
+				}
+			}
+			
+			$(".container1").html(html);
+		});
+		
+	})
+	
+	function sel(obj) {
+		currentTem = $(obj).attr("id");
+		var pic = $(obj).attr('pic');
+		$("#myModalLabel img").attr('src',pic);
+		$('#myModal').modal();
+	}
+</script>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.container1 {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	margin-top: 20px;
+	margin-left: 30px;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+}
+
+.container1 .item {
+	position: relative;
+	box-shadow: 0px 0px 1px 1px #eee;
+	width: 15%;
+	height: 160px;
+	padding: 5px;
+	margin: 10px;
+	cursor: pointer;
+}
+
+.container1 .item img {
+	width: 100%;
+	height: 100%;
+}
+
+.bigo {
+	display: none;
+	position: absolute;
+	right: 7px;
+	bottom: 7px;
+	width: 18px;
+	height: 18px;
+	background: url(/static/image/bigo.png) no-repeat;
+	background-size: contain;
+}
+
+.submit {
+	position: fixed;
+	width: 20px;
+	height: 15px;
+	top: 60px;
+	right: 80px;
+}
+
+.bigo.block {
+	display: block;
+}
+.dialog{
+	width:100%;
+	height:100%;
+}
+</style>
+
+<script>
+	function check() {
+		var senderTel = document.getElementById('senderTel').value;
+		if (senderTel == null || senderTel == "") {
+			alert("发信人电话不可为空");
+			return false;
+		}
+		var tel = document.getElementById('tel').value;
+		if (tel == null || tel == "") {
+			alert("收信人电话不可为空");
+			return false;
+		}
+		var te = document.getElementById('letterContent').value;
+		if (te == null || te == "") {
+			alert("信件内容不可为空");
+			return false;
+		}
+
+		return true;
+	}
+	function submit(){
+		
+		if(check()){
+			var tel=$("#tel").val();
+			var senderTel=$("#senderTel").val();
+			var sender=$("#sender").val();
+			var letterContent =  $("#letterContent").val();
+			$.post("${rc.contextPath}/l/send.html", {tel:tel,sender:sender,senderTel:senderTel,letterContent:letterContent,tempId:currentTem}, function(data) {
+				alert("保存成功!");
+				$('#myModal').modal('toggle');
+			});
+		}
+	}
+</script>
+
+<style type="text/css">
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: #fff;
+	width: 100%;
+	height: auto;
+}
+.cont{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	margin:0 auto;
+}
+
+.bg {
+	margin:50px auto;
+	position:relative;
+	width:350px;
+	height:330px;
+	background: url("${rc.contextPath}/static/image/send_biankuang.png") no-repeat;
+	background-size: contain;
+	overflow: hidden;
+}
+.sjr{
+	position:absolute;
+	width:180px;
+	top:90px;
+	left:65px;
+	height: 30px;
+}
+.sjr input{
+	border:none;
+	background-color:transparent;
+	outline:none;
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+}
+.fjrname{
+	position:absolute;
+	width:180px;
+	top:156px;
+	left:65px;
+	height: 30px;
+}
+.fjrname input{
+	border:none;
+	background-color:transparent;
+	outline:none;
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	
+}
+.letterContent{
+	position:absolute;
+	width:180px;
+	top:196px;
+	left:65px;
+	height: 100px;
+	border:solid 1px #999;
+	border-radius:10px;
+}
+.letterContent textarea{
+	text-align:center;
+	vertical-align: middle;
+	border:none;
+	background-color:transparent;
+	outline:none;
+	width: 100%;
+	height: 70px;
+	line-height: 15px;
+	
+}
+.fjr{
+	position:absolute;
+	width:180px;
+	top:123px;
+	left:65px;
+	height: 30px;
+}
+.fjr input{
+	border:none;
+	background-color:transparent;
+	outline:none;
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+}
+.send{
+	position:absolute;
+	bottom:20px;
+	left:125px;
+	width:80px;
+	height:30px;
+	color:#2c2c2c;
+	text-align:center;
+	font-weight:bold;
+	font-size:13px;
+	line-height:30px;
+	border:solid 2px #eee;
+	border-radius: 10%;
+	background-color:#fff;
+	box-shadow: 1px px 1px #eee;
+}
+input{	
+	text-align:center;
+	background: url("${rc.contextPath}/static/image/send_input.png") no-repeat;
+	background-size:contain;
+}
+
+</style>
+
+<div class="row" style='margin-top:10px'>
+  <div class="col-lg-6">
+    <div class="input-group">
+      <input type="text" class="form-control">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go!</button>
+      </span>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+</div>
+
+<div class="container1"></div>
+<!-- 弹出窗口 -->
+<div class='dialog'>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel"><img src='' width =30px height=40px></h4>
+      </div>
+      <div class="modal-body">
+        
+        	<div class="cont">
+				<div class="bg">
+						 <div class="sjr">
+							<input type="text" id="tel" name="tel" placeholder="收信人电话" required><span style="color:red;position:absolute;right: -10px;top:5px">*</span>
+						</div>
+						<div class="fjr">
+							<input type="text" id="senderTel" name="senderTel" placeholder="发件人电话" required><span style="color:red;position:absolute;right: -10px;top:5px">*</span>
+						</div>
+						<div class="fjrname">
+							<input type="text" id="sender" name="sender" placeholder="收件人姓名" required>
+						</div>
+						<div class="letterContent">
+							<textarea type="text" id="letterContent" name="letterContent"  required></textarea><span style="color:red;position:absolute;right: -10px;top:5px">*</span>
+						</div>
+						 
+				</div>
+			</div>
+			
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" onclick='submit()'>保存</button>
+      </div>
+    </div>
+  </div>
+</div>
+	
+</div>
+</@layout>

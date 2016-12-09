@@ -65,6 +65,27 @@ public class AdminController extends BaseController {
 	public ModelAndView cardset(HttpServletRequest request) {
 		return html("/admin/cardset", null, request);
 	}
+	
+	//卖家后台创建卡片的页面
+	@RequestMapping(value = "createLetter")
+	public ModelAndView createLetter(HttpServletRequest request) {
+		return html("/admin/createLetter", null, request);
+	}
+	//卖家后台创建卡片的页面
+		@RequestMapping(value = "letterList")
+		public ModelAndView letterList(HttpServletRequest request) {
+			return html("/admin/letterList", null, request);
+		}
+	//卖家后台创建卡片的页面
+	@RequestMapping(value = "getLetterList")
+	public void getLetterList(HttpServletRequest request,HttpServletResponse rsp) {
+		String id = Common.getUser(request).getId();
+		List<Letter> letterList = letterService.getBySeller(id);
+		Map<String,Object> map=new HashMap<String, Object>();
+		map.put("list", letterList);
+		json(rsp,map);
+	}
+	//获取当前用户卡片信息
 	@RequestMapping(value = "getCards")
 	public void getCards(HttpServletRequest request,HttpServletResponse rsp) {
 		Map<String,Object> map=new HashMap<String, Object>();

@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.jws.soap.SOAPBinding.Use;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.zm.model.Letter;
 import com.zm.model.Temp;
 import com.zm.model.User;
@@ -183,13 +185,29 @@ public class LetterController extends BaseController {
 			String tel=request.getParameter("tel");
 			String sender=request.getParameter("sender");
 			String senderTel=request.getParameter("senderTel");
+			String letterContent = request.getParameter("letterContent");
+			String tempId = request.getParameter("tempId");
 			HttpSession session = request.getSession();
 			Letter letter = (Letter) session.getAttribute("letter");
-			if(letter==null){
+			Map<String, Object> map1 = new HashMap<String, Object>();
+			map1.put("tempid",tempId);
+			map1.put("content1", letterContent);
+			map1.put("content2", "");
+			//if(letter==null){
+				letter = new Letter();
+				letter.setId(UUID.randomUUID().toString());
+				letter.setTemp(tempId);
+				letter.setParams(JSON.toJSONString(map1));
+				letter.setCreateTime(now());
 				//return html("/slider/slider", null, request);
-			}
+		//	}
 			String sellerid=(String) session.getAttribute("sellerid");
-			letter.setSeller(sellerid);
+			if(sellerid==null){
+				User u=(User)session.getAttribute("user");
+				letter.setSeller(u.getId());
+			}else{
+				letter.setSeller(sellerid);
+			}
 			letter.setTel(tel);
 			letter.setSender(sender);
 			letter.setSenderTel(senderTel);
@@ -221,7 +239,8 @@ public class LetterController extends BaseController {
 			//return html(temp.getUrl(), JSON.parseObject(HtmlUtil.filterHtml(letter.getParams())), request);
 		}else if(letters.size()==1){
 			Temp temp=tempService.getById(letters.get(0).getTemp());
-			return html(temp.getUrl(), JSON.parseObject(letters.get(0).getParams()), request);
+			JSONObject ss = JSON.parseObject(letters.get(0).getParams());
+			return html(temp.getUrl(),ss , request);
 			//return html(temp.getUrl(), JSON.parseObject(HtmlUtil.filterHtml(letters.get(0).getParams())), request);
 		}else{
 			map.put("letters", letters);

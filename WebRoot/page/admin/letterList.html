@@ -1,0 +1,39 @@
+<#include "layout.html" /> <@layout>
+<meta charset="UTF-8">
+<style>
+
+</style>
+<script type="text/javascript">
+
+$(function(){
+	$.post("${rc.contextPath}/admin/getLetterList.html", {
+
+	},function(data) {
+		var da = JSON.parse(data).list;
+		var html='<table class="table table-bordered"><tr><td>id</td><td>收件人电话</td><td>内容</td><td>时间</td></tr>';
+		for(var i = 0;i<da.length;i++){
+			html+='<tr><td>'+da[i]['id']+'</td><td>'+da[i]['tel']+'</td><td>'+da[i]['params']+'</td><td>'+da[i]['createTime']+'</td></tr>';
+		}
+		html+='</table>';
+		$("#container").html(html);
+	});
+
+})
+function hh(){
+	alert(1);
+}
+</script>
+<div class="row" style='margin:10px 0' >
+  <div class="col-lg-6">
+    <div class="input-group">
+      <input type="text" class="form-control">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go!</button>
+      </span>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+</div>
+<div id="container">
+	
+</div>
+</@layout>
