@@ -19,7 +19,13 @@ function createDom(keyword){
 	var html='<table class="table table-bordered"><tr><td>id</td><td>收件人电话</td><td>制作来源</td><td width=300px>内容</td><td>时间</td></tr>';
 	for(var i = 0;i<list.length;i++){
 		var ispc='无线端';
-		var content=list[i]['params'].substring(0,45);
+		var content;
+		try{
+			var js = JSON.parse(list[i]['params']);
+			content=js['content1'].substring(0,45);
+		}catch(e){
+			content = '无';
+		}
 		if(list[i]['user']==1 || list[i]['user']=='1'){
 			ispc='电脑端';
 		}
