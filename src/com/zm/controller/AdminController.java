@@ -79,12 +79,32 @@ public class AdminController extends BaseController {
 	//卖家后台创建卡片的页面
 	@RequestMapping(value = "getLetterList")
 	public void getLetterList(HttpServletRequest request,HttpServletResponse rsp) {
-		String id = Common.getUser(request).getId();
-		List<Letter> letterList = letterService.getBySeller(id);
+		String keyword = request.getParameter("keyword");
+	
+		if(keyword==null || "".equals(keyword)){
+			keyword = Common.getUser(request).getId();
+		}
+		
+		List<Letter> letterList = letterService.getBySeller(keyword);
 		Map<String,Object> map=new HashMap<String, Object>();
 		map.put("list", letterList);
 		json(rsp,map);
 	}
+	
+	
+		@RequestMapping(value = "getLetterListBySeller")
+		public void getLetterListBySeller(HttpServletRequest request,HttpServletResponse rsp) {
+			String keyword = request.getParameter("keyword");
+		
+			if(keyword==null || "".equals(keyword)){
+				keyword = Common.getUser(request).getName();
+			}
+			
+			List<Letter> letterList = letterService.getBySellerName(keyword);
+			Map<String,Object> map=new HashMap<String, Object>();
+			map.put("list", letterList);
+			json(rsp,map);
+		}
 	//获取当前用户卡片信息
 	@RequestMapping(value = "getCards")
 	public void getCards(HttpServletRequest request,HttpServletResponse rsp) {
@@ -155,6 +175,15 @@ public class AdminController extends BaseController {
 		return html("/admin/sellersay", map, request);
 	}
 
+
+	@RequestMapping(value = "allUserList")
+	public ModelAndView allUserList(HttpServletRequest request) {
+		User user = userService.getById(Common.getUser(request).getId());
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("user", user);
+		return html("/admin/allUserList", map, request);
+	}
+	
 	// 如果数据库没有这个商家，就存入数据库，然后返回到前台
 	@RequestMapping(value = "login")
 	public ModelAndView login(HttpServletRequest request) {

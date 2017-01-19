@@ -196,8 +196,9 @@ public class LetterController extends BaseController {
 			map1.put("content2", "");
 			if(letter==null){
 				ispc="1";
+				letter = new Letter();
 			}
-			letter = new Letter();
+			
 			letter.setId(UUID.randomUUID().toString());
 			letter.setTemp(tempId);
 			letter.setUser(ispc);//此字段暂时用来表示是从pc端还是手机端创建的
@@ -206,12 +207,13 @@ public class LetterController extends BaseController {
 				//return html("/slider/slider", null, request);
 		//	}
 			String sellerid=(String) session.getAttribute("sellerid");
+			User u=(User)session.getAttribute("user");
 			if(sellerid==null){
-				User u=(User)session.getAttribute("user");
 				letter.setSeller(u.getId());
 			}else{
 				letter.setSeller(sellerid);
 			}
+			letter.setUserid(u.getName());
 			letter.setTel(tel);
 			letter.setSender(sender);
 			letter.setSenderTel(senderTel);

@@ -13,7 +13,10 @@ public interface LetterDao {
 	List<Letter> getByTel(String tel);
 
 	List<Letter> getBySeller(String sellerName);
+	List<Letter> getBySellerName(String sellerName);
 
 	List<Letter> getChart(Letter letter);
+
+	List<Letter> getletterListBySeller(String sellerName);
 
 }

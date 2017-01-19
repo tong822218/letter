@@ -30,6 +30,10 @@ public class LetterServiceImpl implements LetterService {
 		return letterDao.getBySeller(sellerName);
 	}
 	@Override
+	public List<Letter> getBySellerName(String sellerName) {
+		return letterDao.getBySellerName(sellerName);
+	}
+	@Override
 	public List<Letter> getChart(Letter letter) {
 		// TODO Auto-generated method stub
 		return letterDao.getChart(letter);

@@ -50,7 +50,23 @@ public class LetterDaoImpl implements LetterDao {
 		list.add(sellerName);
 		return (List<Letter>) mysqlJdbcDao.queryList(sql, list.toArray(), Letter.class);
 	}
-
+	
+	@Override
+	public List<Letter> getBySellerName(String sellerName) {
+		ArrayList<String> list = new ArrayList<String>();
+		String sql = " select *,l.create_time createTime,l.params params,t.title  tempName from s_letter l left join s_temp t on l.temp=t.id  where userid like ? order by l.create_time desc ";
+		list.add("%"+sellerName+"%");
+		return (List<Letter>) mysqlJdbcDao.queryList(sql, list.toArray(), Letter.class);
+	}
+	//根据店铺名称查询本店使用统计
+	@Override
+	public List<Letter> getletterListBySeller(String sellerName) {
+		ArrayList<String> list = new ArrayList<String>();
+		String sql = " select *,l.create_time createTime,l.params params,t.title  tempName from s_letter l left join s_temp t on l.temp=t.id  where seller = ? order by l.create_time desc ";
+		list.add(sellerName);
+		return (List<Letter>) mysqlJdbcDao.queryList(sql, list.toArray(), Letter.class);
+	}
+	
 	@Override
 	public List<Letter> getChart(Letter letter) {
 		ArrayList<String> list = new ArrayList<String>();

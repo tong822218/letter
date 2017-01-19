@@ -142,12 +142,10 @@
 
 					<li><a href="${rc.contextPath}/admin/sellersay.html"> <i class="icon-heart"></i> 卖家说
 					</a></li>
-					<!--      <li>
-                    <a href="#">
-                        <i class="icon-leaf"></i>
-                        关于
-                    </a>
-                </li> -->
+					<#if user.name == '卓梦网络科技'>
+						<li><a href="${rc.contextPath}/admin/allUserList.html"> <i class="icon-heart"></i>全部卖家统计
+						</a></li>
+					</#if>
 
 				</div>
 
