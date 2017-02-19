@@ -26,7 +26,9 @@
 			var tel=$("#tel").val();
 			var senderTel=$("#senderTel").val();
 			var sender=$("#sender").val();
-			$.post("${rc.contextPath}/l/send.html", {tel:tel,sender:sender,senderTel:senderTel}, function(data) {
+			var letterContent =  $("#letterContent").val();
+			
+			$.post("${rc.contextPath}/l/send.html", {tel:tel,sender:sender,senderTel:senderTel,letterContent:letterContent,tempId:''}, function(data) {
 				var d = "";
 				/* if(data=="true"){
 					$("#send").css({"display":"none"});
@@ -40,11 +42,64 @@
 					$(".alert").css({"-webkit-transform": "translate(-50%,-50%) scale(0)"});
 					//window.location.href="https://shop.m.taobao.com/shop/shopIndex.htm?shop_name=${seller!}";
 					//history.go(-1);
-					window.location.replace("https://letter.ews.m.jaeapp.com/l/home.html?seller=j11016&sellerid=366426558");
+					var sid = $("#sellerid").val();
+					window.location.replace("https://letter.ews.m.jaeapp.com/l/home.html?sellerid="+sid);
 				}, 2000); 
 			});
 		}
 	}
+	
+	$(document).ready(function(){
+		
+		addsubButton();
+        
+		var limitNum = 60;
+        var pattern = '还可以输入' + limitNum + '字符';
+        $('#contentwordage').html(pattern);
+        var val=$('#letterContent').val();
+        $('#letterContent').keyup(
+                function(){
+                    var remain = $(this).val().length;
+                    if(remain > limitNum){
+                    	$('#letterContent').val(val);
+                        pattern = "字数超过限制！";
+                    }else{
+                        var result = limitNum - remain;
+                        pattern = '还可以输入' + result + '字';
+                        val = $('#letterContent').val();
+                    }
+                    $('#contentwordage').html(pattern);
+                }
+        );
+    });
+	
+	function addsubButton(){
+
+	    var bar = document.createElement("div");
+	    bar.style.width="100%";
+	    bar.style.top=0;
+	    bar.style.left=0;
+	    bar.style.position="fixed";
+	    //bar.style.padding="3px 6px"
+	    bar.style.backgroundColor="#EEEEEE";
+	    //bar.style.filter = "progid:DXImageTransform.Microsoft.gradient(startColorstr='#3f000000';endColorstr='#3f000000' )";
+	    bar.style.backgroundColor = "rgba(200, 200, 200, 0.3)";
+
+	    var save=document.createElement("div");
+	    save.innerHTML='<img  width=34px height=35px src="../../static/image/bingo.png"/>';
+	    //save.href="javascript:submit()";
+	    save.addEventListener("click",submit, false);
+	    save.style.width='36px';
+	    save.style.height="36px";
+	    save.style.float="right";
+
+	    bar.style.zIndex='111';
+	    bar.appendChild(save);
+	    
+	    document.body.appendChild(bar);
+
+	};
+	
 </script>
 <style type="text/css">
 * {
@@ -61,12 +116,13 @@ body {
 	width: 100%;
 	height: 100%;
 	display: flex;
+	margin:0 auto;
 }
 
 .bg {
 	margin:50px auto;
 	position:relative;
-	width:90%;
+	width:350px;
 	height:330px;
 	background: url("${rc.contextPath}/static/image/send_biankuang.png") no-repeat;
 	background-size: contain;
@@ -75,7 +131,7 @@ body {
 .sjr{
 	position:absolute;
 	width:180px;
-	top:105px;
+	top:100px;
 	left:65px;
 	height: 30px;
 }
@@ -90,7 +146,7 @@ body {
 .fjrname{
 	position:absolute;
 	width:180px;
-	top:191px;
+	top:166px;
 	left:65px;
 	height: 30px;
 }
@@ -101,11 +157,33 @@ body {
 	width: 100%;
 	height: 30px;
 	line-height: 30px;
+	
+}
+.letterContent{
+	position:absolute;
+	width:180px;
+	top:196px;
+	left:65px;
+	height: 100px;
+	border:solid 1px #999;
+	border-radius:10px;
+}
+.letterContent textarea{
+	vertical-align: middle;
+	border:none;
+	background-color:transparent;
+	outline:none;
+	width: 100%;
+	height: 70px;
+	line-height: 15px;
+	padding-left:5px;
+	padding-top:5px;
+	
 }
 .fjr{
 	position:absolute;
 	width:180px;
-	top:148px;
+	top:133px;
 	left:65px;
 	height: 30px;
 }
@@ -119,7 +197,7 @@ body {
 }
 .send{
 	position:absolute;
-	bottom:45px;
+	bottom:20px;
 	left:125px;
 	width:80px;
 	height:30px;
@@ -133,11 +211,12 @@ body {
 	background-color:#fff;
 	box-shadow: 1px px 1px #eee;
 }
-input{	
-	text-align:center;
+.bg input{	
+	padding-left:5px;
 	background: url("${rc.contextPath}/static/image/send_input.png") no-repeat;
 	background-size:contain;
 }
+
 .alert{
 	opacity:0;
 	position:absolute;
@@ -167,22 +246,24 @@ input{
 </style>
 </head>
 <body>
+	<input type = 'hidden' id='sellerid' value="${sellerid}">
 	<div class="cont">
-		<div class="bg">
-				 <div class="sjr">
-					<input type="text" id="tel" name="tel" placeholder="收信人电话" required><span style="color:red;position:absolute;right: -10px;top:5px">*</span>
+				<div class="bg">
+						 <div class="sjr">
+							<input type="text" id="tel" name="tel" placeholder="收信人电话" required><span style="color:red;position:absolute;right: -10px;top:5px">*</span>
+						</div>
+						<div class="fjr">
+							<input type="text" id="senderTel" name="senderTel" placeholder="发件人电话" required><span style="color:red;position:absolute;right: -10px;top:5px">*</span>
+						</div>
+						<div class="fjrname">
+							<input type="text" id="sender" name="sender" placeholder="发件人姓名" required>
+						</div>
+						<div class="letterContent" style='display:none'>
+							<textarea  id="letterContent" name="letterContent"  required></textarea><span style="color:red;position:absolute;right: -10px;top:5px">*</span><div id="contentwordage" style='font-size:5px;;margin-top:10px;text-align:right;color:#aaa'></div>
+						</div>
+						 
 				</div>
-				<div class="fjr">
-					<input type="text" id="senderTel" name="senderTel" placeholder="发件人电话" required><span style="color:red;position:absolute;right: -10px;top:5px">*</span>
-				</div>
-				<div class="fjrname">
-					<input type="text" id="sender" name="sender" placeholder="收信人姓名" required>
-				</div>
-				<div class="send" id="send" onclick="submit()">
-					发&nbsp;送
-				</div> 
-		</div>
-	</div>
+			</div>
 	<div class="alert">
 		<div class="title">&nbsp;消息</div>
 		<div class="content"></div>

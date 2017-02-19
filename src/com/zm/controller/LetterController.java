@@ -191,18 +191,20 @@ public class LetterController extends BaseController {
 			HttpSession session = request.getSession();
 			Letter letter = (Letter) session.getAttribute("letter");
 			Map<String, Object> map1 = new HashMap<String, Object>();
-			map1.put("tempid",tempId);
-			map1.put("content1", letterContent);
-			map1.put("content2", "");
 			if(letter==null){
 				ispc="1";
 				letter = new Letter();
+				map1.put("tempid",tempId);
+				map1.put("content1", letterContent);
+				map1.put("content2", "");
+				letter.setParams(JSON.toJSONString(map1));
+			}else{
+				tempId= letter.getTemp();
 			}
 			
 			letter.setId(UUID.randomUUID().toString());
 			letter.setTemp(tempId);
 			letter.setUser(ispc);//此字段暂时用来表示是从pc端还是手机端创建的
-			letter.setParams(JSON.toJSONString(map1));
 			letter.setCreateTime(now());
 				//return html("/slider/slider", null, request);
 		//	}
@@ -213,7 +215,9 @@ public class LetterController extends BaseController {
 			}else{
 				letter.setSeller(sellerid);
 			}
-			letter.setUserid(u.getName());
+			if(u!=null){
+				letter.setUserid(u.getName());
+			}
 			letter.setTel(tel);
 			letter.setSender(sender);
 			letter.setSenderTel(senderTel);
